@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bowler.name %>
+</p>
+<p>
+  <strong>Gender</strong>
+  <%= @bowler.gender %>
+</p>
+<p>
+  <strong>Bowling association:</strong>
+  <%= @bowler.bowling_association.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_bowler_path(@bowler) %> |
+<%= link_to 'Back', bowlers_path %>

@@ -1,0 +1,31 @@
+<%= form_for(@bowler) do |f| %>
+  <% if @bowler.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bowler.errors.count, "error") %> prohibited this bowler from being saved:</h2>
+
+      <ul>
+      <% @bowler.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select(:gender, [['M','M'],['F','F']])%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :bowling_association_id %><br />
+    <%= f.collection_select(:bowling_association_id, BowlingAssociation.all, :id, :name)%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

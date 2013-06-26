@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+BowlingAssociation.delete_all
+BowlingAssociation.create(name: 'SLETBA')
+BowlingAssociation.create(name: 'TBAM')
+BowlingAssociation.create(name: 'MTBA')
+BowlingAssociation.create(name: 'PBC')

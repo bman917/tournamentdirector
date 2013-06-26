@@ -1,4 +1,8 @@
 Tournamentdirector::Application.routes.draw do
+  resources :bowlers
+
+  resources :bowling_associations
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
