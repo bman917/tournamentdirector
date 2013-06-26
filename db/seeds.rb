@@ -6,7 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 BowlingAssociation.delete_all
-BowlingAssociation.create(name: 'SLETBA')
-BowlingAssociation.create(name: 'TBAM')
+BowlingAssociation.create(id: 1, name: 'SLETBA')
+BowlingAssociation.create(id: 2, name: 'TBAM')
 BowlingAssociation.create(name: 'MTBA')
 BowlingAssociation.create(name: 'PBC')
+
+Bowler.delete_all
+Bowler.create(name: 'Jacky Chan', gender: 'M', bowling_association_id: 1)
+Bowler.create(name: 'Jeff Chan', gender: 'M', bowling_association_id: 1)
+Bowler.create(name: 'Peping Chan', gender: 'M', bowling_association_id: 1)
+Bowler.create(name: 'Pionie Chan', gender: 'M', bowling_association_id: 2)
