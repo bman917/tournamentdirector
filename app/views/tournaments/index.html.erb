@@ -22,7 +22,8 @@
       <td><%= tournament.start_date %></td>
       <td><%= tournament.end_date %></td>
       <td><%= tournament.bowling_association.name %></td>
-      <td><%= link_to 'Show', tournament %></td>
+      <td><%= link_to 'Show Squads', tournament_squads_path(tournament) %></td>
+      <td><%= link_to 'Add Squad', new_squad_path(tournament) %></td>
       <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
       <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

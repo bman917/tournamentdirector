@@ -1,0 +1,18 @@
+<h1>Squad Informtion Page</h1>
+<p>
+  <strong>Tournament:</strong>
+  <%= @squad.tournament.name %>
+</p>
+
+<p>
+  <strong>Squad Name:</strong>
+  <%= @squad.name %>
+</p>
+
+<p>
+  <strong>Squad Time:</strong>
+  <%= @squad.time %>
+</p>
+
+<%= link_to 'Edit', edit_squad_path(@squad) %> |
+<%= link_to 'Back', tournament_squads_path(@squad.tournament) %>

@@ -1,4 +1,9 @@
 Tournamentdirector::Application.routes.draw do
+
+  get "tournament/:tournament_id/squads" => "squads#list", as: "tournament_squads"
+  get "squad/new/:tournament_id" => "squads#new", as: "new_squad"
+  resources :squads
+
   resources :tournaments
 
   get "average_entry/new/:bowler_id" => "average_entries#new", as: "new_average_entry"

@@ -1,0 +1,31 @@
+<h1><%=@tournament.name%></h1>
+<h2>Listing Squads</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Squad Name</th>
+      <th>Squad Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @squads.each do |squad| %>
+    <tr>
+      <td><%= squad.name %></td>
+      <td><%= squad.time.to_s(:squad_time) %></td>
+      <td><%= link_to 'Show', squad %></td>
+      <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
+      <td><%= link_to 'Destroy', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Squad', new_squad_path(@tournament) %><br/>
+<%= link_to 'Back to Tournaments', tournaments_path %>
