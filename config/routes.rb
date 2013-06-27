@@ -1,4 +1,6 @@
 Tournamentdirector::Application.routes.draw do
+  resources :tournaments
+
   get "average_entry/new/:bowler_id" => "average_entries#new", as: "new_average_entry"
   resources :average_entries
 

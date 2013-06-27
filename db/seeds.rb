@@ -25,3 +25,6 @@ AverageEntry.create(average: 150, bowler_id: 1, user_id: 1)
 AverageEntry.create(average: 200, bowler_id: 2, user_id: 1)
 AverageEntry.create(average: 150, bowler_id: 3, user_id: 1)
 AverageEntry.create(average:  70, bowler_id: 4, user_id: 1)
+
+Tournament.delete_all
+Tournament.create(name: 'SLETBA OPEN 2013', tournament_type: 'OPEN', start_date: "October 7, 2013", end_date: "October 14, 2013", bowling_association_id: 1)
