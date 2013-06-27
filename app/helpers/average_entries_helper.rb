@@ -1,0 +1,2 @@
+module AverageEntriesHelper
+end

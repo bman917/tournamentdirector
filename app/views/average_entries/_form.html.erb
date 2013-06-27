@@ -1,0 +1,29 @@
+<%= form_for(@average_entry) do |f| %>
+  <% if @average_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@average_entry.errors.count, "error") %> prohibited this average_entry from being saved:</h2>
+
+      <ul>
+      <% @average_entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bowler_id %><br />
+    <%= f.hidden_field :bowler_id, value: @bowler.id %>
+    <%= f.text_field :bowler_name, value: @bowler.name, disabled: true %>
+  </div>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+
+  <div class="field">
+    <%= f.label :average %><br />
+    <%= f.number_field :average %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

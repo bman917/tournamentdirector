@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  average: 1
+  bowler_id: 
+  user_id: 
+  record_date: 2013-06-27 23:37:14
+
+two:
+  average: 1
+  bowler_id: 
+  user_id: 
+  record_date: 2013-06-27 23:37:14
