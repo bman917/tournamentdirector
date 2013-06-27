@@ -20,12 +20,12 @@ class AverageEntriesController < ApplicationController
 
   # GET /average_entries/1/edit
   def edit
+    @bowler = @average_entry.bowler
   end
 
   # POST /average_entries
   # POST /average_entries.json
   def create
-    average_entry_params[:record_date] = Time.now
     @average_entry = AverageEntry.new(average_entry_params)
 
     respond_to do |format|
@@ -71,6 +71,6 @@ class AverageEntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def average_entry_params
-      params.require(:average_entry).permit(:average, :bowler_id, :user_id, :record_date)
+      params.require(:average_entry).permit(:average, :bowler_id, :user_id)
     end
 end

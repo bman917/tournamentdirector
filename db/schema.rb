@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20130627153714) do
     t.integer  "average"
     t.integer  "bowler_id"
     t.integer  "user_id"
-    t.datetime "record_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
