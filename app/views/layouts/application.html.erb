@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tournamentdirector</title>
+  <title>Tournament Director</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -16,6 +16,11 @@ Logged in as <%= current_user.email %>.
 <%= link_to "Sign up", sign_up_path %> or
 <%= link_to "log in", log_in_path %>
 <% end %>
+</div>
+
+<div id="main_nav">
+  <%= link_to "Bowlers", bowlers_path %>
+  <%= link_to "Average Entries (Admin Only)", average_entries_path%>
 </div>
 
 <% flash.each do |name, msg| %>
