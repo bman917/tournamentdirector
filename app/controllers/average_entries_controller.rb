@@ -30,7 +30,7 @@ class AverageEntriesController < ApplicationController
 
     respond_to do |format|
       if @average_entry.save
-        format.html { redirect_to @average_entry, notice: 'Average entry was successfully created.' }
+        format.html { redirect_to bowlers_path, notice: 'Average entry was successfully created.' }
         format.json { render action: 'show', status: :created, location: @average_entry }
       else
         format.html { render action: 'new' }

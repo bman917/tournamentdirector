@@ -12,10 +12,16 @@ BowlingAssociation.create(name: 'MTBA')
 BowlingAssociation.create(name: 'PBC')
 
 Bowler.delete_all
-Bowler.create(name: 'Jacky Chan', gender: 'M', bowling_association_id: 1)
-Bowler.create(name: 'Jeff Chan', gender: 'M', bowling_association_id: 1)
-Bowler.create(name: 'Peping Chan', gender: 'M', bowling_association_id: 1)
-Bowler.create(name: 'Pionie Chan', gender: 'M', bowling_association_id: 2)
+Bowler.create(id: 1, name: 'Jacky Chan', gender: 'M', bowling_association_id: 1)
+Bowler.create(id: 2, name: 'Jeff Chan', gender: 'M', bowling_association_id: 1)
+Bowler.create(id: 3, name: 'Peping Chan', gender: 'M', bowling_association_id: 1)
+Bowler.create(id: 4, name: 'Pionie Chan', gender: 'M', bowling_association_id: 2)
 
 User.delete_all
 User.create(id: 1, email: 'bman917@yahoo.com', password: 'password', password_confirmation: 'password', role: 'ADMIN')
+
+AverageEntry.delete_all
+AverageEntry.create(average: 150, bowler_id: 1, user_id: 1)
+AverageEntry.create(average: 200, bowler_id: 2, user_id: 1)
+AverageEntry.create(average: 150, bowler_id: 3, user_id: 1)
+AverageEntry.create(average:  70, bowler_id: 4, user_id: 1)

@@ -6,7 +6,7 @@
       <th>Name</th>
       <th>Gender</th>
       <th>Association </th>
-      <th></th>
+      <th>Average</th>
       <th></th>
       <th></th>
     </tr>
@@ -18,10 +18,11 @@
       <td><%= bowler.name %></td>
       <td><%= bowler.gender %></td>
       <td><%= bowler.bowling_association.name %></td>
+      <td><%= bowler.latest_average %></td>
       <td><%= link_to 'Update Average', new_average_entry_path(bowler) %></td>
       <td><%= link_to 'Show', bowler %></td>
       <td><%= link_to 'Edit', edit_bowler_path(bowler) %></td>
-      <td><%= link_to 'Destroy', bowler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Delete', bowler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>
