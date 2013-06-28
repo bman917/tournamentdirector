@@ -1,23 +1,9 @@
-<h1>Squad Informtion Page</h1>
-<p>
-  <strong>Tournament:</strong>
-  <%= @squad.tournament.name %>
-</p>
+<h1><%= @squad.tournament.name %></h1>
 
-<p>
-  <strong>Squad Name:</strong>
-  <%= @squad.name %>
-</p>
+<h2>Entries for Squad: <%= @squad.name %></h2>
 
-<p>
-  <strong>Squad Time:</strong>
-  <%= @squad.time %>
-</p>
+<strong>Squad Roll-off <%= @squad.time.to_s(:squad_time) %></strong>
 
-<%= link_to 'Edit', edit_squad_path(@squad) %> |
-<%= link_to 'Back', tournament_squads_path(@squad.tournament) %>
-
-<h2>Entries for this Squad</h2>
 <table id="squad_entries_table">
 <tr>
 	<th>Game Type</th>
@@ -33,11 +19,10 @@
 </tr>
 
 <% end %>
+
 </table>
-</br>
-</br>
-Add New Entry</br>
-<%= link_to 'Singles', new_squad_entry_path(@squad, 'Singles') %></br>
-<%= link_to 'Doubles', new_squad_entry_path(@squad, 'Doubles') %></br>
-<%= link_to 'Team',    new_squad_entry_path(@squad, 'Team') %></br>
+Add New:
+<%= link_to 'Singles', new_squad_entry_path(@squad, 'Singles') %>, 
+<%= link_to 'Doubles', new_squad_entry_path(@squad, 'Doubles') %>,
+<%= link_to 'Team',    new_squad_entry_path(@squad, 'Team') %>
 

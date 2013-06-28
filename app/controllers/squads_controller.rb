@@ -4,6 +4,7 @@ class SquadsController < ApplicationController
   def list
     @tournament = Tournament.find(params[:tournament_id])
     @squads = @tournament.squads    
+    session[:selected_tournament] = @tournament.id
 
   end
 
