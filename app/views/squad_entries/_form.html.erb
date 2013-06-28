@@ -1,0 +1,39 @@
+<%= form_for(@squad_entry) do |f| %>
+  <% if @squad_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@squad_entry.errors.count, "error") %> prohibited this squad_entry from being saved:</h2>
+
+      <ul>
+      <% @squad_entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.select(:category, [['OPEN','O'],['Class A - MEN','M-A'],['Class B - MEN','M-B'], ['Class C - MEN','M-C']])%>
+  </div>
+
+  <div class="field">
+    <%= f.label :entry_type %><br />
+    <%= f.text_field :entry_type, value: @squad_entry.entry_type, disabled: true %>
+    <%= f.hidden_field :entry_type, value: @squad_entry.entry_type %>
+  </div>
+
+<%  (1..@number_of_bowlers).each do |i| %>
+
+         <%= f.label "Bowler #{i}" %>:
+         <%= collection_select(:bowlers, i, Bowler.all, :id, :name)%></br>
+<%  end %>
+
+
+  <%= f.hidden_field :squad_id, value: @squad.id %>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

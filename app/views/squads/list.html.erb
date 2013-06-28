@@ -17,6 +17,11 @@
     <tr>
       <td><%= squad.name %></td>
       <td><%= squad.time.to_s(:squad_time) %></td>
+      <td>[Add Entry(
+        <%= link_to 'Singles', new_squad_entry_path(squad, 'Singles') %>, 
+        <%= link_to 'Doubles', new_squad_entry_path(squad, 'Doubles') %>,
+        <%= link_to 'Team', new_squad_entry_path(squad, 'Team') %>
+        )]</td>
       <td><%= link_to 'Show', squad %></td>
       <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
       <td><%= link_to 'Destroy', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>

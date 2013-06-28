@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= @squad_entry.squad.tournament %></strong>
+</p>
+
+<p>
+  <strong>Squad Number: <%= @squad_entry.squad.name %></strong>
+</p>
+
+
+<p>
+	<strong>Game Entry</strong>
+</p>
+
+<p>
+	 <strong>ID:</strong>
+	 <%= @squad_entry.id %>
+</p>
+
+  <strong>Category:</strong>
+  <%= @squad_entry.category %>
+</p>
+
+<p>
+  <strong>Entry type:</strong>
+  <%= @squad_entry.entry_type %>
+</p>
+
+<p>
+  <strong>Bowlers:</strong></br>
+  <% @squad_entry.bowlers.each do |bowler| %>
+  <%= bowler %><br/>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_squad_entry_path(@squad_entry) %> |
+<%= link_to 'Back', squad_entries_path %>

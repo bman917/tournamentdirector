@@ -1,0 +1,2 @@
+module SquadEntriesHelper
+end
