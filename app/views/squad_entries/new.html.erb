@@ -2,4 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', squad_entries_path %>
+<%= link_to 'Back To Tournament Page', tournament_squads_path(@squad.tournament) %><br/>
+<%= link_to 'Back To Squad Info Page', @squad %>

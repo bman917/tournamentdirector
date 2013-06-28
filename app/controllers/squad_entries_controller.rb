@@ -51,7 +51,7 @@ class SquadEntriesController < ApplicationController
 
     respond_to do |format|
       if @squad_entry.save
-        format.html { redirect_to @squad_entry, notice: 'Squad entry was successfully created.' }
+        format.html { redirect_to squad_path(@squad_entry.squad), notice: 'Squad entry was successfully created.' }
         format.json { render action: 'show', status: :created, location: @squad_entry }
       else
         format.html { render action: 'new' }

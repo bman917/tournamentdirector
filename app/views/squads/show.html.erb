@@ -16,3 +16,28 @@
 
 <%= link_to 'Edit', edit_squad_path(@squad) %> |
 <%= link_to 'Back', tournament_squads_path(@squad.tournament) %>
+
+<h2>Entries for this Squad</h2>
+<table id="squad_entries_table">
+<tr>
+	<th>Game Type</th>
+	<th>Division</th>
+	<th>Bowler(s)</th>
+</tr>
+
+<% @squad.squad_entries.each do | squad_entry |%>
+<tr>
+	<td><%= squad_entry.entry_type %></td>
+	<td><%= squad_entry.category %></td>
+	<td><%= squad_entry.bowler_names %></td>
+</tr>
+
+<% end %>
+</table>
+</br>
+</br>
+Add New Entry</br>
+<%= link_to 'Singles', new_squad_entry_path(@squad, 'Singles') %></br>
+<%= link_to 'Doubles', new_squad_entry_path(@squad, 'Doubles') %></br>
+<%= link_to 'Team',    new_squad_entry_path(@squad, 'Team') %></br>
+
