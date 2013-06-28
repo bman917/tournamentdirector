@@ -1,5 +1,7 @@
 Tournamentdirector::Application.routes.draw do
 
+  resources :games
+
   get "tournament/:tournament_id/squads" => "squads#list", as: "tournament_squads"
   get "squad/new/:tournament_id" => "squads#new", as: "new_squad"
   resources :squads

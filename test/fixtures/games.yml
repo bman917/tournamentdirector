@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  score: 1
+  bowler_id: 
+  notes: MyString
+  user_id: 
+
+two:
+  score: 1
+  bowler_id: 
+  notes: MyString
+  user_id: 
