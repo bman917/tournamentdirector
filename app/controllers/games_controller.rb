@@ -1,6 +1,13 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
+  def list
+    @squad_entry = SquadEntry.find(params[:squad_entry_id])
+    @games = @squad_entry.games
+    render 'index'
+
+  end
+
   # GET /games
   # GET /games.json
   def index

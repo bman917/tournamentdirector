@@ -5,7 +5,7 @@ class CreateGames < ActiveRecord::Migration
       t.references :bowler, index: true
       t.string :notes
       t.references :user, index: true
-
+      t.references :squad_entry, index: true
       t.timestamps
     end
   end

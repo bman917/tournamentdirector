@@ -4,6 +4,7 @@ class Bowler < ActiveRecord::Base
   belongs_to :bowling_association
   has_and_belongs_to_many :squad_entries
   has_many :average_entries
+  has_many :games
 
   def latest_average
 

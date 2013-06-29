@@ -9,6 +9,9 @@
 	<th>Game Type</th>
 	<th>Division</th>
 	<th>Bowler(s)</th>
+	<th>Games</th>
+	<th>Total</th>
+	<th>Actions</th>
 </tr>
 
 <% @squad.squad_entries.each do | squad_entry |%>
@@ -16,6 +19,11 @@
 	<td><%= squad_entry.entry_type %></td>
 	<td><%= squad_entry.category %></td>
 	<td><%= squad_entry.bowler_names %></td>
+	<td><%= squad_entry.games.size%> <%= link_to 'Show', squad_entry_games_path(squad_entry)%></td>
+	<td><%= squad_entry.total_pinfalls%></td>
+	<td><%= link_to 'Add Game Score', new_squad_entry_game_path(squad_entry) %>, 
+	     <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
 </tr>
 
 <% end %>

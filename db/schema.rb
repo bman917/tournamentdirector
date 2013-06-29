@@ -50,11 +50,13 @@ ActiveRecord::Schema.define(version: 20130628184646) do
     t.integer  "bowler_id"
     t.string   "notes"
     t.integer  "user_id"
+    t.integer  "squad_entry_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "games", ["bowler_id"], name: "index_games_on_bowler_id"
+  add_index "games", ["squad_entry_id"], name: "index_games_on_squad_entry_id"
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
   create_table "squad_entries", force: true do |t|

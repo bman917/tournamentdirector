@@ -4,6 +4,10 @@ class Squad < ActiveRecord::Base
   has_many :squad_entries
 
   def to_s
-  	"Squad-#{name}"
+  	"SQUAD-#{name}"
+  end
+
+  def info
+  	"#{tournament}-SQUAD-#{name}"
   end
 end

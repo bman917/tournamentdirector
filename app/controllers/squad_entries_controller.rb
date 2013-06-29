@@ -1,5 +1,39 @@
 class SquadEntriesController < ApplicationController
-  before_action :set_squad_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game]
+
+  def new_game
+    @squad = @squad_entry.squad
+
+  end
+
+  def create_game
+
+    squad = @squad_entry.squad
+
+    @squad_entry.bowlers.each do | bowler |
+      
+      game = bowler.games.create(
+        squad_entry_id: @squad_entry.id,
+               user_id: session[:user_id],
+                 score: params["score_#{bowler.id}"])
+        
+
+      puts "Recored game score: #{game.score}"
+      
+      unless game
+        respond_to do |format|
+          format.html { render action: 'new_game' }
+          format.json { render json: @squad_entry.errors, status: :unprocessable_entity }
+          return
+        end
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to squad_path(@squad_entry.squad), notice: 'Game was successfully created.' }
+      format.json { render action: 'show', status: :created, location: @squad_entry }
+    end
+  end
 
   # GET /squad_entries
   # GET /squad_entries.json
@@ -79,7 +113,7 @@ class SquadEntriesController < ApplicationController
   def destroy
     @squad_entry.destroy
     respond_to do |format|
-      format.html { redirect_to squad_entries_url }
+      format.html { redirect_to squad_path(@squad_entry.squad) }
       format.json { head :no_content }
     end
   end

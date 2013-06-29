@@ -1,5 +1,15 @@
 <h1>Listing games</h1>
 
+<% if @squad_entry %>
+<div id="squad_entry_info">
+  <%= label_tag :tournament, @squad_entry.squad.tournament%>
+  <%= label_tag :squad_name, @squad_entry.squad%>
+  <%= label_tag :category, @squad_entry.title%>
+
+</div>
+<% end %>
+
+
 <table>
   <thead>
     <tr>
@@ -29,5 +39,6 @@
 </table>
 
 <br />
-
-<%= link_to 'New Game', new_game_path %>
+<% if @squad_entry %>
+<%= link_to 'Back', squad_path(@squad_entry.squad) %>
+<% end %>
