@@ -1,7 +1,10 @@
-<h1><%=@squad.tournament%></h1>
+<div class="tournament_title"><%=@squad.tournament%></div>
+
 <h2>New <%=@squad_entry.entry_type%> Entry For <%=@squad%></h2>
 
-
+<div class="info">
+	You are about to add a new ENTRY for <%= label_tag :squad, @squad%>.
+</div>
 <%= render 'form' %>
 
 <%= link_to 'Back To Tournament Page', tournament_squads_path(@squad.tournament) %><br/>

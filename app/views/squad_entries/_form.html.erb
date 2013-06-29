@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :category %><br />
-    <%= f.select(:category, [['OPEN','O'],['Class A - MEN','M-A'],['Class B - MEN','M-B'], ['Class C - MEN','M-C']])%>
+    <%= f.label :category, "Division/Class" %><br />
+    <%= f.select(:category, [['OPEN','OPEN'],['CLASS A','A'],['Class B','B'], ['Class C','C']])%>
   </div>
   <%= f.hidden_field :entry_type, value: @squad_entry.entry_type %>
 
