@@ -21,6 +21,13 @@
 <div id="navigation">
 
   <ul id="menu">
+    <% if current_user && current_user.role == 'MASTER' %>
+    <li><a href="">MASTER</a>
+      <ul>
+        <li><%= link_to "Manage Users", users_url%></li>
+      </ul>
+    </li>
+    <% end %>
     <li><a href="">Administration</a>
       <ul>
       <li><%= link_to "Associations", bowling_associations_path %></li>

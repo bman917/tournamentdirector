@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   
   attr_accessor :password
   before_save :encrypt_password
+  has_and_belongs_to_many :tournaments
+  
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create

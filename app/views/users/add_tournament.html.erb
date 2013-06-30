@@ -1,0 +1,17 @@
+<h1>Assign Tournament</h1>
+
+<%= form_tag(assign_tournament_path(@user), method: "post") do %>
+
+  User: <%=@user.email%>
+  <div class="field">
+    <%= label_tag :tournament_id %><br />
+    <%= collection_select(:tournament,:id, @tournaments, :id, :name)%>
+  </div>
+	  <div class="actions">
+	    <%= submit_tag("Assign") %>
+	  </div>
+
+<% end %>
+
+
+<%= link_to 'Back', users_path %>

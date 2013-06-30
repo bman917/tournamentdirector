@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user.email %>
+</p>
+
+<table>
+  <tr>
+    <th>Tournament</th>
+    <th>Action</th>
+  </tr>
+<% @user.tournaments.each do | tournament | %>
+  <tr>
+    <td><%=tournament.name%></td>
+    <td><%= link_to 'Unassign', unassign_tournament_path(@user, tournament)%></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', users_url %>
