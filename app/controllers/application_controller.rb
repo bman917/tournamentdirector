@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def selected_tournament
-    @selected_tournament ||= Tournament.find(session[:selected_tournament]) if session[:selected_tournament]
+    @selected_tournament ||= Tournament.find_by_id(session[:selected_tournament]) if session[:selected_tournament]
   end
 
   def logged_in?
