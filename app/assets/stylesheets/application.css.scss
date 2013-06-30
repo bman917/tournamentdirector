@@ -12,21 +12,82 @@
  *= require_tree .
  */
 
- .tournament_title {
- 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
- 	font-size: 24px;
- 	font-weight: bold;
- 	margin: 10px;
- 	border: 1px solid;
- 	padding: 10px;
+ #user_nav {
+ 	float: right;
  }
 
-div#main_nav {
-	margin: 5px;
-	a {
-		margin: 5px;
-	}	
+ body {
 
+   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+   margin: 10px;
+   padding: 10px;
+
+   background-color: #fff;
+   color: #333;
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+}
+
+
+ .tournament_title {
+ 	
+ 	font-size: 28px;
+ 	font-weight: bold;
+ 	#background-color: #FFBA59;
+ 	
+ }
+
+ .squad_info {
+ 	font-size: 18px;
+
+ }
+
+.operation_discription {
+	font-size: 18px;
+	font-weight: bold;
+ 	margin: 10px;
+ 	padding: 10px;
+}
+
+#navigation {
+   margin-bottom: 70px;
+   margin-top: 5px;
+
+    ul {
+	  font-family: Arial, Verdana;
+	  font-size: 14px;
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	}
+	ul li {
+	  display: block;
+	  position: relative;
+	  float: left;
+	}
+	li ul { display: none; }
+	ul li a {
+	  display: block;
+	  text-decoration: none;
+	  color: #ffffff;
+	  border-top: 1px solid #ffffff;
+	  padding: 5px 15px 5px 15px;
+	  background: #2C5463;
+	  margin-left: 1px;
+	  white-space: nowrap;
+	}
+	ul li a:hover { background: #617F8A; }
+	li:hover ul {
+	  display: block;
+	  position: absolute;
+	}
+	li:hover li {
+	  float: none;
+	  font-size: 12px;
+	}
+	li:hover a { background: #617F8A; }
+	li:hover li a:hover { background: #95A9B1; }
 }
 
 div.info {
