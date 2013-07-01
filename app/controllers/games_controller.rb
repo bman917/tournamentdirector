@@ -13,6 +13,11 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all
+
+    session[:selected_tournament] = nil
+    session[:selected_squad] = nil
+    session[:selected_squad_entry] = nil
+
   end
 
   # GET /games/1
