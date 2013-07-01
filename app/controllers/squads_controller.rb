@@ -19,6 +19,7 @@ class SquadsController < ApplicationController
   # GET /squads/1
   # GET /squads/1.json
   def show
+    session[:selected_squad_entry] = nil
   end
 
   # GET /squads/new
