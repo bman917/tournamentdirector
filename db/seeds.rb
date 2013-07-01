@@ -18,7 +18,7 @@ Bowler.create(id: 3, name: 'Peping Chan', gender: 'M', bowling_association_id: 1
 Bowler.create(id: 4, name: 'Pionie Chan', gender: 'M', bowling_association_id: 2)
 
 User.delete_all
-User.create(id: 1, email: 'bman917@yahoo.com', password: 'password', password_confirmation: 'password', role: 'ADMIN')
+User.create(id: 1, email: 'bman917@yahoo.com', password: 'password', password_confirmation: 'password', role: 'MASTER')
 
 AverageEntry.delete_all
 AverageEntry.create(average: 150, bowler_id: 1, user_id: 1)
