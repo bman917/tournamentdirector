@@ -3,6 +3,8 @@ class SquadEntriesController < ApplicationController
 
   def new_game
     @squad = @squad_entry.squad
+    session[:selected_squad_entry] = params[:id]
+
 
   end
 
@@ -56,6 +58,9 @@ class SquadEntriesController < ApplicationController
     @number_of_bowlers = 1 if entry_type == 'Singles'
     @number_of_bowlers = 2 if entry_type == 'Doubles'
     @number_of_bowlers = 3 if entry_type == 'Team'
+
+    session[:selected_squad] = @squad.id
+    
 
   end
 

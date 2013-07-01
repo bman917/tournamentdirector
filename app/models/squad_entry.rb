@@ -8,7 +8,7 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def to_s
-  	"#{entry_type}, Class #{category} - [#{bowler_names}]"
+  	"ENTRY##{id} - #{entry_type}, Class #{category} - [#{bowler_names}]"
   end
 
   def title

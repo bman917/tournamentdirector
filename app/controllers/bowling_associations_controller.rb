@@ -5,6 +5,11 @@ class BowlingAssociationsController < ApplicationController
   # GET /bowling_associations.json
   def index
     @bowling_associations = BowlingAssociation.all
+
+    session[:selected_tournament] = nil
+    session[:selected_squad] = nil
+    session[:selected_squad_entry] = nil
+
   end
 
   # GET /bowling_associations/1

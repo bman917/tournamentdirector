@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     @selected_tournament ||= Tournament.find_by_id(session[:selected_tournament]) if session[:selected_tournament]
   end
 
+
   def logged_in?
   	session[:user_id]
   end

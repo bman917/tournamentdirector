@@ -1,14 +1,7 @@
-<h1>Listing games</h1>
 
-<% if @squad_entry %>
-<div id="squad_entry_info">
-  <%= label_tag :tournament, @squad_entry.squad.tournament%>
-  <%= label_tag :squad_name, @squad_entry.squad%>
-  <%= label_tag :category, @squad_entry.title%>
-
+<div class="title">
+  <h1 class="games_title">Recorded Games</h1>
 </div>
-<% end %>
-
 
 <table>
   <thead>

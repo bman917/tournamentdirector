@@ -1,12 +1,7 @@
-<div class="tournament_title"><%=@squad.tournament%></div>
-<div class="squad_info">Squad: <%=@squad.name%></div>
+<div class="title"><h1 class="entries_title">Add <%=@squad_entry.entry_type%> Entry</h1></div>
 
-<div class="operation_discription">New <%=@squad_entry.entry_type%> Entry For <%=@squad%></div>
 
-<div class="info">
-	You are about to add a new ENTRY for <%= label_tag :squad, @squad%>.
-</div>
 <%= render 'form' %>
 
-<%= link_to 'Back To Tournament Page', tournament_squads_path(@squad.tournament) %><br/>
-<%= link_to 'Back To Squad Info Page', @squad %>
+
+<%= link_to 'Back', @squad %>

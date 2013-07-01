@@ -1,12 +1,5 @@
-<h1><%= @squad.tournament.name %></h1>
+<div class="title"><h1 class="games_title">Record New Game</h1></div>
 
-<h2>Squad: <%= @squad.name %></h2>
-
-<strong>Squad Roll-off <%= @squad.time.to_s(:squad_time) %></strong>
-
-<p/>
-
-Record New Game for <%= @squad_entry.bowler_names %>
 
 <%= form_tag(create_squad_entry_game_path(@squad_entry), method: "post") do %>
 	<table id="bowlers">

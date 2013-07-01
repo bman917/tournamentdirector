@@ -18,6 +18,9 @@ class SessionsController < ApplicationController
 	def destroy
 	  session[:user_id] = nil
 	  session[:selected_tournament] = nil
+	  session[:selected_squad] = nil
+	  session[:selected_squad_entry] = nil
+
 	  redirect_to root_url, :notice => "Logged out!"
 	end
 

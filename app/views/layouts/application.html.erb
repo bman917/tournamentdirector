@@ -18,42 +18,67 @@
   <% end %>
 </div>
 
-<div id="navigation">
+<% if current_user %>
+  <div id="navigation">
 
-  <ul id="menu">
-    <% if current_user && current_user.role == 'MASTER' %>
-    <li><a href="">MASTER</a>
-      <ul>
-        <li><%= link_to "Manage Users", users_url%></li>
-      </ul>
-    </li>
-    <% end %>
-    <li><a href="">Administration</a>
-      <ul>
-      <li><%= link_to "Associations", bowling_associations_path %></li>
-      <li><%= link_to "Bowlers", bowlers_path %></li>
-      </ul>
-    </li>
+    <ul id="menu">
+      <% if master? %>
+        <li><a href="">MASTER</a>
+          <ul>
+            <li><%= link_to "Manage Users", users_url%></li>
+          </ul>
+        </li>
+      <% end %>
 
-    <li><%= link_to "Tournaments", tournaments_path %>
-        <ul>
-          <li><%= link_to 'Show Tournaments', tournaments_path %></li>
-        </ul>
-    </li>
+      <% if admin? %>
+        <li><a href="">Administration</a>
+          <ul>
+          <li><%= link_to "Associations", bowling_associations_path %></li>
+          <li><%= link_to "Bowlers", bowlers_path %></li>
+          </ul>
+        </li>
+      <% end %>
 
-    <% Tournament.all.each do |tournament| %>
-      <li><%= link_to tournament.name, tournament_squads_path(tournament) %>
-        <ul>
-          <li><%= link_to 'Show Squads', tournament_squads_path(tournament) %></li>
-        </ul>
-      </li>
 
-    <% end %>
-  </ul>
-</div>
+      <% if master? %>
+        <li><%= link_to "Tournaments", tournaments_path %>
+            <ul>
+              <li><%= link_to 'Show Tournaments', tournaments_path %></li>
+            </ul>
+        </li>
+      <% end %>
 
-<div class="tournament_title">
-  <%=selected_tournament%>
+
+      <% current_user.tournaments.each do |tournament| %>
+        <li><%= link_to tournament.name, tournament_squads_path(tournament) %>
+          <ul>
+            <li><%= link_to 'Show Squads', tournament_squads_path(tournament) %></li>
+          </ul>
+        </li>
+
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="title">
+  <span class="tournament_title"><%=selected_tournament%></span>
+
+
+
+<% if selected_squad %>
+  <div class="squad_title">
+    <%=selected_squad%>
+    <div class="roll_off_info">Roll-off <%= selected_squad.time.to_s(:squad_time) %></div>
+  </div>
+<% end %>
+
+<% if selected_squad_entry %>
+  <div class="entries_title">
+    <%=selected_squad_entry%>
+  </div>
+<% end %>
+
 </div>
 
 <% flash.each do |name, msg| %>

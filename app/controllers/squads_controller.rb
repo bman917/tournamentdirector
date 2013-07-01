@@ -5,6 +5,8 @@ class SquadsController < ApplicationController
     @tournament = Tournament.find(params[:tournament_id])
     @squads = @tournament.squads    
     session[:selected_tournament] = @tournament.id
+    session[:selected_squad] = nil
+    session[:selected_squad_entry] = nil
 
   end
 
@@ -78,6 +80,7 @@ class SquadsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_squad
       @squad = Squad.find(params[:id])
+      session[:selected_squad] = @squad.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

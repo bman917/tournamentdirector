@@ -1,12 +1,10 @@
-<h1>Listing bowling_associations</h1>
+<h1>Listing Bowling Associations</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -14,9 +12,16 @@
     <% @bowling_associations.each do |bowling_association| %>
     <tr>
       <td><%= bowling_association.name %></td>
-      <td><%= link_to 'Show', bowling_association %></td>
-      <td><%= link_to 'Edit', edit_bowling_association_path(bowling_association) %></td>
-      <td><%= link_to 'Destroy', bowling_association, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td>
+        <ul id="menu">
+          <li><%= link_to 'Show', bowling_association %></li>
+          <li><%= link_to 'Edit', edit_bowling_association_path(bowling_association) %></li>
+
+          <% if master? %>
+          <li><%= link_to 'Destroy', bowling_association, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <% end %>
+        </ul>
+      </td>
     </tr>
     <% end %>
   </tbody>

@@ -4,6 +4,7 @@ class GamesController < ApplicationController
   def list
     @squad_entry = SquadEntry.find(params[:squad_entry_id])
     @games = @squad_entry.games
+    session[:selected_squad_entry] = @squad_entry.id
     render 'index'
 
   end
