@@ -10,7 +10,7 @@
 	<th>Actions</th>
 </tr>
 
-<% @squad.squad_entries.each do | squad_entry |%>
+<% @squad.squad_entries.sort!.each do | squad_entry |%>
 <tr>
 	<td><%= squad_entry.entry_type %></td>
 	<td><%= squad_entry.category %></td>

@@ -24,4 +24,38 @@ class SquadEntry < ActiveRecord::Base
     games.each { |game| total += game.score }
     total
   end
+
+  def <=>(other)
+
+    result = 0
+
+    #Firstly, sort by category
+    if category != other.category
+      if category == 'O'
+        result = -1
+      elsif other.category == 'O'
+        result = 1
+      else
+        result = category <=> other.category
+      end
+    end
+
+    #Then, sort by entry type. 
+    #Take advantage of fact that entry_type affects number of bowlers
+    if result == 0
+      result = bowlers.size <=> other.bowlers.size
+    end
+
+    #Finally, sort by total pinfalls
+    if result == 0
+      result = other.total_pinfalls <=> total_pinfalls 
+    end
+ 
+    return result
+  end
+
+  def isEntry?(param_entry_type)
+    entry_type == param_entry_type
+  end
+  
 end

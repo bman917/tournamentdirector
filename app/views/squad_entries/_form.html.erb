@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :category, "Division/Class" %><br />
-    <%= f.select(:category, [['OPEN','OPEN'],['CLASS A','A'],['Class B','B'], ['Class C','C']])%>
+    <%= f.select(:category, [['OPEN','O'],['CLASS A','A'],['Class B','B'], ['Class C','C']])%>
   </div>
   <%= f.hidden_field :entry_type, value: @squad_entry.entry_type %>
 
