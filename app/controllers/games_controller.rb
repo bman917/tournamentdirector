@@ -5,6 +5,9 @@ class GamesController < ApplicationController
     @squad_entry = SquadEntry.find(params[:squad_entry_id])
     @games = @squad_entry.games
     session[:selected_squad_entry] = @squad_entry.id
+
+    @back_path = squad_path(@squad_entry.squad_id)
+
     render 'index'
 
   end
@@ -53,10 +56,16 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
+    game_params_with_notes = game_params
+    game_params_with_notes[:notes] = "#{@game.notes} O-#{@game.score},N-#{game_params[:score]}"
     respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
-        format.json { head :no_content }
+      if @game.update(game_params_with_notes)
+        if session[:selected_squad_entry]
+          format.html { redirect_to squad_entry_games_path(session[:selected_squad_entry]), notice: 'Game was successfully updated.' }
+        else
+          format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: 'edit' }
         format.json { render json: @game.errors, status: :unprocessable_entity }
@@ -69,8 +78,12 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url }
-      format.json { head :no_content }
+      if session[:selected_squad_entry]
+        format.html { redirect_to squad_entry_games_path(session[:selected_squad_entry]), notice: 'Game was successfully updated.' }
+      else
+        format.html { redirect_to games_url }
+        format.json { head :no_content }
+      end
     end
   end
 

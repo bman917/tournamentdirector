@@ -2,6 +2,7 @@ class SquadEntriesController < ApplicationController
   before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game]
 
   def new_game
+    @game = Game.new
     @squad = @squad_entry.squad
     session[:selected_squad_entry] = params[:id]
 
@@ -11,29 +12,36 @@ class SquadEntriesController < ApplicationController
   def create_game
 
     squad = @squad_entry.squad
+    errors = nil
 
     @squad_entry.bowlers.each do | bowler |
-      
-      game = bowler.games.create(
+      @game = bowler.games.create(
         squad_entry_id: @squad_entry.id,
                user_id: session[:user_id],
                  score: params["score_#{bowler.id}"])
         
-
-      puts "Recored game score: #{game.score}"
+      errors = @game.errors
+      puts "Created game      : #{@game.errors}"
+      puts "Recored game score: #{@game.score}"
       
-      unless game
-        respond_to do |format|
-          format.html { render action: 'new_game' }
-          format.json { render json: @squad_entry.errors, status: :unprocessable_entity }
-          return
-        end
-      end
+#      if @game.errors
+ #       respond_to do |format|
+  #        puts "redirecting to #{new_squad_entry_game_path @squad_entry}"
+          #format.html { render  squads(squad)}
+          #format.json { render json: @squad_entry.errors, status: :unprocessable_entity }
+   #       return
+    #    end
+      #end
+      break if @game.errors
     end
 
     respond_to do |format|
-      format.html { redirect_to squad_path(@squad_entry.squad), notice: 'Game was successfully created.' }
-      format.json { render action: 'show', status: :created, location: @squad_entry }
+      if @game.errors.any?
+        format.html { render 'new_game'}
+      else
+        format.html { redirect_to squad_path(@squad_entry.squad), notice: 'Game was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @squad_entry }
+      end
     end
   end
 

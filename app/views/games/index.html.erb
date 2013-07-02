@@ -8,10 +8,13 @@
     <tr>
       <th>Score</th>
       <th>Bowler</th>
-      <th>Notes</th>
-      <th>Recorded By</th>
-      <th></th>
-      <th></th>
+      <% if master? %>
+       <th>Notes</th>
+       <th>Recorded By</th>
+      <% end %>
+      
+      <th>Actions</th>
+      
     </tr>
   </thead>
 
@@ -20,16 +23,22 @@
     <tr>
       <td><%= game.score %></td>
       <td><%= game.bowler %></td>
+      <% if master? %>
       <td><%= game.notes %></td>
       <td><%= game.user %></td>
-      <td><%= link_to 'Edit', edit_game_path(game) %></td>
-      <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      
+      <td>
+        <%= link_to 'Edit', edit_game_path(game) %>
+        <%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
     <% end %>
+
+
   </tbody>
 </table>
-
-<br />
 <% if @squad_entry %>
-<%= link_to 'Back', squad_path(@squad_entry.squad) %>
+  <%= link_to 'Back', @back_path %>
+  <%= link_to 'Add Game', new_squad_entry_game_path(@squad_entry) %>
 <% end %>

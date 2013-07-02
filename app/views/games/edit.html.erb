@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @game %> |
-<%= link_to 'Back', games_path %>
+<% if selected_squad_entry %>
+	<%= link_to 'Back', squad_entry_games_path(selected_squad_entry) %>	
+<% else %>
+	<%= link_to 'Show', @game %> |
+	<%= link_to 'Back', games_path %>
+<% end %>

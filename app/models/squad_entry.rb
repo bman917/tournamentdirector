@@ -21,7 +21,8 @@ class SquadEntry < ActiveRecord::Base
 
   def total_pinfalls
     total = 0
-    games.each { |game| total += game.score }
+
+    games.each { |game| total += game.score if game.score}
     total
   end
 
