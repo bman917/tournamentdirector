@@ -62,22 +62,20 @@
 <% end %>
 
 <div class="title">
-  <span class="tournament_title"><%=selected_tournament%></span>
+    <span class="tournament_title"><%=selected_tournament%></span>
 
+    <% if selected_squad %>
+      <div class="squad_title">
+        <%=selected_squad%>
+        <div class="roll_off_info">Roll-off <%= selected_squad.time.to_s(:squad_time) %></div>
+      </div>
+    <% end %>
 
-
-<% if selected_squad %>
-  <div class="squad_title">
-    <%=selected_squad%>
-    <div class="roll_off_info">Roll-off <%= selected_squad.time.to_s(:squad_time) %></div>
-  </div>
-<% end %>
-
-<% if selected_squad_entry %>
-  <div class="entries_title">
-    <%=selected_squad_entry%>
-  </div>
-<% end %>
+    <% if selected_squad_entry %>
+      <div class="entries_title">
+        <%=selected_squad_entry%>
+      </div>
+    <% end %>
 
 </div>
 
@@ -85,7 +83,9 @@
 <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
 
-<%= yield %>
+<div class="main_content">
+  <%= yield %>
+</div>
 
 </body>
 </html>

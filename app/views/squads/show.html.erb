@@ -1,4 +1,10 @@
+
+	
 <div class="title"><div class="entries_title">Entries</div></div>
+
+<div class="page_nav">
+<%= link_to 'Back', tournament_squads_path(selected_tournament), class: 'back_link' %>
+</div>
 
 <table id="squad_entries_table">
 <tr>
@@ -11,7 +17,7 @@
 </tr>
 
 <% @squad.squad_entries.sort!.each do | squad_entry |%>
-<tr>
+<tr class=<%=cycle 'o', 'e'%>>
 	<td><%= squad_entry.entry_type %></td>
 	<td><%= squad_entry.category %></td>
 	<td><%= squad_entry.bowler_names %></td>
@@ -25,8 +31,14 @@
 <% end %>
 
 </table>
-Add New:
-<%= link_to 'Singles', new_squad_entry_path(@squad, 'Singles') %>, 
-<%= link_to 'Doubles', new_squad_entry_path(@squad, 'Doubles') %>,
-<%= link_to 'Team',    new_squad_entry_path(@squad, 'Team') %>
-
+<div class="actions">
+  <ul class="actions">
+  	<li class="action_title">Add New:</li>
+  	<li><%= link_to 'Singles', new_squad_entry_path(@squad, 'Singles') %></li>
+    <li><%= link_to 'Doubles', new_squad_entry_path(@squad, 'Doubles') %></li>
+    <li><%= link_to 'Team', new_squad_entry_path(@squad, 'Team') %></li>
+  </ul>
+</div>
+<div class="page_nav">
+<%= link_to 'Back', tournament_squads_path(selected_tournament), class: 'back_link' %>
+</div>

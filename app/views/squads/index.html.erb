@@ -15,7 +15,7 @@
 
   <tbody>
     <% @squads.each do |squad| %>
-    <tr>
+    <tr class=<%=cycle 'o', 'e'%>>
       <td><%= squad.name %></td>
       <td><%= squad.time %></td>
       <td><%= squad.tournament.name %></td>

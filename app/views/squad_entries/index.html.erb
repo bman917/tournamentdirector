@@ -15,7 +15,7 @@
 
   <tbody>
     <% @squad_entries.each do |squad_entry| %>
-    <tr>
+    <tr class=<%=cycle 'o', 'e'%>>
       <td><%= squad_entry.category %></td>
       <td><%= squad_entry.entry_type %></td>
       <td><%= squad_entry.bowlers %></td>

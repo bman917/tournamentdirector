@@ -19,51 +19,73 @@
 
  body {
 
-   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+ 	a{
+ 		font-size: .9em;
+ 	}
+
+	a:link, a:visited, a:active{ color: #039; }
+	a:hover { color: white; }
+
    margin: 10px;
    padding: 10px;
 
    background-color: #fff;
    color: #333;
-   font-family: verdana, arial, helvetica, sans-serif;
-   font-size: 13px;
+   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+   font-size: 14px;
    line-height: 18px;
+}
+
+ .main_content{
+ 	width: 800px;
+ 	margin-left: 2em;
+
+ 	h1 {
+	 	margin-top: 1em;
+	 	
+ 		font-size: 1.9em;
+ 	}
+
+ }
+
+.page_nav{
+	margin-left: 1em;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-transform: uppercase;
+
+
+	.new_link { float: left; }
+	.back_link { float: right; }
 }
 
 
 .title {
-
-	font-size: 28px;
+	font-size: 2em;
 	font-weight: bold;
 	display: block;
 
  	.tournament_title {
 		margin-bottom: 20px;
-		#background-color: #FFBA59;
 	}
-
-	 .squad_title{
-	 	margin: .5em;
- 		font-size: .8em;
+    .squad_title{
+	 	margin-top: 1em;
+	 	margin-left: 1em;
+ 		font-size: .75em;
  	}
- 	
-
  	.roll_off_info {
- 		font-size: .6em;
- 		margin-top: .2em;
+ 		font-size: .65em;
+ 		margin: .5em;
  		font-weight: normal;
  	}
-
  	.entries_title{
- 		margin-left: 1em;
- 		font-size: .8em;
+ 		margin-left: 2em;
+ 		font-size: .70em;
  	}
-
  	.games_title{
  		margin-left: 1.5em;
- 		font-size: .8em;
+ 		font-size: .65em;
  	}
-
  }
 
 form {
@@ -71,10 +93,43 @@ form {
 }
 
 
- 
 
 
- 
+.actions{
+
+	
+	display: inline;
+	font-weight: bold;
+
+	a:link, a:visited, a:active{
+		color: #039;
+	}
+	a:hover {
+		color: white;
+	}
+	span {
+		clear: left;
+	}
+
+
+	ul li{
+		
+		list-style-type: none;
+		position: relative;
+		float: left;
+		margin-right: .75em;
+		padding: .2em;
+		border: .1em solid #4B7EF4;
+		background-color: #ABABAB;
+	}
+
+	.action_title {
+		font-size: 1.25em;
+		border: none;
+		background-color: white;
+	}
+}
+
 
 
 #navigation {
@@ -128,34 +183,38 @@ div.info {
 
 table
 {
-	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-	font-size: 12px;
+
 	margin: 10px;
 	width: 800px;
 	text-align: center;
 	border-collapse: collapse;
 	border-top: 7px solid #9baff1;
 	border-bottom: 7px solid #9baff1;
+	background: #e8edff; 
 }
 
 
 
  th
 {
-	font-size: 13px;
-	font-weight: normal;
+	font-size: .95em;
+
+	font-weight: bold;
 	padding: 8px;
 	background: #e8edff;
 	border-right: 1px solid #9baff1;
 	border-left: 1px solid #9baff1;
 	color: #039;
+	background: #8EA4EC;
 }
  td
 {
 	padding: 8px;
-	background: #e8edff; 
+	
 	border-right: 1px solid #aabcfe;
 	border-left: 1px solid #aabcfe;
 	color: #669;
 }
+tr:hover { background: #C4CFF6; }
+tr.e     { background: #CFD8F8; }
 
