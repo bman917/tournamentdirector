@@ -8,6 +8,8 @@ class GamesController < ApplicationController
 
     @back_path = squad_path(@squad_entry.squad_id)
 
+    session[:last_action] = :squad_entry_games
+
     render 'index'
 
   end

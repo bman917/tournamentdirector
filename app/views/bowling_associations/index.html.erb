@@ -1,5 +1,5 @@
 <h1>Listing Bowling Associations</h1>
-
+<%= link_to 'Add Bowling association', new_bowling_association_path %>
 <table>
   <thead>
     <tr>
@@ -13,12 +13,10 @@
     <tr>
       <td><%= bowling_association.name %></td>
       <td>
-        <ul id="menu">
-          <li><%= link_to 'Show', bowling_association %></li>
-          <li><%= link_to 'Edit', edit_bowling_association_path(bowling_association) %></li>
-
+          <%= link_to 'Show', bowling_association %>
+          <%= link_to 'Edit', edit_bowling_association_path(bowling_association) %>
           <% if master? %>
-          <li><%= link_to 'Destroy', bowling_association, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <li><%= link_to 'Delete!!!', bowling_association, method: :delete, data: { confirm: 'Are you sure?' } %></li>
           <% end %>
         </ul>
       </td>
@@ -29,4 +27,4 @@
 
 <br />
 
-<%= link_to 'New Bowling association', new_bowling_association_path %>
+

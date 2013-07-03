@@ -1,12 +1,21 @@
-<h1>Squad Listing:</h1>
+<div class="title">
+  <div class="squad_title">
+    <span>SQUADS</span>
+    
+      <%= link_to '(Add New Squad)', new_squad_path(@tournament), class:'add' %>
+    
+
+  </div>
+</div>
+
 
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Squad Name</th>
       <th>Squad Time</th>
       <th>Add Entry</th>
-      <th>Entries</th>
       <th></th>
       <th></th>
     </tr>
@@ -15,6 +24,7 @@
   <tbody>
     <% @squads.each do |squad| %>
     <tr class=<%=cycle 'o', 'e'%>>
+      <td><%= link_to "Show Entries (#{squad.squad_entries.size})", squad %></td>
       <td><%= squad.name %></td>
       <td><%= squad.time.to_s(:squad_time) %></td>
       <td>
@@ -26,7 +36,6 @@
               </ul>
         </div>
       </td>
-      <td>(<%=squad.squad_entries.size%>)<%= link_to 'Show', squad %></td>
       <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
       <td><%= link_to 'Delete!!!', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

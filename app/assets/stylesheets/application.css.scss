@@ -32,7 +32,7 @@
    background-color: #fff;
    color: #333;
    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-   font-size: 14px;
+   font-size: 15px;
    line-height: 18px;
 }
 
@@ -46,6 +46,14 @@
  		font-size: 1.9em;
  	}
 
+ }
+
+ #flash_notice {
+ 	margin: 1em;
+ 	padding: .5em;
+ 	border: 1px dotted;
+ 	font-size: .75;
+ 	width: 400px;
  }
 
 .page_nav{
@@ -81,11 +89,29 @@
  	.entries_title{
  		margin-left: 2em;
  		font-size: .70em;
+ 		a.add, .entries_actions{ 
+ 			margin-left: 1em;
+ 			display: inline;
+ 			font-size: .75em;
+ 			text-decoration: none;
+ 		}
+
  	}
  	.games_title{
+ 		margin-top: 1em;
  		margin-left: 1.5em;
  		font-size: .65em;
  	}
+
+	a.add
+	{ 
+		margin-left: 1em;
+		display: inline;
+		font-size: .75em;
+		text-decoration: none;
+	}
+
+
  }
 
 form {
@@ -99,14 +125,8 @@ form {
 
 	
 	display: inline;
-	font-weight: bold;
+	
 
-	a:link, a:visited, a:active{
-		color: #039;
-	}
-	a:hover {
-		color: white;
-	}
 	span {
 		clear: left;
 	}
@@ -119,8 +139,8 @@ form {
 		float: left;
 		margin-right: .75em;
 		padding: .2em;
-		border: .1em solid #4B7EF4;
-		background-color: #ABABAB;
+		#border: .1em solid #4B7EF4;
+		#background-color: #ABABAB;
 	}
 
 	.action_title {
@@ -137,8 +157,6 @@ form {
    margin-top: 5px;
 
     ul {
-	  font-family: Arial, Verdana;
-	  font-size: 14px;
 	  margin: 0;
 	  padding: 0;
 	  list-style: none;
@@ -166,7 +184,7 @@ form {
 	}
 	li:hover li {
 	  float: none;
-	  font-size: 12px;
+	  font-size: .9em;
 	}
 	li:hover a { background: #617F8A; }
 	li:hover li a:hover { background: #95A9B1; }

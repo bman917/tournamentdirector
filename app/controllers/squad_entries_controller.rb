@@ -2,10 +2,11 @@ class SquadEntriesController < ApplicationController
   before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game]
 
   def new_game
+
     @game = Game.new
     @squad = @squad_entry.squad
     session[:selected_squad_entry] = params[:id]
-
+    
 
   end
 
@@ -39,7 +40,11 @@ class SquadEntriesController < ApplicationController
       if @game.errors.any?
         format.html { render 'new_game'}
       else
-        format.html { redirect_to squad_path(@squad_entry.squad), notice: 'Game was successfully created.' }
+        path = squad_path(@squad_entry.squad)
+        if session[:last_action] == :squad_entry_games
+          path = squad_entry_games_path @squad_entry
+        end
+        format.html { redirect_to path, notice: 'Game was successfully created.' }
         format.json { render action: 'show', status: :created, location: @squad_entry }
       end
     end
@@ -98,7 +103,7 @@ class SquadEntriesController < ApplicationController
 
     respond_to do |format|
       if @squad_entry.save
-        format.html { redirect_to squad_path(@squad_entry.squad), notice: 'Squad entry was successfully created.' }
+        format.html { redirect_to squad_entry_games_path(@squad_entry), notice: 'Squad entry was successfully created.' }
         format.json { render action: 'show', status: :created, location: @squad_entry }
       else
         format.html { render action: 'new' }

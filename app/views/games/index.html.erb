@@ -1,6 +1,9 @@
 
 <div class="title">
-  <h1 class="games_title">Recorded Games</h1>
+  <div class="games_title">
+    <span>Recorded Games</span>
+    <%=link_to '(Add Game)', new_squad_entry_game_path(selected_squad_entry), class: 'add'%>
+  </div>
 </div>
 
 <table>

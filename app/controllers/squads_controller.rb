@@ -20,6 +20,7 @@ class SquadsController < ApplicationController
   # GET /squads/1.json
   def show
     session[:selected_squad_entry] = nil
+    session[:last_action] = :squad
   end
 
   # GET /squads/new

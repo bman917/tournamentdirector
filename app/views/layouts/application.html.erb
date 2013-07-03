@@ -62,18 +62,21 @@
 <% end %>
 
 <div class="title">
-    <span class="tournament_title"><%=selected_tournament%></span>
+
+    <span class="tournament_title">
+      <%=link_to selected_tournament, tournament_squads_path(selected_tournament) if selected_tournament%>
+    </span>
 
     <% if selected_squad %>
       <div class="squad_title">
-        <%=selected_squad%>
+        <%=link_to selected_squad, squad_path(selected_squad.id) %>
         <div class="roll_off_info">Roll-off <%= selected_squad.time.to_s(:squad_time) %></div>
       </div>
     <% end %>
 
     <% if selected_squad_entry %>
       <div class="entries_title">
-        <%=selected_squad_entry%>
+        <%=link_to selected_squad_entry, squad_entry_games_path(selected_squad_entry) %>
       </div>
     <% end %>
 
