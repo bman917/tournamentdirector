@@ -33,7 +33,7 @@ class SquadEntriesController < ApplicationController
    #       return
     #    end
       #end
-      break if @game.errors
+      break if @game.errors.any?
     end
 
     respond_to do |format|
