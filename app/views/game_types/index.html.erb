@@ -1,0 +1,37 @@
+<h1>Listing game_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number of players</th>
+      <th>Number of games</th>
+      <th>Tournaments</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @game_types.each do |game_type| %>
+    <tr>
+      <td><%= game_type.name %></td>
+      <td><%= game_type.number_of_players %></td>
+      <td><%= game_type.number_of_games %></td>
+      <td><%= game_type.tournaments.to_sentence %></td>
+
+      <td><%= link_to 'Show', game_type %></td>
+      <td><%= link_to 'Edit', edit_game_type_path(game_type) %></td>
+      <td><%= link_to 'Destroy', game_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Game type', new_game_type_path %>
+<p/>
+<%= link_to 'Assign Game Types to Tournament', game_type_add_tournament_path %>

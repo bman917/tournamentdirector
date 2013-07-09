@@ -1,5 +1,9 @@
 Tournamentdirector::Application.routes.draw do
 
+  post "game_type/add_tournament" => "game_types#assign_tournament", as: "game_type_add_tournament"
+  get "game_type/add_tournament" => "game_types#add_tournament", as: "game_type_add_tournament"
+  resources :game_types
+
   get  "user/:id/unassign_tournament/:tournament_id" => "users#unassign_tournament", as: "unassign_tournament"
 
   get  "user/:id/assign_tournament" => "users#add_tournament", as: "assign_tournament"

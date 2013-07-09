@@ -1,0 +1,21 @@
+<h1>Assign Game Type to Tournaments</h1>
+
+<%= form_tag(game_type_add_tournament_path, method: 'post') do %>
+
+  <div class="field">
+    <%= label_tag :tournament_id %><br />
+    <%= collection_select(:tournament,:id, @tournaments, :id, :name)%>
+  </div>
+
+  <div class="field">
+    <%= label_tag :game_type_id %><br />
+    <%= collection_select(:game_type,:id, @game_types, :id, :name)%>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag("Assign") %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Back', game_types_path %>
