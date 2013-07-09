@@ -68,9 +68,9 @@ class SquadEntriesController < ApplicationController
     entry_type = params[:entry_type]
     @squad_entry.entry_type = entry_type
 
-    @number_of_bowlers = 1 if entry_type == 'Singles'
-    @number_of_bowlers = 2 if entry_type == 'Doubles'
-    @number_of_bowlers = 3 if entry_type == 'Team'
+    game_type = GameType.find(params[:game_type_id])
+
+    @number_of_bowlers = game_type.number_of_players
 
     session[:selected_squad] = @squad.id
     

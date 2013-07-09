@@ -4,9 +4,10 @@
 
 			<div class="entries_actions">
 		Add: (
-		<%= link_to 'Singles', new_squad_entry_path(@squad, 'Singles') %>,
-		<%= link_to 'Doubles', new_squad_entry_path(@squad, 'Doubles') %>,
-		<%= link_to 'Team', new_squad_entry_path(@squad, 'Team') %></li>
+
+        <% @squad.tournament.game_types. each do |game_type|%>
+            <%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %>
+        <% end %>
 		)
 		   </div>
 	</div>

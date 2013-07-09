@@ -16,7 +16,7 @@ Tournamentdirector::Application.routes.draw do
   post "squad_entry/:id/new_game" => "squad_entries#create_game", as: "create_squad_entry_game"
 
 
-  get "squad/:squad_id/entry/:entry_type/new" => "squad_entries#new", as: "new_squad_entry"
+  get "squad/:squad_id/entry/:game_type_id/new" => "squad_entries#new", as: "new_squad_entry"
   resources :squad_entries
 
   resources :games
