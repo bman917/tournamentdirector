@@ -19,8 +19,10 @@ class SquadsController < ApplicationController
   # GET /squads/1
   # GET /squads/1.json
   def show
+
     session[:selected_squad_entry] = nil
     session[:last_action] = :squad
+
   end
 
   # GET /squads/new
@@ -81,8 +83,18 @@ class SquadsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_squad
-      @squad = Squad.find(params[:id])
+
+      if (params[:updated_squad_entry_id])
+        #If this parameter is present it means that a SquadEntry has been updated/created.
+        #The updatd SquadEntry is forwarded to the next page so that there's an option to highligh it.
+        @updated_squad_entry = SquadEntry.find(params[:updated_squad_entry_id])
+        @squad = @updated_squad_entry.squad
+      else
+
+        @squad = Squad.find(params[:id])
+      end
       session[:selected_squad] = @squad.id
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

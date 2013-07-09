@@ -7,4 +7,12 @@ class Game < ActiveRecord::Base
   def to_s
   	"#{bowler} - #{score}"
   end
+
+  def notes_score
+  	if notes
+  		"#{notes} - #{score}"
+  	else
+  		score
+  	end
+  end
 end

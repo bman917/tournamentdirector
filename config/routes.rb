@@ -9,13 +9,12 @@ Tournamentdirector::Application.routes.draw do
   get  "user/:id/assign_tournament" => "users#add_tournament", as: "assign_tournament"
   post "user/:id/assign_tournament" => "users#assign_tournament", as: "assign_tournament"
 
-  get "squad_enty/:squad_entry_id/games" => "games#list", as: "squad_entry_games"
   
   #Use for adding a Game to a squad entry
   get "squad_entry/:id/new_game" => "squad_entries#new_game", as: "new_squad_entry_game"
   post "squad_entry/:id/new_game" => "squad_entries#create_game", as: "create_squad_entry_game"
 
-
+  get "squads/updated_entry/:updated_squad_entry_id" => "squads#show", as: "squad_updated_entry"
   get "squad/:squad_id/entry/:game_type_id/new" => "squad_entries#new", as: "new_squad_entry"
   resources :squad_entries
 

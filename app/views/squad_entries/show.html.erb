@@ -1,38 +1,43 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong><%= @squad_entry.squad.tournament %></strong>
-</p>
+<div class="title">
+  <div class="games_title">
+    <span>Recorded Games</span>
+    <%=link_to('(Add Game)', new_squad_entry_game_path(@squad_entry), class: 'add') unless @squad_entry.has_games?%>
+  </div>
+</div>
 
-<p>
-  <strong>Squad Number: <%= @squad_entry.squad.name %></strong>
-</p>
+<% if @squad_entry.has_games? %>
 
+  <table id="bowlers">
+    <tr>
+          <th>Bowler Name</th>
+      <%  (1..@squad_entry.games_recorded).each do |i| %>
+          <th>Game <%=i%></th>
+      <% end %>
+          <th>Actions</th>
+    </tr>
 
-<p>
-	<strong>Game Entry</strong>
-</p>
+  <% @squad_entry.bowlers.each do | bowler | %>
+      <tr>
+          <td><%=bowler%></td>
+        <% @squad_entry.games_of_bowler(bowler.id).each do | game| %>
+          <td><%="#{game.score}"%></td>
+        <% end %>
 
-<p>
-	 <strong>ID:</strong>
-	 <%= @squad_entry.id %>
-</p>
-
-  <strong>Category:</strong>
-  <%= @squad_entry.category %>
-</p>
-
-<p>
-  <strong>Entry type:</strong>
-  <%= @squad_entry.entry_type %>
-</p>
-
-<p>
-  <strong>Bowlers:</strong></br>
-  <% @squad_entry.bowlers.each do |bowler| %>
-  <%= bowler %><br/>
+          <td>Edit</th>
+      </tr>
   <% end %>
-</p>
+  </table>
+<% else %>
 
-<%= link_to 'Edit', edit_squad_entry_path(@squad_entry) %> |
-<%= link_to 'Back', squad_entries_path %>
+  <table id="bowlers">
+    <th>No Games In Record - (<%= link_to 'Add Game', new_squad_entry_game_path(@squad_entry) %>)</th>
+  </table>
+
+
+<% end %>
+
+<% if @squad_entry %>
+  <%= link_to "Back", squad_path(@squad_entry.squad)%>
+  
+<% end %>

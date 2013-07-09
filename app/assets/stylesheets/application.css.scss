@@ -234,5 +234,9 @@ table
 	color: #669;
 }
 tr:hover { background: #C4CFF6; }
-tr.e     { background: #CFD8F8; }
+.e     { background: #CFD8F8; }
 
+
+.updated, tr.updated:hover {
+	background: yellow;
+}

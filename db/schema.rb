@@ -74,12 +74,13 @@ ActiveRecord::Schema.define(version: 20130709134408) do
 
   create_table "squad_entries", force: true do |t|
     t.string   "category"
-    t.string   "entry_type"
     t.integer  "squad_id"
+    t.integer  "game_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "squad_entries", ["game_type_id"], name: "index_squad_entries_on_game_type_id"
   add_index "squad_entries", ["squad_id"], name: "index_squad_entries_on_squad_id"
 
   create_table "squads", force: true do |t|

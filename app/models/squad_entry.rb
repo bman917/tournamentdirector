@@ -2,17 +2,35 @@ class SquadEntry < ActiveRecord::Base
   has_and_belongs_to_many :bowlers
   has_many :games, :dependent => :delete_all
   belongs_to :squad
+  belongs_to :game_type
+
+  def has_games?
+    games && games.size > 0
+  end
+
+  def games_recorded
+    if games && games.size > 0
+      games.size / bowlers.size
+    else
+      0
+    end
+  end
+
+  def games_of_bowler(id)
+    @games = games.where(bowler_id: id)
+  end
+
 
   def info
-    "#{squad.info}-#{entry_type}-CLASS-#{category}"
+    "#{squad.info}-#{game_type}-CLASS-#{category}"
   end
 
   def to_s
-  	"ENTRY##{id} - #{entry_type}, Class #{category}, #{bowler_names}, #{games.size} Games"
+  	"ENTRY##{id} - #{game_type}, Class #{category}, #{bowler_names}, #{games.size} Games"
   end
 
   def title
-    "Class #{category} #{entry_type} (#{bowler_names})"
+    "Class #{category} #{game_type} (#{bowler_names})"
   end
 
   def bowler_names
@@ -42,7 +60,7 @@ class SquadEntry < ActiveRecord::Base
     end
 
     #Then, sort by entry type. 
-    #Take advantage of fact that entry_type affects number of bowlers
+    #Take advantage of fact that game_type affects number of bowlers
     if result == 0
       result = bowlers.size <=> other.bowlers.size
     end
@@ -55,8 +73,8 @@ class SquadEntry < ActiveRecord::Base
     return result
   end
 
-  def isEntry?(param_entry_type)
-    entry_type == param_entry_type
+  def isEntry?(param_game_type)
+    game_type == param_game_type
   end
   
 end

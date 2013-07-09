@@ -15,7 +15,7 @@
     <%= f.label :category, "Division/Class" %><br />
     <%= f.select(:category, [['OPEN','O'],['CLASS A','A'],['Class B','B'], ['Class C','C']])%>
   </div>
-  <%= f.hidden_field :entry_type, value: @squad_entry.entry_type %>
+  <%= f.hidden_field :game_type_id, value: @squad_entry.game_type.id %>
 
 <%  (1..@number_of_bowlers).each do |i| %>
    <div class="field">

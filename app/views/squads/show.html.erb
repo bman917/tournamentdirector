@@ -25,15 +25,20 @@
 </tr>
 
 <% @squad.squad_entries.sort!.each do | squad_entry |%>
-<tr class=<%=cycle 'o', 'e'%>>
-	<td><%= link_to 'Show', squad_entry_games_path(squad_entry)%></td>
-	<td><%= squad_entry.entry_type %></td>
+
+<tr class="<%=cycle 'o', 'e'%><%=" updated" if @updated_squad_entry && @updated_squad_entry.id == squad_entry.id%>">
+	<td><%= link_to 'Show', squad_entry_path(squad_entry)%></td>
+	<td><%= squad_entry.game_type %> 
+
+	</td>
 	<td><%= squad_entry.category %></td>
 	<td><%= squad_entry.bowler_names %></td>
 	<td><%= squad_entry.games.size%></td>
 	<td><%= squad_entry.total_pinfalls%></td>
-	<td><%= link_to 'Add Game', new_squad_entry_game_path(squad_entry) %>, 
-	     <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td>
+
+		<%= link_to('Add Game', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %> 
+	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
 </tr>
 

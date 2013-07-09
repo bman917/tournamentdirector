@@ -18,7 +18,7 @@ class SquadEntriesControllerTest < ActionController::TestCase
 
   test "should create squad_entry" do
     assert_difference('SquadEntry.count') do
-      post :create, squad_entry: { bowlers_id: @squad_entry.bowlers_id, category: @squad_entry.category, entry_type: @squad_entry.entry_type, squad_id: @squad_entry.squad_id }
+      post :create, squad_entry: { bowlers_id: @squad_entry.bowlers_id, category: @squad_entry.category, game_type: @squad_entry.game_type, squad_id: @squad_entry.squad_id }
     end
 
     assert_redirected_to squad_entry_path(assigns(:squad_entry))
@@ -35,7 +35,7 @@ class SquadEntriesControllerTest < ActionController::TestCase
   end
 
   test "should update squad_entry" do
-    patch :update, id: @squad_entry, squad_entry: { bowlers_id: @squad_entry.bowlers_id, category: @squad_entry.category, entry_type: @squad_entry.entry_type, squad_id: @squad_entry.squad_id }
+    patch :update, id: @squad_entry, squad_entry: { bowlers_id: @squad_entry.bowlers_id, category: @squad_entry.category, game_type: @squad_entry.game_type, squad_id: @squad_entry.squad_id }
     assert_redirected_to squad_entry_path(assigns(:squad_entry))
   end
 

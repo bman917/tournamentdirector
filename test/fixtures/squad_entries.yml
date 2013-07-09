@@ -2,12 +2,12 @@
 
 one:
   category: MyString
-  entry_type: MyString
+  game_type: MyString
   bowlers_id: 
   squad_id: 
 
 two:
   category: MyString
-  entry_type: MyString
+  game_type: MyString
   bowlers_id: 
   squad_id: 

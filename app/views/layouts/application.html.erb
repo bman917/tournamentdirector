@@ -41,6 +41,8 @@
 
 
       <% if master? %>
+
+
         <li><%= link_to "Tournaments", tournaments_path %>
             <ul>
               <li><%= link_to 'Show Tournaments', tournaments_path %></li>
@@ -76,7 +78,7 @@
 
     <% if selected_squad_entry %>
       <div class="entries_title">
-        <%=link_to selected_squad_entry, squad_entry_games_path(selected_squad_entry) %>
+        <%=link_to selected_squad_entry, squad_entry_path(selected_squad_entry) %>
       </div>
     <% end %>
 

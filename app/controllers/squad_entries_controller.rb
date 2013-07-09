@@ -16,33 +16,29 @@ class SquadEntriesController < ApplicationController
     errors = nil
 
     @squad_entry.bowlers.each do | bowler |
-      @game = bowler.games.create(
-        squad_entry_id: @squad_entry.id,
-               user_id: session[:user_id],
-                 score: params["score_#{bowler.id}"])
-        
-      errors = @game.errors
-      puts "Created game      : #{@game.errors}"
-      puts "Recored game score: #{@game.score}"
-      
-#      if @game.errors
- #       respond_to do |format|
-  #        puts "redirecting to #{new_squad_entry_game_path @squad_entry}"
-          #format.html { render  squads(squad)}
-          #format.json { render json: @squad_entry.errors, status: :unprocessable_entity }
-   #       return
-    #    end
-      #end
-      break if @game.errors.any?
+      (1..@squad_entry.game_type.number_of_games).each do |i|
+        @game = bowler.games.create(
+          squad_entry_id: @squad_entry.id,
+                 user_id: session[:user_id],
+                   score: params["bowler_#{bowler.id}_game_#{i}"],
+                   notes: "#{i}")
+
+        errors = @game.errors
+        puts "Created game      : #{@game.errors}"
+        puts "Recored game score: #{@game.score}"
+        puts "Last Action       : #{session[:last_action]}"
+
+        break if @game.errors.any?
+      end
     end
 
     respond_to do |format|
       if @game.errors.any?
         format.html { render 'new_game'}
       else
-        path = squad_path(@squad_entry.squad)
+        path = squad_updated_entry_path(@squad_entry)
         if session[:last_action] == :squad_entry_games
-          path = squad_entry_games_path @squad_entry
+          path = squad_entry_path @squad_entry
         end
         format.html { redirect_to path, notice: 'Game was successfully created.' }
         format.json { render action: 'show', status: :created, location: @squad_entry }
@@ -59,16 +55,18 @@ class SquadEntriesController < ApplicationController
   # GET /squad_entries/1
   # GET /squad_entries/1.json
   def show
+    session[:selected_squad_entry] = @squad_entry.id
+    session[:last_action] = :squad_entry_games
   end
 
   # GET /squad_entries/new
   def new
     @squad_entry = SquadEntry.new
     @squad = Squad.find(params[:squad_id])
-    entry_type = params[:entry_type]
-    @squad_entry.entry_type = entry_type
-
+    
     game_type = GameType.find(params[:game_type_id])
+
+    @squad_entry.game_type = game_type
 
     @number_of_bowlers = game_type.number_of_players
 
@@ -89,10 +87,10 @@ class SquadEntriesController < ApplicationController
 
 
     puts "Squad ID: #{squad_entry_params[:category]}"
-    entry_type = squad_entry_params[:entry_type]
+    game_type = squad_entry_params[:game_type]
     bowler_id_hash = params[:bowlers]
     number_of_bowlers = bowler_id_hash.size
-    puts "Number of Bowler IDs: #{number_of_bowlers}, Entry Type: #{entry_type}"
+    puts "Number of Bowler IDs: #{number_of_bowlers}, Entry Type: #{game_type}"
 
 
     (1..number_of_bowlers).each do |i|
@@ -100,10 +98,12 @@ class SquadEntriesController < ApplicationController
       @squad_entry.bowlers << bowler
     end
 
+    @new_squad_entry = @squad_entry
+
 
     respond_to do |format|
       if @squad_entry.save
-        format.html { redirect_to squad_entry_games_path(@squad_entry), notice: 'Squad entry was successfully created.' }
+        format.html { redirect_to squad_updated_entry_path(@squad_entry.id), notice: 'Squad entry was successfully created.' }
         format.json { render action: 'show', status: :created, location: @squad_entry }
       else
         format.html { render action: 'new' }
@@ -144,6 +144,6 @@ class SquadEntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def squad_entry_params
-      params.require(:squad_entry).permit(:category, :entry_type, :bowlers, :squad_id)
+      params.require(:squad_entry).permit(:category, :game_type_id, :bowlers, :squad_id)
     end
 end

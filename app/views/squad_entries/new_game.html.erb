@@ -17,12 +17,22 @@
 	<table id="bowlers">
 		<tr>
 			<th>Bowler Name</th>
-			<th>Score</th>
+			<%  (1..@squad_entry.game_type.number_of_games).each do |i| %>
+			<th>Game <%=i%></th>
+			<% end %>
+
 		</tr>
 		<% @squad_entry.bowlers.each do | bowler | %>
 			<tr>
 				<td><%=bowler.name%></td>
-				<td><%= number_field_tag("score_#{bowler.id}")%></td>
+				
+				<%  (1..@squad_entry.game_type.number_of_games).each do |i| %>
+				<td class="game_input">
+					<%= number_field_tag("bowler_#{bowler.id}_game_#{i}")%>
+				</td>
+				<% end %>
+
+				
 			</tr>
 		<% end %>
 	</table>
