@@ -47,7 +47,7 @@ Tournament.find('1').game_types << GameType.find('3')
 User.delete_all
 User.create(id: 1, email: 'bman917@yahoo.com', password: 'password', role: 'MASTER')
 User.create(id: 3, email: 'admin',             password: 'admin', role: 'ADMIN')
-User.create(id: 3, email: 'pepichan@yahoo.com',password: 'password', role: 'ADMIN')
+User.create(id: 4, email: 'pepichan@yahoo.com',password: 'password', role: 'ADMIN')
 
 User.find(3).tournaments << Tournament.find('1')
 
