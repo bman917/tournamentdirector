@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
 
   def logged_in?
-  	session[:user_id]
+  	@current_user
   end
 
   def require_login
