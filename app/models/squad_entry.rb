@@ -4,6 +4,13 @@ class SquadEntry < ActiveRecord::Base
   belongs_to :squad
   belongs_to :game_type
 
+  def category_css
+    s = String.new(category)
+    s.gsub!(/\s+/, "")
+    s
+  end
+
+
   def has_games?
     games && games.size > 0
   end
@@ -22,15 +29,15 @@ class SquadEntry < ActiveRecord::Base
 
 
   def info
-    "#{squad.info}-#{game_type}-CLASS-#{category}"
+    "#{squad.info}-#{game_type}-#{category}"
   end
 
   def to_s
-  	"ENTRY##{id} - #{game_type}, Class #{category}, #{bowler_names}, #{games.size} Games"
+  	"ENTRY##{id} - #{game_type}, #{category}, #{bowler_names}, #{games.size} Games"
   end
 
   def title
-    "Class #{category} #{game_type} (#{bowler_names})"
+    "#{category} #{game_type} (#{bowler_names})"
   end
 
   def bowler_names
@@ -50,9 +57,9 @@ class SquadEntry < ActiveRecord::Base
 
     #Firstly, sort by category
     if category != other.category
-      if category == 'O'
+      if category == 'OPEN'
         result = -1
-      elsif other.category == 'O'
+      elsif other.category == 'OPEN'
         result = 1
       else
         result = category <=> other.category

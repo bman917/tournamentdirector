@@ -11,6 +11,11 @@ BowlingAssociation.create(id: 2, name: 'TBAM')
 BowlingAssociation.create(name: 'MTBA')
 BowlingAssociation.create(name: 'PBC')
 
+o = BowlerClass.create(name: 'OPEN')
+a = BowlerClass.create(name: 'CLASS A')
+b = BowlerClass.create(name: 'CLASS B')
+c = BowlerClass.create(name: 'CLASS C')
+
 Bowler.delete_all
 jacky  = Bowler.create(id: 1, name: 'Jacky Chan', gender: 'M', bowling_association_id: 1)
 jeff   = Bowler.create(id: 2, name: 'Jeff Chan', gender: 'M', bowling_association_id: 1)
@@ -58,30 +63,32 @@ squad1 = Squad.create(name: "1", time: Time.now, tournament_id: 1, user_id: 1)
 
 ActiveRecord::Base.connection.execute("delete from bowlers_squad_entries");
 
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'O').bowlers << jacky
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'O').bowlers << jeff
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'O').bowlers << peping
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'O').bowlers << pionie
-
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'A').bowlers << jacky
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'A').bowlers << jeff
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'A').bowlers << peping
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'A').bowlers << pionie
-
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'B').bowlers << jacky
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'B').bowlers << jeff
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'B').bowlers << peping
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'B').bowlers << pionie
-
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'C').bowlers << jacky
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'C').bowlers << jeff
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'C').bowlers << peping
-e = SquadEntry.create(squad: squad1, game_type: singles, category: 'C').bowlers << pionie
+BowlerClass.delete_all
+o = BowlerClass.create(name: 'OPEN').name
+a = BowlerClass.create(name: 'CLASS A').name
+b = BowlerClass.create(name: 'CLASS B').name
+c = BowlerClass.create(name: 'CLASS C').name
 
 
-def createEntry
-  e = SquadEntry.create(squad: squad1, game_type: singles, category: 'O').bowlers << jacky
-  e.bowlers << jacky
-  return e
-end
+e = SquadEntry.create(squad: squad1, game_type: singles, category: o).bowlers << jacky
+e = SquadEntry.create(squad: squad1, game_type: singles, category: o).bowlers << jeff
+e = SquadEntry.create(squad: squad1, game_type: singles, category: o).bowlers << peping
+e = SquadEntry.create(squad: squad1, game_type: singles, category: o).bowlers << pionie
+
+e = SquadEntry.create(squad: squad1, game_type: singles, category: a).bowlers << jacky
+e = SquadEntry.create(squad: squad1, game_type: singles, category: a).bowlers << jeff
+e = SquadEntry.create(squad: squad1, game_type: singles, category: a).bowlers << peping
+e = SquadEntry.create(squad: squad1, game_type: singles, category: a).bowlers << pionie
+
+e = SquadEntry.create(squad: squad1, game_type: singles, category: b).bowlers << jacky
+e = SquadEntry.create(squad: squad1, game_type: singles, category: b).bowlers << jeff
+e = SquadEntry.create(squad: squad1, game_type: singles, category: b).bowlers << peping
+e = SquadEntry.create(squad: squad1, game_type: singles, category: b).bowlers << pionie
+
+e = SquadEntry.create(squad: squad1, game_type: singles, category: c).bowlers << jacky
+e = SquadEntry.create(squad: squad1, game_type: singles, category: c).bowlers << jeff
+e = SquadEntry.create(squad: squad1, game_type: singles, category: c).bowlers << peping
+e = SquadEntry.create(squad: squad1, game_type: singles, category: c).bowlers << pionie
+
+
 

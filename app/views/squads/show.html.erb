@@ -1,6 +1,11 @@
+
+
+
+
+
 <div class="title">
 	<div class="entries_title">
-		<span>Entries</span>
+		<span>Entries For <%= collection_select(:division, 1, BowlerClass.all, :to_css_class, :name) %></span>
 
 			<div class="entries_actions">
 		Add: (
@@ -26,7 +31,7 @@
 
 <% @squad.squad_entries.sort!.each do | squad_entry |%>
 
-<tr class="<%=cycle 'o', 'e'%><%=" updated" if @updated_squad_entry && @updated_squad_entry.id == squad_entry.id%>">
+<tr class="data <%="#{squad_entry.category_css} hidden "%> <%=cycle 'o', 'e'%><%=" updated" if @updated_squad_entry && @updated_squad_entry.id == squad_entry.id%>">
 	<td><%= link_to 'Show', squad_entry_path(squad_entry)%></td>
 	<td><%= squad_entry.game_type %> 
 
