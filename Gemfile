@@ -37,3 +37,8 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 
 # To use debugger
 # gem 'debugger'
+
+group :development do
+  gem 'better_errors'
+  gem 'meta_request'
+end

@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    puts "current user #{current_user}"
     @users = User.all
   end
 
