@@ -1,19 +1,33 @@
 
 
+<%=javascript_tag do %>
 
+$(document).ready(
+	function(){
+		$('#categories a.<%=@category_css%>').click();
+	}
+
+);
+<% end %>
 
 
 <div class="title">
 	<div class="entries_title">
-		<span>Entries For <%= collection_select(:division, 1, BowlerClass.all, :to_css_class, :name) %></span>
+
+
+		<div id="categories">
+			<span>Entries:</span>
+			<% BowlerClass.all.each do |bowler_class|%>
+	        	<%= link_to bowler_class.name, "", class: bowler_class.to_css_class %>
+	    	<% end %>
+		</div>
 
 			<div class="entries_actions">
-		Add: (
-
-        <% @squad.tournament.game_types. each do |game_type|%>
-            <%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %>
-        <% end %>
-		)
+				Add: (
+		        	<% @squad.tournament.game_types. each do |game_type|%>
+		            	<%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %>
+		        	<% end %>
+				)
 		   </div>
 	</div>
 </div>

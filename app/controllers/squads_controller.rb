@@ -23,6 +23,9 @@ class SquadsController < ApplicationController
     session[:selected_squad_entry] = nil
     session[:last_action] = :squad
 
+    @category_css = @updated_squad_entry.category_css if @updated_squad_entry
+    @category_css ||= BowlerClass.first
+
   end
 
   # GET /squads/new

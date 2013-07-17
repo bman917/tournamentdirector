@@ -87,17 +87,16 @@
  		font-weight: normal;
  	}
  	.entries_title{
- 		margin-left: 2em;
- 		font-size: .70em;
- 		a.add, .entries_actions{ 
- 			
- 			margin-left: 5em;
- 			display: inline;
- 			font-size: .75em;
- 			text-decoration: none;
- 		}
+	margin-left: 2em;
+	font-size: .70em;
+		a.add, .entries_actions{ 
+			margin-top: -1.15em;
+			font-size: .80em;
+			float: right;
+			
+		}
+	}
 
- 	}
  	.games_title{
  		margin-top: 1em;
  		margin-left: 1.5em;
@@ -114,6 +113,8 @@
 
 
  }
+
+
 
 form {
 	margin-left: 3em;

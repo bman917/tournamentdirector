@@ -4,3 +4,19 @@
 .hidden {
 	display: none;
 }
+
+
+
+#categories a {
+	margin-left: .5em;
+}
+
+a.selected {
+	border-top: 3px dotted black;
+	border-bottom: 3px dotted black;
+	font-weight: bolder;
+	padding-left: .25em;
+	padding-right: .25em;
+	font-size: 1.2em;
+	text-decoration: none;
+}

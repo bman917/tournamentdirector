@@ -1,10 +1,11 @@
-$(document).ready(showSelected);
-$(document).on('page:load', showSelected);
+$(document).on('click','#categories a', showCategory);
 
-$(document).change('#division_1', showSelected);
-
-function showSelected() {
+function showCategory(event) {
+	event.preventDefault();
 	$('tr.data').hide();
-	var selectVal = $('#division_1 :selected').val();
+	var selectVal = $(this).attr('class');
 	$("." + selectVal).show();
+	$('#categories a').removeClass('selected');
+	$(this).addClass('selected');
+
 }
