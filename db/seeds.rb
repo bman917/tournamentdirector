@@ -10,6 +10,7 @@ BowlingAssociation.create(id: 1, name: 'SLETBA')
 BowlingAssociation.create(id: 2, name: 'TBAM')
 BowlingAssociation.create(name: 'MTBA')
 BowlingAssociation.create(name: 'PBC')
+BowlingAssociation.create(name: 'PBA')
 
 o = BowlerClass.create(name: 'OPEN')
 a = BowlerClass.create(name: 'CLASS A')

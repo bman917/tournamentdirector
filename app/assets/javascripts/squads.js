@@ -7,5 +7,5 @@ function showCategory(event) {
 	$("." + selectVal).show();
 	$('#categories a').removeClass('selected');
 	$(this).addClass('selected');
-
+	
 }

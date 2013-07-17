@@ -9,11 +9,12 @@
 
 #categories a {
 	margin-left: .5em;
+	opacity: .80;
 }
 
 a.selected {
-	border-top: 3px dotted black;
-	border-bottom: 3px dotted black;
+	#border-top: 1px dotted black;
+	#border-bottom: 1px dotted black;
 	font-weight: bolder;
 	padding-left: .25em;
 	padding-right: .25em;
