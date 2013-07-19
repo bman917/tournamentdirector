@@ -90,6 +90,7 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    seedbank (0.3.0.pre2)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -126,6 +127,7 @@ DEPENDENCIES
   meta_request
   rails (= 4.0.0.beta1)
   sass-rails (~> 4.0.0.beta1)
+  seedbank (>= 0.3.0.pre)
   sqlite3
   turbolinks
   uglifier (>= 1.0.3)

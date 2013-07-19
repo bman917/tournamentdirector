@@ -42,3 +42,5 @@ group :development do
   gem 'better_errors'
   gem 'meta_request'
 end
+
+gem 'seedbank', '>=0.3.0.pre'
