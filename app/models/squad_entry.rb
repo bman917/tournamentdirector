@@ -4,6 +4,10 @@ class SquadEntry < ActiveRecord::Base
   belongs_to :squad
   belongs_to :game_type
 
+  def belongs_to_tournament?(tournament)
+    squad.tournament.id == tournament.id
+  end
+
   def category_css
     s = String.new(category)
     s.gsub!(/\s+/, "")

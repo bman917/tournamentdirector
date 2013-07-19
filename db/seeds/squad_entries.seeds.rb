@@ -14,16 +14,16 @@ after :bowlers, :tournaments do
   b = BowlerClass.find_by_name('CLASS B').name
   c = BowlerClass.find_by_name('CLASS C').name
 
-  Bowler.all[1..50].each do | bowler |
-  	e = SquadEntry.create(squad: squad1, game_type: singles, category: o).bowlers << bowler
+  Bowler.all[1..50].each do | bowlerx |
+  	e = SquadEntry.create(squad: squad1, game_type: singles, category: o).bowlers << bowlerx
   end
 
-  Bowler.all[50..100].each do | bowler |
-  	e = SquadEntry.create(squad: squad1, game_type: singles, category: a).bowlers << bowler
+  Bowler.all[50..100].each do | bowlerx |
+  	e = SquadEntry.create(squad: squad1, game_type: singles, category: a).bowlers << bowlerx
   end
 
-  Bowler.all[100..150].each do | bowler |
-  	e = SquadEntry.create(squad: squad1, game_type: singles, category: b).bowlers << bowler
+  Bowler.all[100..150].each do | bowlerx |
+  	e = SquadEntry.create(squad: squad1, game_type: singles, category: b).bowlers << bowlerx
   end
 
 end

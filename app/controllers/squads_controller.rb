@@ -8,6 +8,8 @@ class SquadsController < ApplicationController
     session[:selected_squad] = nil
     session[:selected_squad_entry] = nil
 
+    
+
   end
 
   # GET /squads
