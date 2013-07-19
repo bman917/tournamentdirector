@@ -33,7 +33,7 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def to_s
-  	"ENTRY##{id} - #{game_type}, #{category}, #{bowler_names}, #{games.size} Games"
+  	"ENTRY - #{game_type} #{category} Division, #{bowler_names}, #{games.size} Games"
   end
 
   def title
