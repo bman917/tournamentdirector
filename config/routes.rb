@@ -1,5 +1,8 @@
 Tournamentdirector::Application.routes.draw do
 
+  get "reports/show_entries/:bowling_association_id" => "reports#show_entries", as: 'reports_show_entries'
+
+
   post "game_type/add_tournament" => "game_types#assign_tournament", as: "game_type_add_tournament"
   get "game_type/add_tournament" => "game_types#add_tournament", as: "game_type_add_tournament"
   resources :game_types

@@ -62,7 +62,7 @@
   <%@tournament.participating_associations.each do | ass |%>
     <tr>
       <td><%=ass.name%></td>
-      <td><%=@tournament.bowling_association_entries(ass).count%></td>
+      <td><%=link_to @tournament.bowling_association_entries(ass).count, reports_show_entries_path(ass)%></td>
     </tr>
   <%end%>
    </tbody>
@@ -71,21 +71,5 @@
 
 
 
-<div class="report">
-  <table>
-      <thead>
-        <tr>
-          <th>Bowler Name</th>
-          <th>Number of Entries</th>
-        </tr>
-    </thead>
- <tbody>
-  <%@tournament.bowlers.each do | b |%>
-    <tr>
-      <td><%=b.name%></td>
-      <td><%=b.get_tournament_entries(@tournament).count%></td>
-    </tr>
-  <%end%>
-   </tbody>
-</table>
+
 </div>
