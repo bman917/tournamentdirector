@@ -30,4 +30,13 @@ class User < ActiveRecord::Base
   def to_s
     self.email
   end
+
+  def master?
+    self.role == 'MASTER'
+  end
+
+  def admin?
+    master? || self.role == 'ADMIN'
+  end
+    
 end
