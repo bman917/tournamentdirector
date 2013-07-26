@@ -1,21 +1,19 @@
-<h2>Squad Entries for <%=@bowling_association%></h2>
+<h2>Squad Entries Under <%=@bowling_association%></h2>
 <div class="report">
   <table>
       <thead>
         <tr>
-          <th>Game Type</th>
-          <th>Division</th>
-          <th>Bowlers</th>
+          <th>Bowler</th>
+          <th>Number of Entries</th>
+          <th>Action</th>
         </tr>
     </thead>
  <tbody>
-  <%@squad_entries.each do | squad_entry |%>
+  <%@bowlers.each do | bowler |%>
     <tr>
-      <td><%=squad_entry.game_type%></td>
-      <td><%=squad_entry.category%></td>
-      <td><%=squad_entry.bowler_names%></td>
-      
-      
+      <td><%=bowler.name%></td>
+      <td><%=bowler.get_tournament_entries(selected_tournament).count%></td>
+      <td><%=link_to 'Show Entries Per Bowler', reports_show_bowler_entries_path(bowler)%></td>
     </tr>
   <%end%>
    </tbody>

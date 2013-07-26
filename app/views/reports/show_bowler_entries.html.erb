@@ -1,0 +1,26 @@
+<h2>Squad Entries By <%=@bowler.name%></h2>
+<h3>Total Entries: <%=@squad_entries.count%></h3>
+<div class="report">
+  <table>
+      <thead>
+        <tr>
+          <th>Game Type</th>
+          <th>Division</th>
+          <th>Total Pinfalls</th>
+          <th>Bowlers</th>
+        </tr>
+    </thead>
+ <tbody>
+  <%@squad_entries.each do | squad_entry |%>
+    <tr>
+      <td><%=squad_entry.game_type%></td>
+      <td><%=squad_entry.category%></td>
+      <td><%=squad_entry.total_pinfalls%></td>
+      <td><%=squad_entry.bowler_names%></td>
+      
+      
+    </tr>
+  <%end%>
+   </tbody>
+</table>
+

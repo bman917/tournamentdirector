@@ -17,13 +17,13 @@ class Tournament < ActiveRecord::Base
   	squad_entries
   end
 
-  def bowlers
+  def bowlers (bowling_association=nil)
 
   	bowlers = Set.new
 
   	self.squad_entries.each do | entry |
 		entry.bowlers.each do | b|
-			bowlers << b
+      bowlers << b if bowling_association == nil || bowling_association == b.bowling_association
 		end
   	end
 
@@ -43,14 +43,10 @@ class Tournament < ActiveRecord::Base
 
   	entries = Set.new
   	self.squad_entries.each do | entry |
-  		entry.bowlers.each do | b|
-			if b.bowling_association.id == bowling_association.id
+  		if entry.belongs_to_bowling_association?(bowling_association)
 				entries << entry
 			end
-			break
 		end
-  	end
-
   	entries
   end
 end

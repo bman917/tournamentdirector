@@ -8,6 +8,14 @@ class SquadEntry < ActiveRecord::Base
     squad.tournament.id == tournament.id
   end
 
+  def belongs_to_bowling_association?(bowling_association)
+    result = false
+    bowlers.each do | bowler |
+      result = true if bowler.bowling_association == bowling_association
+    end
+    return result
+  end
+
   def category_css
     s = String.new(category)
     s.gsub!(/\s+/, "")

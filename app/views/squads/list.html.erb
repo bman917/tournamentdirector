@@ -44,32 +44,10 @@
 </table>
 
 <div class="page_nav">
-<%= link_to 'New Squad', new_squad_path(@tournament), class:'new_link' %><br/>
+<%= link_to 'New Squad', new_squad_path(@tournament), class:'new_link' %>
+<br/>
+<br/>
+<%= link_to 'Show Reports', reports_url %>
 </div>
 
 
-<h2 class="squad_title">Reports</h2>
-
-<div class="report">
-  <table>
-      <thead>
-        <tr>
-          <th>Participating Associations</th>
-          <th>Number of Entries</th>
-        </tr>
-    </thead>
- <tbody>
-  <%@tournament.participating_associations.each do | ass |%>
-    <tr>
-      <td><%=ass.name%></td>
-      <td><%=link_to @tournament.bowling_association_entries(ass).count, reports_show_entries_path(ass)%></td>
-    </tr>
-  <%end%>
-   </tbody>
-</table>
-</div>
-
-
-
-
-</div>

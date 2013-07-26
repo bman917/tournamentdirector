@@ -1,0 +1,24 @@
+<h2 class="squad_title">Reports</h2>
+
+<div class="report">
+  <table>
+      <thead>
+        <tr>
+          <th>Participating Associations</th>
+          <th>Number of Entries</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+ <tbody>
+  <%@bowling_associations.each do | ass |%>
+    <tr>
+      <td><%=ass.name%></td>
+      <td><%=link_to selected_tournament.bowling_association_entries(ass).count, reports_show_entries_path(ass)%></td>
+      <td><%=link_to 'Show Entries Per Bowler', reports_show_entries_path(ass)%></td>
+    </tr>
+  <%end%>
+   </tbody>
+</table>
+</div>
+
+

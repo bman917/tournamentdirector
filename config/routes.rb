@@ -1,6 +1,8 @@
 Tournamentdirector::Application.routes.draw do
 
+  get "reports/index" => "reports#index", as: 'reports'
   get "reports/show_entries/:bowling_association_id" => "reports#show_entries", as: 'reports_show_entries'
+  get "reports/show_bowler_entries/:bowler_id" => "reports#show_bowler_entries", as: 'reports_show_bowler_entries'
 
 
   post "game_type/add_tournament" => "game_types#assign_tournament", as: "game_type_add_tournament"
