@@ -2,19 +2,15 @@ class Tournament < ActiveRecord::Base
   belongs_to :bowling_association
   has_many :squads, dependent: :destroy
   has_and_belongs_to_many :users
-  has_and_belongs_to_many :game_types, uniq: true
+  has_and_belongs_to_many :game_types, -> { uniq }
 
 
   def to_s
   	name
   end
 
-  def squad_entries
-  	squad_entries = Set.new
-  	squads.each do | squad |
-  		squad_entries += squad.squad_entries
-  	end
-  	squad_entries
+  def squad_entries 
+    SquadEntry.where(squad_id: squads)
   end
 
   def bowlers (bowling_association=nil)

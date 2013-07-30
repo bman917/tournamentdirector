@@ -20,13 +20,7 @@ class Bowler < ActiveRecord::Base
   end
 
   def get_tournament_entries(tournament)
-
-    tournament_entries = []
-     squad_entries.each do | entry |
-        tournament_entries << entry if entry.belongs_to_tournament?(tournament)
-    end
-    tournament_entries
-    
+    squad_entries.where(id: tournament.squad_entries)
   end
 
 

@@ -1,10 +1,18 @@
 <h2 class="squad_title">Reports</h2>
 
+<h3>Rankings</h3>
+
+<% selected_tournament.game_types.each do | game_type | %>
+<h4><%=game_type%></h4>
+<% end %>
+
+<h3>Entries Per Bowling Association</h3>
+
 <div class="report">
   <table>
       <thead>
         <tr>
-          <th>Participating Associations</th>
+          <th>Associations</th>
           <th>Number of Entries</th>
           <th>Action</th>
         </tr>
