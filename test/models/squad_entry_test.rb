@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SquadEntryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+   test "Get Singles" do
+     assert true
+   end
 end

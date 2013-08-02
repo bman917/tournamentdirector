@@ -3,7 +3,8 @@
 <h3>Rankings</h3>
 
 <% selected_tournament.game_types.each do | game_type | %>
-<h4><%=game_type%></h4>
+<h4><%=game_type %></h4>
+<%=selected_tournament.squad_entries(game_type).limit(3)%>
 <% end %>
 
 <h3>Entries Per Bowling Association</h3>

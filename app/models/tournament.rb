@@ -9,8 +9,12 @@ class Tournament < ActiveRecord::Base
   	name
   end
 
-  def squad_entries 
-    SquadEntry.where(squad_id: squads)
+  def squad_entries(game_type = nil)
+    if (game_type)
+      SquadEntry.where(squad_id: squads, game_type: game_type)
+    else
+      SquadEntry.where(squad_id: squads)
+    end
   end
 
   def bowlers (bowling_association=nil)
@@ -32,6 +36,7 @@ class Tournament < ActiveRecord::Base
   	self.bowlers.each do | bowler |
   		bowling_association << bowler.bowling_association
   	end
+    
 	bowling_association
   end
 

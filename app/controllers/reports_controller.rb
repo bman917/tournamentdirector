@@ -17,4 +17,8 @@ class ReportsController < ApplicationController
   	@squad_entries = @bowler.get_tournament_entries(selected_tournament)
   end
 
+  def show_ranking
+  	
+  end
+
 end

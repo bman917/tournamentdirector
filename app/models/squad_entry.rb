@@ -1,8 +1,14 @@
 class SquadEntry < ActiveRecord::Base
+#  scope :singles, find_by_game_type(GameType.first)
+
   has_and_belongs_to_many :bowlers
   has_many :games, :dependent => :delete_all
   belongs_to :squad
   belongs_to :game_type
+
+  def update_total!
+    total_pinfalls = totalgames.sum("score")
+  end
 
   def belongs_to_tournament?(tournament)
     squad.tournament.id == tournament.id
@@ -56,12 +62,11 @@ class SquadEntry < ActiveRecord::Base
     bowlers.to_sentence
   end
 
-  def total_pinfalls
-    total = 0
-
-    games.each { |game| total += game.score if game.score}
-    total
-  end
+#  def total_pinfalls
+#    total = 0
+#    games.each { |game| total += game.score if game.score}
+#    total
+#  end
 
   def <=>(other)
 
@@ -95,5 +100,5 @@ class SquadEntry < ActiveRecord::Base
   def isEntry?(param_game_type)
     game_type == param_game_type
   end
-  
+
 end
