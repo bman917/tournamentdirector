@@ -43,7 +43,7 @@ $(document).ready(
 	<th>Actions</th>
 </tr>
 
-<% @squad.squad_entries.sort!.each do | squad_entry |%>
+<% @squad.squad_entries.each do | squad_entry |%>
 
 <tr class="data <%="#{squad_entry.category_css} hidden "%> <%=cycle 'o', 'e'%><%=" updated" if @updated_squad_entry && @updated_squad_entry.id == squad_entry.id%>">
 	<td><%= link_to 'Show', squad_entry_path(squad_entry)%></td>

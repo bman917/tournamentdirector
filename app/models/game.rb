@@ -7,6 +7,7 @@ class Game < ActiveRecord::Base
 
   def update_squad_entry_total
     squad_entry.update_total!
+    squad_entry.save
   end
 
   def to_s

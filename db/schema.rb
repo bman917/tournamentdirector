@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130711163304) do
+ActiveRecord::Schema.define(version: 20130802151449) do
 
   create_table "average_entries", force: true do |t|
     t.integer  "average"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20130711163304) do
     t.integer  "game_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "total_pinfalls", default: 0
   end
 
   add_index "squad_entries", ["game_type_id"], name: "index_squad_entries_on_game_type_id"

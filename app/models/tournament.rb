@@ -9,12 +9,12 @@ class Tournament < ActiveRecord::Base
   	name
   end
 
-  def squad_entries(game_type = nil)
-    if (game_type)
-      SquadEntry.where(squad_id: squads, game_type: game_type)
-    else
+  def squad_entriesx(game_type, category)
+    SquadEntry.where(squad_id: squads, game_type: game_type, category: category).where("total_pinfalls > 0")
+  end
+
+  def squad_entries
       SquadEntry.where(squad_id: squads)
-    end
   end
 
   def bowlers (bowling_association=nil)

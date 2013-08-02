@@ -1,13 +1,13 @@
 class SquadEntry < ActiveRecord::Base
 #  scope :singles, find_by_game_type(GameType.first)
-
+  default_scope order("total_pinfalls DESC")
   has_and_belongs_to_many :bowlers
   has_many :games, :dependent => :delete_all
   belongs_to :squad
   belongs_to :game_type
 
   def update_total!
-    total_pinfalls = totalgames.sum("score")
+    self.total_pinfalls = games.sum("score")
   end
 
   def belongs_to_tournament?(tournament)
