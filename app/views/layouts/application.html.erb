@@ -65,9 +65,12 @@
 
 <div class="title">
 
+    <%if selected_tournament%>
     <span class="tournament_title">
-      <%=link_to selected_tournament, tournament_squads_path(selected_tournament) if selected_tournament%>
+      <%=link_to selected_tournament, tournament_squads_path(selected_tournament)%>
+      <span id='ranking_link'><%=link_to 'Show Ranking', reports_show_ranking_path %></span>
     </span>
+    <%end%>
 
     <% if selected_squad %>
       <div class="squad_title">

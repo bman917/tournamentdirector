@@ -1,15 +1,19 @@
 class TournamentsController < ApplicationController
+
+  include SessionsHelper
+
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
 
   # GET /tournaments
   # GET /tournaments.json
   def index
-    @tournaments = Tournament.all
+    clear_selected_tournament
+    @tournaments = current_user.tournaments
+  end
 
-    session[:selected_tournament] = nil
-    session[:selected_squad] = nil
-    session[:selected_squad_entry] = nil
-
+  def latest
+    @tournament = current_user.tournaments.last
+    set_selected_tournament(@tournament)
   end
 
   # GET /tournaments/1

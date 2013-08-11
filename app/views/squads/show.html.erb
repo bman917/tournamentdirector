@@ -21,7 +21,7 @@ $(document).ready(
 	        	<%= link_to bowler_class.name, "", class: bowler_class.to_css_class %>
 	    	<% end %>
 		</div>
-
+		 <% if current_user.admin? %>
 			<div class="entries_actions">
 				Add: (
 		        	<% @squad.tournament.game_types. each do |game_type|%>
@@ -29,6 +29,7 @@ $(document).ready(
 		        	<% end %>
 				)
 		   </div>
+		<% end %>
 	</div>
 </div>
 
@@ -40,7 +41,7 @@ $(document).ready(
 	<th>Bowler(s)</th>
 	<th>Games</th>
 	<th>Total</th>
-	<th>Actions</th>
+	 <% if current_user.admin? %><th>Actions</th><%end%>
 </tr>
 
 <% @squad.squad_entries.each do | squad_entry |%>
@@ -54,11 +55,12 @@ $(document).ready(
 	<td><%= squad_entry.bowler_names %></td>
 	<td><%= squad_entry.games.size%></td>
 	<td><%= squad_entry.total_pinfalls%></td>
+	 <% if current_user.admin? %>
 	<td>
 
 		<%= link_to('Add Game', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %> 
 	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+    <% end %>
 </tr>
 
 <% end %>

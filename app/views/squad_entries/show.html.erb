@@ -2,7 +2,7 @@
 <div class="title">
   <div class="games_title">
     <span>Recorded Games</span>
-    <%=link_to('(Add Game)', new_squad_entry_game_path(@squad_entry), class: 'add') unless @squad_entry.has_games?%>
+    <%=link_to('(Add Game)', new_squad_entry_game_path(@squad_entry), class: 'add') if (!@squad_entry.has_games? && current_user.admin?) %>
   </div>
 </div>
 
@@ -14,7 +14,7 @@
       <%  (1..@squad_entry.games_recorded).each do |i| %>
           <th>Game <%=i%></th>
       <% end %>
-          <th>Actions</th>
+          
     </tr>
 
   <% @squad_entry.bowlers.each do | bowler | %>
@@ -24,14 +24,14 @@
           <td><%="#{game.score}"%></td>
         <% end %>
 
-          <td>Edit</th>
+          
       </tr>
   <% end %>
   </table>
 <% else %>
 
   <table id="bowlers">
-    <th>No Games In Record - (<%= link_to 'Add Game', new_squad_entry_game_path(@squad_entry) %>)</th>
+    <th>No Games In Record - <%= link_to('(Add Game)', new_squad_entry_game_path(@squad_entry)) if current_user.admin? %></th>
   </table>
 
 

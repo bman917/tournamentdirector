@@ -8,6 +8,10 @@ module ApplicationHelper
 		master? || current_user.role == 'ADMIN'
 	end
 
+	def user?
+		current_user.role = 'USER'
+	end
+
 	def selected_squad
 		@selected_squad ||= Squad.find_by_id(session[:selected_squad]) if session[:selected_squad]
 	end

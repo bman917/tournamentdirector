@@ -2,7 +2,7 @@
   <div class="squad_title">
     <span>SQUADS</span>
     
-      <%= link_to '(Add New Squad)', new_squad_path(@tournament), class:'add' %>
+      <%= link_to('(Add New Squad)', new_squad_path(@tournament), class:'add') if current_user.admin? %>
     
 
   </div>
@@ -15,9 +15,13 @@
       <th></th>
       <th>Squad Name</th>
       <th>Roll-off Time</th>
+
+      <% if current_user.admin? %>
       <th>Add Entry</th>
       <th></th>
       <th></th>
+      <% end %>
+
     </tr>
   </thead>
 
@@ -27,27 +31,33 @@
       <td><%= link_to "Show Entries (#{squad.squad_entries.size})", squad %></td>
       <td><%= squad.name %></td>
       <td><%= squad.time.to_s(:squad_time) %></td>
-      <td>
-        <div class="actions">
-              <ul class="actions">
-                <% squad.tournament.game_types. each do |game_type|%>
-                <li><%= link_to game_type.name, new_squad_entry_path(squad, game_type.id) %></li>
-                <% end %>
-              </ul>
-        </div>
-      </td>
-      <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
-      <td><%= link_to 'Delete!!!', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+      <% if current_user.admin? %>
+        <td>
+        
+          <div class="actions">
+                <ul class="actions">
+                  <% squad.tournament.game_types. each do |game_type|%>
+                  <li><%= link_to game_type.name, new_squad_entry_path(squad, game_type.id) %></li>
+                  <% end %>
+                </ul>
+          </div>
+
+        </td>
+        <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
+        <td><%= link_to 'Delete!!!', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% end %>
+
+      </tr>
     <% end %>
   </tbody>
 </table>
 
 <div class="page_nav">
-<%= link_to 'New Squad', new_squad_path(@tournament), class:'new_link' %>
+<%= link_to('New Squad', new_squad_path(@tournament), class:'new_link') if current_user.admin? %>
 <br/>
 <br/>
-<%= link_to 'Show Reports', reports_url %>
+<%= link_to('Show Reports', reports_url) if current_user.admin? %>
 </div>
 
 

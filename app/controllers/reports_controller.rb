@@ -12,6 +12,9 @@ class ReportsController < ApplicationController
 
   end
 
+  def show_ranking
+  end
+
   def show_bowler_entries
   	@bowler = Bowler.find(params[:bowler_id])
   	@squad_entries = @bowler.get_tournament_entries(selected_tournament)

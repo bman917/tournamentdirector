@@ -1,0 +1,24 @@
+<h3>Rankings</h3>
+<table>
+  <tr>
+    <th></th>
+    <% selected_tournament.game_types.each do | game_type | %>
+    <th><%=game_type%></th>
+    <% end %>
+  </tr>
+
+<% BowlerClass.all.each do | category | %>
+<tr>
+  <td>
+  <%=category.name%>
+  </td>
+    <% selected_tournament.game_types.each do | game_type | %>
+    <td>
+        <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
+          <div><%="#{squad_entry.total_pinfalls} #{squad_entry.bowler_names}"%></div>
+        <% end %>
+    </td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
