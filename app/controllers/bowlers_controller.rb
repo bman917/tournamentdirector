@@ -1,6 +1,11 @@
 class BowlersController < ApplicationController
   before_action :set_bowler, only: [:show, :edit, :update, :destroy]
 
+  def show_entries
+    @bowler = Bowler.find(params[:bowler_id])
+    @squad_entries = @bowler.get_tournament_entries(selected_tournament)
+  end
+
   # GET /bowlers
   # GET /bowlers.json
   def index
@@ -11,6 +16,8 @@ class BowlersController < ApplicationController
     session[:selected_squad_entry] = nil
 
   end
+
+
 
   # GET /bowlers/1
   # GET /bowlers/1.json

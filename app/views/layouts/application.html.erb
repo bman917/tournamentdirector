@@ -41,8 +41,6 @@
 
 
       <% if master? %>
-
-
         <li><%= link_to "Tournaments", tournaments_path %>
             <ul>
               <li><%= link_to 'Show Tournaments', tournaments_path %></li>
@@ -50,11 +48,10 @@
         </li>
       <% end %>
 
-
       <% current_user.tournaments.each do |tournament| %>
-        <li><%= link_to tournament.name, tournament_squads_path(tournament) %>
+        <li><%= link_to tournament.name, tournament_select_path(tournament) %>
           <ul>
-            <li><%= link_to 'Show Squads', tournament_squads_path(tournament) %></li>
+            <li><%= link_to 'Show Squads', tournament_select_path(tournament) %></li>
           </ul>
         </li>
 
@@ -66,10 +63,19 @@
 <div class="title">
 
     <%if selected_tournament%>
-    <span class="tournament_title">
-      <%=link_to selected_tournament, tournament_squads_path(selected_tournament)%>
-      <span id='ranking_link'><%=link_to 'Show Ranking', reports_show_ranking_path %></span>
-    </span>
+      <span class="tournament_title">
+        <%=link_to selected_tournament, tournament_select_path(selected_tournament)%>
+      </span>
+      
+        <div id='tournament_actions'>
+          <%if admin?%>
+          <li><%=link_to 'Add New Squad', new_squad_path %></li>
+          <li><%=link_to 'View Reports', reports_path %></li>
+          <%end%>
+          <li><%=link_to 'Show All Squads', tournament_select_path(selected_tournament) %></li>
+          <li><%=link_to 'Show Ranking', show_ranking_reports_path %></li>
+        </div>
+
     <%end%>
 
     <% if selected_squad %>

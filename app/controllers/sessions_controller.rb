@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
 	  if user
 	    session[:user_id] = user.id
 
-	    if user.admin?
-	    	redirect_to root_url, :notice => "Logged in!"
+	    if user.master?
+	    	redirect_to root_url
+	    elsif user.admin?
+	    	redirect_to tournament_select_path(user.tournaments.last)
 	    else
-	    	redirect_to tournament_latest_path
+	    	redirect_to latest_tournaments_path
 	    end
-
-
 	  else
 	    flash.now.alert = "Invalid email or password"
 	    render "new"
@@ -29,6 +29,9 @@ class SessionsController < ApplicationController
 	  session[:selected_squad_entry] = nil
 
 	  redirect_to root_url, :notice => "Logged out!"
+	end
+
+	def error
 	end
 
 end

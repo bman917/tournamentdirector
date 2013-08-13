@@ -1,10 +1,6 @@
 <div class="title">
   <div class="squad_title">
-    <span>SQUADS</span>
-    
-      <%= link_to('(Add New Squad)', new_squad_path(@tournament), class:'add') if current_user.admin? %>
-    
-
+    <span>Show All Squads</span>
   </div>
 </div>
 
@@ -19,14 +15,14 @@
       <% if current_user.admin? %>
       <th>Add Entry</th>
       <th></th>
-      <th></th>
+      
       <% end %>
 
     </tr>
   </thead>
 
   <tbody>
-    <% @squads.each do |squad| %>
+    <% @tournament.squads.each do |squad| %>
     <tr class=<%=cycle 'o', 'e'%>>
       <td><%= link_to "Show Entries (#{squad.squad_entries.size})", squad %></td>
       <td><%= squad.name %></td>
@@ -43,8 +39,8 @@
           </div>
 
         </td>
-        <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
-        <td><%= link_to 'Delete!!!', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit Squad Details', edit_squad_path(squad) %></td>
+        <!--td><%= link_to 'Delete!!!', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
 
         <% end %>
 
@@ -54,10 +50,8 @@
 </table>
 
 <div class="page_nav">
-<%= link_to('New Squad', new_squad_path(@tournament), class:'new_link') if current_user.admin? %>
+<%= link_to('Add New Squad', new_squad_path, class:'new_link') if current_user.admin? %>
 <br/>
-<br/>
-<%= link_to('Show Reports', reports_url) if current_user.admin? %>
 </div>
 
 

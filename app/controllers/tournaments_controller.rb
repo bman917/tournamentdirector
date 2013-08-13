@@ -2,13 +2,18 @@ class TournamentsController < ApplicationController
 
   include SessionsHelper
 
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament, only: [:edit, :update, :destroy]
+  before_action :user_is_master?, only: [:new, :edit, :update, :destroy, :create]
 
   # GET /tournaments
   # GET /tournaments.json
   def index
     clear_selected_tournament
-    @tournaments = current_user.tournaments
+    if current_user.master?
+      @tournaments = Tournament.all
+    else
+      @tournaments = current_user.tournaments
+    end
   end
 
   def latest
@@ -16,9 +21,18 @@ class TournamentsController < ApplicationController
     set_selected_tournament(@tournament)
   end
 
-  # GET /tournaments/1
-  # GET /tournaments/1.json
+  def select
+    @tournament = current_user.tournaments.find_by_id(params[:tournament_id]) || current_user.tournaments.last
+    set_selected_tournament(@tournament)
+  end
+
+
   def show
+    if current_user.master?
+      @tournament = Tournament.find(params[:id])
+    else
+      self.latest
+    end
   end
 
   # GET /tournaments/new

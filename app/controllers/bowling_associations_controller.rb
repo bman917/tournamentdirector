@@ -1,15 +1,18 @@
 class BowlingAssociationsController < ApplicationController
+  include SessionsHelper
+
   before_action :set_bowling_association, only: [:show, :edit, :update, :destroy]
 
   # GET /bowling_associations
   # GET /bowling_associations.json
   def index
     @bowling_associations = BowlingAssociation.all
+    clear_selected_tournament
+  end
 
-    session[:selected_tournament] = nil
-    session[:selected_squad] = nil
-    session[:selected_squad_entry] = nil
-
+  def show_entries
+    @bowling_association = BowlingAssociation.find(params[:bowling_association_id])
+    @bowlers = selected_tournament.bowlers(@bowling_association)
   end
 
   # GET /bowling_associations/1

@@ -4,8 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :selected_tournament, :logged_in?
   before_action :require_login
- 
+
   private
+  def user_is_master?
+    unless current_user.master?
+      flash[:error] = "You are not authorized to do that action"
+      redirect_to error_path
+    end
+  end
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
@@ -30,5 +36,4 @@ class ApplicationController < ActionController::Base
       redirect_to log_in_path # halts request cycle
     end
   end
-
 end

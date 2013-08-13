@@ -1,14 +1,12 @@
 <h2 class="squad_title">Reports</h2>
 
-<%=link_to 'Show Tournament Ranking' , reports_show_ranking_path %>
-
 <h3>Entries Per Bowling Association</h3>
 
 <div class="report">
   <table>
       <thead>
         <tr>
-          <th>Associations</th>
+          <th>Association</th>
           <th>Number of Entries</th>
           <th>Action</th>
         </tr>
@@ -17,8 +15,8 @@
   <%@bowling_associations.each do | ass |%>
     <tr>
       <td><%=ass.name%></td>
-      <td><%=link_to selected_tournament.bowling_association_entries(ass).count, reports_show_entries_path(ass)%></td>
-      <td><%=link_to 'Show Entries Per Bowler', reports_show_entries_path(ass)%></td>
+      <td><%=link_to selected_tournament.bowling_association_entries(ass).count, bowling_association_show_entries_path(ass)%></td>
+      <td><%=link_to 'Show Entries Per Bowler', bowling_association_show_entries_path(ass)%></td>
     </tr>
   <%end%>
    </tbody>

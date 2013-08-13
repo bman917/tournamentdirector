@@ -1,21 +1,26 @@
 class SquadsController < ApplicationController
   before_action :set_squad, only: [:show, :edit, :update, :destroy]
+  before_action :clear_selected_squad_from_session, only: [:index]
 
-  def list
-    @tournament = Tournament.find(params[:tournament_id])
-    @squads = @tournament.squads    
-    session[:selected_tournament] = @tournament.id
-    session[:selected_squad] = nil
-    session[:selected_squad_entry] = nil
+  include SessionsHelper
 
-    
+#  def list
+#    @tournament = Tournament.find(params[:tournament_id])
+#    @squads = @tournament.squads    
+#    session[:selected_tournament] = @tournament.id
+#    session[:selected_squad] = nil
+#    session[:selected_squad_entry] = nil
+#  end
 
+  def clear_selected_squad_from_session
+    clear_selected_squad
   end
 
   # GET /squads
   # GET /squads.json
   def index
-    @squads = Squad.all
+    
+    @squads = selected_tournament.squads
   end
 
   # GET /squads/1
@@ -33,7 +38,7 @@ class SquadsController < ApplicationController
   # GET /squads/new
   def new
     @squad = Squad.new
-    @tournament = Tournament.find(params[:tournament_id])
+    @tournament = selected_tournament;
     @next_squad_number = @tournament.squads.count+1
     
   end
@@ -51,7 +56,7 @@ class SquadsController < ApplicationController
 
     respond_to do |format|
       if @squad.save
-        format.html { redirect_to tournament_squads_path(@squad.tournament), notice: 'Squad was successfully created.' }
+        format.html { redirect_to tournament_select_path(selected_tournament), notice: 'Squad was successfully created.' }
         format.json { render action: 'show', status: :created, location: @squad }
       else
         format.html { render action: 'new' }
@@ -65,7 +70,7 @@ class SquadsController < ApplicationController
   def update
     respond_to do |format|
       if @squad.update(squad_params)
-        format.html { redirect_to tournament_squads_path(@squad.tournament), notice: 'Squad was successfully updated.' }
+        format.html { redirect_to tournament_select_path(@squad.tournament), notice: 'Squad was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -80,7 +85,7 @@ class SquadsController < ApplicationController
     tournament = @squad.tournament
     @squad.destroy
     respond_to do |format|
-      format.html { redirect_to tournament_squads_path(tournament) }
+      format.html { redirect_to tournament_select_path(tournament) }
       format.json { head :no_content }
     end
   end

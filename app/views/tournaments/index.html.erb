@@ -23,7 +23,7 @@
       <td><%= tournament.start_date %></td>
       <td><%= tournament.end_date %></td>
       <td><%= tournament.bowling_association.to_s %></td>
-      <td><%= link_to 'Show Squads', tournament_squads_path(tournament) %></td>
+      <td><%= link_to 'Show Squads', tournament_select_path(tournament) %></td>
       <td><%= link_to 'Add Squad', new_squad_path(tournament) %></td>
       <td><%= link_to 'Edit', edit_tournament_path(tournament) if current_user.master?  %></td>
       <td><%= link_to 'Delete!!!', tournament, method: :delete, data: { confirm: 'Are you sure?'} if current_user.master?  %></td>

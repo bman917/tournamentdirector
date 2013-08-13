@@ -4,6 +4,7 @@
   <table>
       <thead>
         <tr>
+          <th>Squad</th>
           <th>Game Type</th>
           <th>Division</th>
           <th>Total Pinfalls</th>
@@ -13,6 +14,7 @@
  <tbody>
   <%@squad_entries.each do | squad_entry |%>
     <tr>
+      <td><%=squad_entry.squad%></td>
       <td><%=squad_entry.game_type%></td>
       <td><%=squad_entry.category%></td>
       <td><%=squad_entry.total_pinfalls%></td>

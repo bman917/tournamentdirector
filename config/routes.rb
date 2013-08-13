@@ -1,11 +1,9 @@
 Tournamentdirector::Application.routes.draw do
 
-  get "reports/index" => "reports#index", as: 'reports'
-  get "reports/show_entries/:bowling_association_id" => "reports#show_entries", as: 'reports_show_entries'
-  get "reports/show_bowler_entries/:bowler_id" => "reports#show_bowler_entries", as: 'reports_show_bowler_entries'
-  get "reports/show_ranking" => "reports#show_ranking", as: 'reports_show_ranking'
-
-
+  resources :reports do
+    get :show_ranking, on: :collection
+  end
+  
   post "game_type/add_tournament" => "game_types#assign_tournament", as: "game_type_add_tournament"
   get "game_type/add_tournament" => "game_types#add_tournament", as: "game_type_add_tournament"
   resources :game_types
@@ -22,26 +20,35 @@ Tournamentdirector::Application.routes.draw do
 
   get "squads/updated_entry/:updated_squad_entry_id" => "squads#show", as: "squad_updated_entry"
   get "squad/:squad_id/entry/:game_type_id/new" => "squad_entries#new", as: "new_squad_entry"
-  resources :squad_entries
+  
+
+  resources :squad_entries do
+    post :search_bowling_association, on: :collection #NOT IMPLEMENTED YET
+
+  end
 
   resources :games
-
-  get "tournament/:tournament_id/squads" => "squads#list", as: "tournament_squads"
-  get "squad/new/:tournament_id" => "squads#new", as: "new_squad"
   resources :squads
 
-  resources :tournaments
-  get "tournament/latest" => "tournaments#latest", as: "tournament_latest"
+  resources :tournaments do
+    get 'select'
+    get 'latest', on: :collection
+  end
 
   get "average_entry/new/:bowler_id" => "average_entries#new", as: "new_average_entry"
   resources :average_entries
 
   get "sessions/new"
   get "users/new"
-  resources :bowlers
+  resources :bowlers do
+    get 'show_entries'
+  end
 
-  resources :bowling_associations
+  resources :bowling_associations do
+    get "show_entries"
+  end
 
+  get "error" => "sessions#error", :as => "error"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
