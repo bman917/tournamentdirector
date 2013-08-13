@@ -16,7 +16,13 @@ module SessionsHelper
 	end
 
 	def set_selected_squad(squad)
+		set_selected_tournament(squad.tournament)
 		session[:selected_squad] = squad.id
+	end
+
+	def set_selected_squad_entry(squad_entry)
+		set_selected_squad(squad_entry.squad)
+		session[:selected_squad_entry] = squad_entry.id
 	end
 
 end

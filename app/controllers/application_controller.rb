@@ -13,6 +13,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+    
+  def user_is_admin?
+    check_authorization(current_user.admin?)
+  end
+
+  def check_authorization(condition)
+    unless condition
+      flash[:error] = "You are not authorized to do that action"
+      redirect_to error_path
+    end      
+  end
+
+
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     if @current_user == nil

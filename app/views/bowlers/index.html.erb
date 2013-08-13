@@ -1,5 +1,5 @@
 <h1>Listing bowlers</h1>
-<%= link_to 'New Bowler', new_bowler_path %>
+<%= link_to('New Bowler', new_bowler_path) if admin?%>
 <table>
   <thead>
     <tr>
@@ -7,10 +7,12 @@
       <th>Gender</th>
       <th>Association </th>
       <th>Average</th>
+      <%if admin? %>
       <th></th>
       <th></th>
       <th></th>
       <th></th>
+      <%end%>
     </tr>
   </thead>
 
@@ -21,10 +23,13 @@
       <td><%= bowler.gender %></td>
       <td><%= bowler.bowling_association %></td>
       <td><%= bowler.latest_average %></td>
+
+      <% if admin? %>
       <td><%= link_to 'Update Average', new_average_entry_path(bowler) %></td>
       <td><%= link_to 'Show', bowler %></td>
       <td><%= link_to 'Edit', edit_bowler_path(bowler) %></td>
       <td><%= link_to 'Delete', bowler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
@@ -32,4 +37,4 @@
 
 <br />
 
-<%= link_to 'New Bowler', new_bowler_path %>
+<%= link_to('New Bowler', new_bowler_path) if admin?%>

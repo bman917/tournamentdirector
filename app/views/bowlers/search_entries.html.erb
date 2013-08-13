@@ -1,0 +1,16 @@
+<h1>Search Squad Entries</h1>
+
+<%= form_tag(search_entries_bowlers_path, method: "get") do %>
+  <%= label_tag(:bowler_name, "Bowler Name: ") %>
+  <%= search_field( :bowler_name, nil,value: "Jeff Chan")  %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+<% if @bowler %>
+
+<%=@bowler%>
+
+<%end%>
+
+

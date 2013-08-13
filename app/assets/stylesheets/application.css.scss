@@ -36,9 +36,17 @@
    line-height: 18px;
 }
 
+div#flash_alert, div#flash_error {
+	font-size: 1.5em;
+	margin: 1em;
+	color: #FF0000;
+}
+
 #tournament_actions {
 	padding-top: .25em;
 	padding-left: 1em;
+	padding-bottom: 1em;
+
 	display: block;
 	font-size: .6em;
 
