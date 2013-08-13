@@ -1,5 +1,22 @@
 class BowlersController < ApplicationController
+  include SessionsHelper
+
   before_action :set_bowler, only: [:show, :edit, :update, :destroy]
+  before_action :user_is_admin?, only: [:edit, :update, :destroy, :create]
+
+
+  def search_entries
+    clear_selected_squad
+    if params[:bowler_name]
+      @bowler = Bowler.find_by_name(params[:bowler_name])
+      @squad_entries = @bowler.get_tournament_entries(selected_tournament)
+      render 'show_entries'
+      unless @bowler
+        flash.now.alert = "Bowler Not Found."
+      end
+    end
+  end
+
 
   def show_entries
     @bowler = Bowler.find(params[:bowler_id])

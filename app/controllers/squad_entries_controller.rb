@@ -1,12 +1,16 @@
 class SquadEntriesController < ApplicationController
+  include SessionsHelper
+
   before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game]
+  before_action :user_is_admin?
+
+
 
   def new_game
 
     @game = Game.new
     @squad = @squad_entry.squad
-    session[:selected_squad_entry] = params[:id]
-    
+    set_selected_squad_entry(@squad_entry)
 
   end
 

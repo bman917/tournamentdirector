@@ -24,7 +24,6 @@ Tournamentdirector::Application.routes.draw do
 
   resources :squad_entries do
     post :search_bowling_association, on: :collection #NOT IMPLEMENTED YET
-
   end
 
   resources :games
@@ -40,8 +39,11 @@ Tournamentdirector::Application.routes.draw do
 
   get "sessions/new"
   get "users/new"
+  
   resources :bowlers do
     get 'show_entries'
+    get 'search_entries', on: :collection
+    post 'search_entries', on: :collection
   end
 
   resources :bowling_associations do
