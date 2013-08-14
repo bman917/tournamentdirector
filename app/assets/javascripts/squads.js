@@ -1,4 +1,4 @@
-$(document).on('click','#categories a', showCategory);
+$(document).on('click','#xxxcategories a', showCategory);
 
 function showCategory(event) {
 	event.preventDefault();

@@ -1,13 +1,23 @@
 
-
 <%=javascript_tag do %>
 
 $(document).ready(
 	function(){
-		$('#categories a.<%=@category_css%>').click();
+		$('#xxcategories a.<%=@category_css || "xxx"%>').click();
 	}
-
 );
+
+$(document).on('change', '#tournament_bowlers_class_name', function() { 
+	var game_type = $('#tournament_game_type_name').val();
+	window.location.pathname = "squads/<%=@squad.id%>/" + $(this).val() + '/' +game_type; 
+});
+
+$(document).on('change', '#tournament_game_type_name', function() { 
+	var category = $('#tournament_bowlers_class_name').val();
+	window.location.pathname = "squads/<%=@squad.id%>/" + category + "/" + $(this).val(); 
+});
+
+
 <% end %>
 
 
@@ -16,11 +26,18 @@ $(document).ready(
 
 
 		<div id="categories">
-			<span>Entries:</span>
+			<span>Division:</span>
+	        <%= collection_select(:tournament, :bowlers_class_name , BowlerClass.all, :name, :name, {:selected => session[:bowler_class_name]})%>
+	        <span>Game:</span>
+	        <%= collection_select(:tournament, :game_type_name     , GameType.all   , :name, :name, {:selected => session[:game_type_name]})%>
+	    </div>
+
+<!--
 			<% BowlerClass.all.each do |bowler_class|%>
 	        	<%= link_to bowler_class.name, "", class: bowler_class.to_css_class %>
 	    	<% end %>
-		</div>
+-->
+		
 		 <% if current_user.admin? %>
 			<div class="entries_actions">
 				Add: (
@@ -44,9 +61,9 @@ $(document).ready(
 	 <% if current_user.admin? %><th>Actions</th><%end%>
 </tr>
 
-<% @squad.squad_entries.each do | squad_entry |%>
+<% @squad_entries.each do | squad_entry |%>
 
-<tr class="data <%="#{squad_entry.category_css} hidden "%> <%=cycle 'o', 'e'%><%=" updated" if @updated_squad_entry && @updated_squad_entry.id == squad_entry.id%>">
+<tr class="data <%="#{squad_entry.category_css} "%> <%=cycle 'o', 'e'%><%=" updated" if flash[:updated_squad_entry_id] == squad_entry.id%>">
 	<td><%= link_to 'Show', squad_entry_path(squad_entry)%></td>
 	<td><%= squad_entry.game_type %> 
 

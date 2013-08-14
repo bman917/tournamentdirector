@@ -6,14 +6,6 @@ class SquadsController < ApplicationController
 
   include SessionsHelper
 
-#  def list
-#    @tournament = Tournament.find(params[:tournament_id])
-#    @squads = @tournament.squads    
-#    session[:selected_tournament] = @tournament.id
-#    session[:selected_squad] = nil
-#    session[:selected_squad_entry] = nil
-#  end
-
   def clear_selected_squad_from_session
     clear_selected_squad
   end
@@ -21,20 +13,38 @@ class SquadsController < ApplicationController
   # GET /squads
   # GET /squads.json
   def index
-    
     @squads = selected_tournament.squads
+  end
+
+  def show_by_category
+    
+    @squad = Squad.find(params[:squad_id])
+    @category =  params[:bowler_class_name] || 'OPEN'
+    @game_type = GameType.find_by_name(params[:game_type_name]) || selected_tournament.game_types.first
+    @squad_entries = @squad.squad_entries.where("category = ?", @category).where("game_type_id = ?", @game_type.id)
+    
+    session[:bowler_class_name] = @category
+    session[:game_type_name] = @game_type.name
+
+    flash.keep if flash[:updated_squad_entry_id]
+    render 'show'
   end
 
   # GET /squads/1
   # GET /squads/1.json
   def show
 
-    session[:selected_squad_entry] = nil
+    clear_selected_squad_entry
+    
     session[:last_action] = :squad
 
     @category_css = @updated_squad_entry.category_css if @updated_squad_entry
     @category_css ||= BowlerClass.first
 
+    @category = session[:bowler_class_name] || 'OPEN'
+    @game_type = GameType.find_by_name(session[:game_type_name]) || selected_tournament.game_types.first
+
+    @squad_entries = @squad.squad_entries.where("category = ?",  @category ).where("game_type_id = ?", @game_type.id)
   end
 
   # GET /squads/new

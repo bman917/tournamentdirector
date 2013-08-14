@@ -7,6 +7,10 @@ module SessionsHelper
 
 	def clear_selected_squad
       session[:selected_squad] = nil
+      clear_selected_squad_entry
+  	end
+
+	def clear_selected_squad_entry
       session[:selected_squad_entry] = nil
   	end
 

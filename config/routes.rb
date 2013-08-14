@@ -27,7 +27,10 @@ Tournamentdirector::Application.routes.draw do
   end
 
   resources :games
-  resources :squads
+  resources :squads do
+    get '/:bowler_class_name' => "squads#show_by_category"
+    get '/:bowler_class_name/:game_type_name' => "squads#show_by_category", as: "show_by_category"
+  end
 
   resources :tournaments do
     get 'select'

@@ -36,17 +36,14 @@ class SquadEntriesController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      if @game.errors.any?
-        format.html { render 'new_game'}
-      else
-        path = squad_updated_entry_path(@squad_entry)
-        if session[:last_action] == :squad_entry_games
-          path = squad_entry_path @squad_entry
-        end
-        format.html { redirect_to path, notice: 'Game was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @squad_entry }
+    if @game.errors.any?
+      render 'new_game'
+    else
+      path = flash_update(@squad_entry)
+      if session[:last_action] == :squad_entry_games
+        path = squad_entry_path @squad_entry
       end
+      redirect_to path, notice: 'Game was successfully created.'
     end
   end
 
@@ -105,14 +102,11 @@ class SquadEntriesController < ApplicationController
     @new_squad_entry = @squad_entry
 
 
-    respond_to do |format|
-      if @squad_entry.save
-        format.html { redirect_to squad_updated_entry_path(@squad_entry.id), notice: 'Squad entry was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @squad_entry }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @squad_entry.errors, status: :unprocessable_entity }
-      end
+    if @squad_entry.save
+      
+      redirect_to flash_update(@squad_entry), notice: 'Squad entry was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
@@ -134,10 +128,7 @@ class SquadEntriesController < ApplicationController
   # DELETE /squad_entries/1.json
   def destroy
     @squad_entry.destroy
-    respond_to do |format|
-      format.html { redirect_to squad_path(@squad_entry.squad) }
-      format.json { head :no_content }
-    end
+    redirect_to squad_path(@squad_entry.squad)
   end
 
   private
@@ -149,5 +140,10 @@ class SquadEntriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def squad_entry_params
       params.require(:squad_entry).permit(:category, :game_type_id, :bowlers, :squad_id)
+    end
+
+    def flash_update(squad_entry)
+      flash[:updated_squad_entry_id] = @squad_entry.id
+      squad_show_by_category_path(@squad_entry.squad, @squad_entry.category, @squad_entry.game_type.name)
     end
 end
