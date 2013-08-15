@@ -1,11 +1,9 @@
-$(document).on('click','#xxxcategories a', showCategory);
+$(document).on('change', '#tournament_bowlers_class_name', filterTable);
+$(document).on('change', '#tournament_game_type_name', filterTable);
 
-function showCategory(event) {
-	event.preventDefault();
+function filterTable() {
+	var category_css = $('#tournament_bowlers_class_name').val();
+	var game_type = $('#tournament_game_type_name').val();
 	$('tr.data').hide();
-	var selectVal = $(this).attr('class');
-	$("." + selectVal).show();
-	$('#categories a').removeClass('selected');
-	$(this).addClass('selected');
-	
+	$('tr.' + category_css + '.' + game_type).show();
 }

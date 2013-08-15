@@ -135,6 +135,7 @@ class SquadEntriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_squad_entry
       @squad_entry = SquadEntry.find(params[:id])
+      set_selected_bowler_class_and_game_type(@squad_entry.category, @squad_entry.game_type.name)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

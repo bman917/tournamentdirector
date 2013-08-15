@@ -17,14 +17,13 @@ class SquadsController < ApplicationController
   end
 
   def show_by_category
-    
-    @squad = Squad.find(params[:squad_id])
     @category =  params[:bowler_class_name] || 'OPEN'
     @game_type = GameType.find_by_name(params[:game_type_name]) || selected_tournament.game_types.first
-    @squad_entries = @squad.squad_entries.where("category = ?", @category).where("game_type_id = ?", @game_type.id)
+    set_selected_bowler_class_and_game_type(@category, @game_type.name)
     
-    session[:bowler_class_name] = @category
-    session[:game_type_name] = @game_type.name
+    id = params[:squad_id] || params[:id]
+    @squad = Squad.find(id)
+    @squad_entries = @squad.squad_entries
 
     flash.keep if flash[:updated_squad_entry_id]
     render 'show'
@@ -33,18 +32,9 @@ class SquadsController < ApplicationController
   # GET /squads/1
   # GET /squads/1.json
   def show
-
     clear_selected_squad_entry
-    
     session[:last_action] = :squad
-
-    @category_css = @updated_squad_entry.category_css if @updated_squad_entry
-    @category_css ||= BowlerClass.first
-
-    @category = session[:bowler_class_name] || 'OPEN'
-    @game_type = GameType.find_by_name(session[:game_type_name]) || selected_tournament.game_types.first
-
-    @squad_entries = @squad.squad_entries.where("category = ?",  @category ).where("game_type_id = ?", @game_type.id)
+    show_by_category
   end
 
   # GET /squads/new
@@ -105,18 +95,8 @@ class SquadsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_squad
-
-      if (params[:updated_squad_entry_id])
-        #If this parameter is present it means that a SquadEntry has been updated/created.
-        #The updatd SquadEntry is forwarded to the next page so that there's an option to highligh it.
-        @updated_squad_entry = SquadEntry.find(params[:updated_squad_entry_id])
-        @squad = @updated_squad_entry.squad
-      else
-
-        @squad = Squad.find(params[:id])
-      end
-      session[:selected_squad] = @squad.id
-
+      @squad = Squad.find(params[:id])
+      set_selected_squad(@squad)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

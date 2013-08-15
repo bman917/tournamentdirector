@@ -6,9 +6,14 @@ class BowlerClass < ActiveRecord::Base
   end
 
   def to_css_class
-  	s = String.new(name)
+  	BowlerClass.convert_to_css(name)
+  end
+
+  def self.convert_to_css(bowler_class)
+  	s = String.new(bowler_class)
   	s.gsub!(/\s+/, "")
   	s
+
   end
 
 

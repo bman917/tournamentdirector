@@ -29,4 +29,9 @@ module SessionsHelper
 		session[:selected_squad_entry] = squad_entry.id
 	end
 
+	def set_selected_bowler_class_and_game_type(blowler_class_name, game_type_name)
+		session[:bowler_class_name] = blowler_class_name
+    	session[:game_type_name] = game_type_name
+	end
+
 end
