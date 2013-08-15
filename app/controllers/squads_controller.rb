@@ -17,13 +17,21 @@ class SquadsController < ApplicationController
   end
 
   def show_by_category
+
+    @squad = set_squad
+    @presenter = Squads::ShowPresenter.new(@squad)
+
+
     @category =  params[:bowler_class_name] || 'OPEN'
     @game_type = GameType.find_by_name(params[:game_type_name]) || selected_tournament.game_types.first
+    
     set_selected_bowler_class_and_game_type(@category, @game_type.name)
     
     id = params[:squad_id] || params[:id]
-    @squad = Squad.find(id)
+    
     @squad_entries = @squad.squad_entries
+
+    
 
     flash.keep if flash[:updated_squad_entry_id]
     render 'show'
@@ -95,8 +103,10 @@ class SquadsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_squad
-      @squad = Squad.find(params[:id])
+      id = params[:squad_id] || params[:id]
+      @squad = Squad.find(id, :include => :squad_entries)
       set_selected_squad(@squad)
+      return @squad
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

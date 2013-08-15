@@ -14,7 +14,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def squad_entries
-      SquadEntry.where(squad_id: squads)
+      SquadEntry.where(squad_id: squads).includes(:bowlers).references(:squads)
   end
 
   def bowlers (bowling_association=nil)

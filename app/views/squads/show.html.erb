@@ -5,9 +5,9 @@
 
 		<div id="categories">
 			<span>Division:</span>
-	        <%= collection_select(:tournament, :bowlers_class_name , BowlerClass.all, :to_css_class, :name, {:selected => BowlerClass.convert_to_css(session[:bowler_class_name])})%>
+	        <%= collection_select(:tournament, :bowlers_class_name , @presenter.bowler_classes, :to_css_class, :name, {:selected => BowlerClass.convert_to_css(session[:bowler_class_name])})%>
 	        <span>Game:</span>
-	        <%= collection_select(:tournament, :game_type_name     , GameType.all   , :name, :name, {:selected => session[:game_type_name]})%>
+	        <%= collection_select(:tournament, :game_type_name     , @presenter.game_types   , :name, :name, {:selected => session[:game_type_name]})%>
 	    </div>
 
 		 <% if current_user.admin? %>
@@ -33,7 +33,7 @@
 	 <% if current_user.admin? %><th>Actions</th><%end%>
 </tr>
 
-<% @squad_entries.each do | squad_entry |%>
+<% @presenter.squad_entries.each do | squad_entry |%>
 
 <tr class="data <%=css(squad_entry)%> <%=cycle 'o', 'e'%>">
 	<td><%= link_to 'Show', squad_entry_path(squad_entry)%></td>
