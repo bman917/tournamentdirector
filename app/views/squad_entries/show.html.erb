@@ -2,7 +2,7 @@
 <div class="title">
   <div class="games_title">
     <span>Recorded Games</span>
-    <%=link_to('(Add Game)', new_squad_entry_game_path(@squad_entry), class: 'add') if (!@squad_entry.has_games? && current_user.admin?) %>
+    <%=link_to('(Add Game)', new_squad_entry_game_path(@squad_entry), class: 'add') if (!@squad_entry.has_games? && current_user.encoder?) %>
   </div>
 </div>
 
@@ -31,7 +31,7 @@
 <% else %>
 
   <table id="bowlers">
-    <th>No Games In Record - <%= link_to('(Add Game)', new_squad_entry_game_path(@squad_entry)) if current_user.admin? %></th>
+    <th>No Games In Record - <%= link_to('(Add Game)', new_squad_entry_game_path(@squad_entry)) if current_user.encoder? %></th>
   </table>
 
 

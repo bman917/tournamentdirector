@@ -10,7 +10,7 @@
 	        <%= collection_select(:tournament, :game_type_name     , @presenter.game_types   , :to_css_class, :name, {:selected => session[:game_type_name]})%>
 	    </div>
 
-		 <% if current_user.admin? %>
+		 <% if current_user.encoder? %>
 			<div class="entries_actions">
 				Add: (
 		        	<% @presenter.game_types.each do |game_type|%>
@@ -30,7 +30,7 @@
 	<th>Bowler(s)</th>
 	<th>Games</th>
 	<th>Total</th>
-	 <% if current_user.admin? %><th>Actions</th><%end%>
+	 <% if current_user.encoder? %><th>Actions</th><%end%>
 </tr>
 
 <% @presenter.squad_entries.each do | squad_entry |%>
@@ -44,11 +44,11 @@
 	<td><%= squad_entry.bowler_names %></td>
 	<td><%= squad_entry.games.size%></td>
 	<td><%= squad_entry.total_pinfalls%></td>
-	 <% if current_user.admin? %>
+	 <% if current_user.encoder? %>
 	<td>
 
 		<%= link_to('Add Game', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %> 
-	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin?%></td>
     <% end %>
 </tr>
 

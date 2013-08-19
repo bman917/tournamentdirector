@@ -9,7 +9,7 @@
           <th>Division</th>
           <th>Total Pinfalls</th>
           <th>Bowlers</th>
-          <% if admin? %>
+          <% if encoder? %>
           <th>Action</th>
           <% end %>
         </tr>
@@ -22,7 +22,7 @@
       <td><%=squad_entry.category%></td>
       <td><%=squad_entry.total_pinfalls%></td>
       <td><%=squad_entry.bowler_names%></td>
-      <% if admin? %>
+      <% if encoder? %>
       <td><%= link_to('Add Game', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %> </td>
       <% end %>
     </tr>

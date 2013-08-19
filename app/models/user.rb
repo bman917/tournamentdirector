@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     master? || self.role == 'ADMIN'
   end
 
+  def encoder?
+    admin? || self.role == 'ENCODER'
+  end
+
   def tournaments
     if master?
       Tournament.all

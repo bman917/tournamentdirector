@@ -2,7 +2,7 @@ class SquadsController < ApplicationController
   before_action :set_squad, only: [:show, :edit, :update, :destroy]
   before_action :clear_selected_squad_from_session, only: [:index]
   before_action :user_is_admin?
-  skip_before_action :user_is_admin?, only: [:show]
+  skip_before_action :user_is_admin?, only: [:show_by_category, :show]
 
   include SessionsHelper
 

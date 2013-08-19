@@ -2,7 +2,7 @@ class SquadEntriesController < ApplicationController
   include SessionsHelper
 
   before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game]
-  before_action :user_is_admin?
+  before_action :user_is_encoder?
 
 
 

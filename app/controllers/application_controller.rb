@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     check_authorization(current_user.admin?)
   end
 
+  def user_is_encoder?
+    check_authorization(current_user.encoder?)
+  end
+
   def check_authorization(condition)
     unless condition
       flash[:error] = "You are not authorized to do that action"
