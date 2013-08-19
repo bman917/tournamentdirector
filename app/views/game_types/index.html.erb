@@ -6,6 +6,7 @@
       <th>Name</th>
       <th>Number of players</th>
       <th>Number of games</th>
+      <th>Gender</th>
       <th>Tournaments</th>
       <th></th>
       <th></th>
@@ -20,6 +21,7 @@
       <td><%= game_type.name %></td>
       <td><%= game_type.number_of_players %></td>
       <td><%= game_type.number_of_games %></td>
+      <td><%= game_type.gender %></td>
       <td><%= game_type.tournaments.to_sentence %></td>
 
       <td><%= link_to 'Show', game_type %></td>

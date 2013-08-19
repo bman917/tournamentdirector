@@ -1,4 +1,6 @@
 class Bowler < ActiveRecord::Base
+  scope :by_gender, ->(gender) { where(gender: gender) unless (gender == 'A') }
+
   validates :name, presence: true
   validates_uniqueness_of :name
   belongs_to :bowling_association
@@ -22,6 +24,8 @@ class Bowler < ActiveRecord::Base
   def get_tournament_entries(tournament)
     squad_entries.where(id: tournament.squad_entries)
   end
+
+
 
 
 

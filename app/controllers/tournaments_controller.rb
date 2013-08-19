@@ -9,11 +9,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments.json
   def index
     clear_selected_tournament
-    if current_user.master?
-      @tournaments = Tournament.all
-    else
-      @tournaments = current_user.tournaments
-    end
+    @tournaments = current_user.tournaments
   end
 
   def latest
@@ -22,7 +18,7 @@ class TournamentsController < ApplicationController
   end
 
   def select
-    @tournament = current_user.tournaments.find_by_id(params[:tournament_id]) || current_user.tournaments.last
+    @tournament = current_user.tournaments.find(params[:tournament_id]) || current_user.tournaments.last
     set_selected_tournament(@tournament)
   end
 

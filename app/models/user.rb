@@ -38,5 +38,13 @@ class User < ActiveRecord::Base
   def admin?
     master? || self.role == 'ADMIN'
   end
+
+  def tournaments
+    if master?
+      Tournament.all
+    else 
+      super
+    end
+  end
     
 end

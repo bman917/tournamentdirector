@@ -104,7 +104,7 @@ class SquadsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_squad
       id = params[:squad_id] || params[:id]
-      @squad = Squad.find(id, :include => :squad_entries)
+      @squad = selected_tournament.squads.find(id, :include => :squad_entries)
       set_selected_squad(@squad)
       return @squad
     end

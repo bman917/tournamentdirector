@@ -13,7 +13,7 @@
 		 <% if current_user.admin? %>
 			<div class="entries_actions">
 				Add: (
-		        	<% @squad.tournament.game_types. each do |game_type|%>
+		        	<% @presenter.game_types.each do |game_type|%>
 		            	<%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %>
 		        	<% end %>
 				)

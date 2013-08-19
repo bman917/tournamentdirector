@@ -93,6 +93,6 @@ class GameTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_type_params
-      params.require(:game_type).permit(:name, :number_of_players, :number_of_games)
+      params.require(:game_type).permit(:name, :number_of_players, :number_of_games, :gender)
     end
 end

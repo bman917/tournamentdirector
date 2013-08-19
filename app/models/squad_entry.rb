@@ -62,12 +62,6 @@ class SquadEntry < ActiveRecord::Base
     bowlers.to_sentence
   end
 
-#  def total_pinfalls
-#    total = 0
-#    games.each { |game| total += game.score if game.score}
-#    total
-#  end
-
   def <=>(other)
 
     result = 0

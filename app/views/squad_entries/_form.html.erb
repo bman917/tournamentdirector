@@ -20,7 +20,7 @@
 <%  (1..@number_of_bowlers).each do |i| %>
    <div class="field">
          <%= f.label "Bowler #{i}" %>:
-         <%= collection_select(:bowlers, i, Bowler.all, :id, :name)%></br>
+         <%= collection_select(:bowlers, i, Bowler.by_gender(@squad_entry.game_type.gender), :id, :name)%></br>
     </div>
 <%  end %>
 
