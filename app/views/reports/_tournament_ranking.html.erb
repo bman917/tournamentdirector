@@ -7,17 +7,65 @@
   </tr>
 
 <% BowlerClass.all.each do | category | %>
-<tr>
-  <td>
+<tr class="category_row">
+  <td class="category_column">
   <%=category.name%>
   </td>
     <% selected_tournament.game_types.each do | game_type | %>
     <td>
+        <table class="ranking">
+
         <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
-          <div><%="#{squad_entry.total_pinfalls} #{squad_entry.bowler_names}"%></div>
+          <tr>
+            <td class="score">
+              <%=squad_entry.total_pinfalls%>
+              
+            </td>
+            <td class="bowler_names">
+              <%=squad_entry.bowler_names%>
+            </td>
+          </tr>
         <% end %>
+      </table>
     </td>
     <% end %>
   </tr>
 <% end %>
 </table>
+
+
+
+<!--table>
+  <tr>
+    <th></th>
+    <% BowlerClass.all.each do | category | %>
+    <th><%=category.name%></th>
+    <% end %>
+  </tr>
+
+<% selected_tournament.game_types.each do | game_type | %>
+<tr class="<%=game_type.to_css_class%>">
+  <td class="game_type_column">
+  <%=game_type%>
+  </td>
+    <% BowlerClass.all.each do | category | %>
+    <td>
+        <table class="ranking">
+
+        <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
+          <tr>
+            <td class="score">
+              <%=squad_entry.total_pinfalls%>
+              
+            </td>
+            <td class="bowler_names">
+              <%=squad_entry.bowler_names%>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </td>
+    <% end %>
+  </tr>
+<% end %>
+</table-->

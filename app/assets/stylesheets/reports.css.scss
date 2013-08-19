@@ -1,3 +1,45 @@
 // Place all the styles related to the Reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+tr:hover { background: #e8edff; }
+.e     { background: #e8edff; }
+
+tr.category_row {
+	vertical-align: top;
+	border-bottom: 7px solid #9baff1;
+	height: 15em;
+}
+
+td.game_type_column, td.category_column {
+	font-weight: bold;
+	color: #3965DB;
+	width: 7.5em;
+	
+}
+
+table.ranking {
+
+	margin: 0px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	border: 0px;
+
+	th, td
+	{
+		border: 0px;
+		padding: 1px;
+		padding-bottom: .75em;
+	}
+
+	td.bowler_names {
+		width: 14em;
+	}
+
+	td.score {
+		width: 5em;
+	}
+	
+	
+}
