@@ -4,16 +4,21 @@ class BowlersController < ApplicationController
   before_action :set_bowler, only: [:show, :edit, :update, :destroy]
   before_action :user_is_admin?, only: [:edit, :update, :destroy, :create]
 
+  def names
+    @bowlers = Bowler.order(:name).where("name like ?", "%#{params[:term]}%")
+    render json: @bowlers.map(&:name)
+  end
+
 
   def search_entries
     clear_selected_squad
-    if params[:bowler_name]
-      @bowler = Bowler.find_by_name(params[:bowler_name])
+    if params[:bowler]
+      @bowler = Bowler.find_by_name(bowler_params[:name])
       if @bowler
         @squad_entries = @bowler.get_tournament_entries(selected_tournament)
         render 'show_entries'
       else
-        flash.now.alert = "Bowler #{params[:bowler_name]} Not Found!"
+        flash.now.alert = "Bowler #{bowler_params[:name]} Not Found!"
       end
     end
   end

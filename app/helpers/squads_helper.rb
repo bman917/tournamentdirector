@@ -5,9 +5,16 @@ module SquadsHelper
 	end
 
 	def css(squad_entry)
-		css = "#{squad_entry.category_css} #{squad_entry.game_type.name} "
+		css = "#{squad_entry.category_css} #{to_css(squad_entry.game_type.name)} "
 		css += "hidden" if hide?(squad_entry)
 		css += "updated" if flash[:updated_squad_entry_id] == squad_entry.id
 		css
 	end
+
+	 def to_css(string)
+	    s = String.new(string)
+	    s.gsub!(/\s+/, "")
+	    s
+	 end
+
 end

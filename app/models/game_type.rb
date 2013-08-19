@@ -1,6 +1,13 @@
 class GameType < ActiveRecord::Base
 	has_and_belongs_to_many :tournaments, uniq: true
 
+	 def to_css_class
+	    s = String.new(self.name)
+	    s.gsub!(/\s+/, "")
+	    s
+	 end
+
+
 
 	def to_s
 		name

@@ -10,4 +10,5 @@ class Squad < ActiveRecord::Base
   def info
   	"#{tournament}-SQUAD-#{name}"
   end
+
 end

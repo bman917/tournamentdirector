@@ -6,6 +6,9 @@ class SquadEntry < ActiveRecord::Base
   belongs_to :squad
   belongs_to :game_type
 
+  def bowler_name
+  end
+
   def update_total!
     self.total_pinfalls = games.sum("score")
   end

@@ -5,9 +5,9 @@
 
 		<div id="categories">
 			<span>Division:</span>
-	        <%= collection_select(:tournament, :bowlers_class_name , @presenter.bowler_classes, :to_css_class, :name, {:selected => BowlerClass.convert_to_css(session[:bowler_class_name])})%>
+	        <%= collection_select(:tournament, :bowlers_class_name , @presenter.bowler_classes, :to_css_class, :name, {:selected => to_css(session[:bowler_class_name])})%>
 	        <span>Game:</span>
-	        <%= collection_select(:tournament, :game_type_name     , @presenter.game_types   , :name, :name, {:selected => session[:game_type_name]})%>
+	        <%= collection_select(:tournament, :game_type_name     , @presenter.game_types   , :to_css_class, :name, {:selected => session[:game_type_name]})%>
 	    </div>
 
 		 <% if current_user.admin? %>

@@ -1,8 +1,21 @@
+<%=javascript_tag do %>
+$(document).ready(function () {
+    $('#bowler_name').autocomplete({
+        source: $('#bowler_name').data('autocomplete-source'),
+        minLength: 3
+      }
+    );
+  }
+);
+<% end %>
+<%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"%>
+
+
 <h1>Search Squad Entries</h1>
 
 <%= form_tag(search_entries_bowlers_path, method: "get") do %>
   <%= label_tag(:bowler_name, "Bowler Name: ") %>
-  <%= search_field( :bowler_name, nil,value: "Jeff Chan")  %>
+  <%= search_field(:bowler, :name, value: "Jeff Chan", data: {autocomplete_source: names_bowlers_path})  %>
   <%= submit_tag("Search") %>
 <% end %>
 

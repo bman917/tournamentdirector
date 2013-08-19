@@ -1,3 +1,18 @@
+
+<%=javascript_tag do %>
+$(document).ready(function () {
+    $('div.bowlers_div input').autocomplete({
+        source: $('div.bowlers_div input').data('autocomplete-source'),
+        minLength: 3
+      }
+    );
+  }
+);
+<% end %>
+<%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"%>
+
+
+
 <%= form_for(@squad_entry) do |f| %>
   <% if @squad_entry.errors.any? %>
     <div id="error_explanation">
@@ -18,10 +33,11 @@
   <%= f.hidden_field :game_type_id, value: @squad_entry.game_type.id %>
 
 <%  (1..@number_of_bowlers).each do |i| %>
-   <div class="field">
-         <%= f.label "Bowler #{i}" %>:
-         <%= collection_select(:bowlers, i, Bowler.by_gender(@squad_entry.game_type.gender), :id, :name)%></br>
-    </div>
+   <div class="field bowlers_div">
+      <%= f.label "Bowler #{i}" %>:
+      <!-- %= text_field :bowlers, i, data: {autocomplete_source: names_bowlers_path} %-->
+      <%= collection_select(:bowlers, i, Bowler.by_gender(@squad_entry.game_type.gender), :id, :name)%></br>
+   </div>
 <%  end %>
 
 

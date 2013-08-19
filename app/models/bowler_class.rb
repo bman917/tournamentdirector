@@ -13,7 +13,6 @@ class BowlerClass < ActiveRecord::Base
   	s = String.new(bowler_class)
   	s.gsub!(/\s+/, "")
   	s
-
   end
 
 

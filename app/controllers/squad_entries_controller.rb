@@ -95,7 +95,7 @@ class SquadEntriesController < ApplicationController
 
 
     (1..number_of_bowlers).each do |i|
-      bowler = Bowler.find(bowler_id_hash[i.to_s])
+      bowler = Bowler.find_by_name(bowler_id_hash[i.to_s])
       @squad_entry.bowlers << bowler
     end
 
@@ -103,7 +103,6 @@ class SquadEntriesController < ApplicationController
 
 
     if @squad_entry.save
-      
       redirect_to flash_update(@squad_entry), notice: 'Squad entry was successfully created.'
     else
       render action: 'new'

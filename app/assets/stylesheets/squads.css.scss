@@ -5,19 +5,8 @@
 	display: none;
 }
 
-
-
-#categories a {
-	margin-left: .5em;
-	opacity: .80;
+.ui-helper-hidden-accessible { 
+	display: none;
 }
 
-a.selected {
-	#border-top: 1px dotted black;
-	#border-bottom: 1px dotted black;
-	font-weight: bolder;
-	padding-left: .25em;
-	padding-right: .25em;
-	font-size: 1.2em;
-	text-decoration: none;
-}
+
