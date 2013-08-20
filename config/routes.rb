@@ -24,6 +24,7 @@ Tournamentdirector::Application.routes.draw do
 
   resources :squad_entries do
     get :add, on: :collection
+    delete :delete_games
   end
 
   resources :games

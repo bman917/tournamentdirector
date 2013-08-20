@@ -1,11 +1,12 @@
 class SquadEntriesController < ApplicationController
   include SessionsHelper
 
-  before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game]
+  before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game, :delete_games]
   before_action :user_is_encoder?
 
-  def add
-    render 'new'
+  def delete_games
+    @squad_entry.games.clear
+    render 'show'
   end
 
   def new_game
@@ -136,7 +137,7 @@ class SquadEntriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_squad_entry
-      @squad_entry = SquadEntry.find(params[:id])
+      @squad_entry = SquadEntry.find_by_id(params[:id]) || SquadEntry.find_by_id(params[:squad_entry_id])
       set_selected_bowler_class_and_game_type(@squad_entry.category, @squad_entry.game_type.name)
     end
 
