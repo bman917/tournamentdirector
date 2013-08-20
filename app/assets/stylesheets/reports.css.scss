@@ -2,29 +2,44 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div.category {
+	border-top: 3px solid #8C8C8C;
+	padding-bottom: 170px;
+	clear: left;
+
+	h1 { font-size: 1.7em; }
+
+	h2 { font-size: 1.25em; }
+
+	
+
+}
+
+.no_games {
+	color: #C7C0C0;
+	font-size: .9em;
+}
+
+div.game_type {
+	float: left;
+	width: 150px;
+}
+
+div.Doubles { width: 250px;}
+div.Team { width: 250px;}
+
+
 tr:hover { background: #e8edff; }
 .e     { background: #e8edff; }
 
-tr.category_row {
-	vertical-align: top;
-	border-bottom: 7px solid #9baff1;
-	height: 15em;
-}
-
-td.game_type_column, td.category_column {
-	font-weight: bold;
-	color: #3965DB;
-	width: 7.5em;
-	
-}
-
 table.ranking {
-
-	margin: 0px;
+	border: 0;
 	width: 100%;
+	color: black;
+	background-color: white;
+	margin: 0px;
 	text-align: left;
 	border-collapse: collapse;
-	border: 0px;
 
 	th, td
 	{
@@ -32,6 +47,8 @@ table.ranking {
 		padding: 1px;
 		padding-bottom: .75em;
 		font-size: .90em;
+		color: black;
+		background-color: white;
 	}
 
 	td.bowler_names {
@@ -39,7 +56,7 @@ table.ranking {
 	}
 
 	td.score {
-		width: 5em;
+		width: 3.1em;
 	}
 	
 	

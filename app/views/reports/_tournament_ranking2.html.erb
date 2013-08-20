@@ -1,0 +1,30 @@
+<% BowlerClass.all.each do | category | %>
+<div class=" category <%=category.to_css_class%>">
+  <h1><%=category.name%></h1>
+  
+  <% selected_tournament.game_types.each do | game_type | %>
+  <div class="game_type <%=game_type.to_css_class%>">
+        <h2><%=game_type%></h2>
+        <table class="ranking">
+
+        <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
+          <tr>
+            <td class="score">
+              <%=squad_entry.total_pinfalls%>
+              
+            </td>
+            <td class="bowler_names">
+              <%=squad_entry.bowler_names%>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if selected_tournament.squad_entriesx(game_type, category.name).limit(3).size == 0 %>
+        <div class="no_games">NO GAME ENTRIES</div>
+        <% end %>
+      </table>
+  </div>
+  <% end %>
+
+</div>
+<% end %>
