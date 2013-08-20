@@ -4,7 +4,9 @@ class SquadEntriesController < ApplicationController
   before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game]
   before_action :user_is_encoder?
 
-
+  def add
+    render 'new'
+  end
 
   def new_game
 

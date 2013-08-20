@@ -69,10 +69,9 @@
       </span>
       
         <div id='tournament_actions'>
-          <%if admin?%>
-          <li><%=link_to 'Add New Squad', new_squad_path %></li>
-          <li><%=link_to 'View Reports', reports_path %></li>
-          <%end%>
+
+          <%= render 'layouts/admin_links' %>
+          
           <li><%=link_to 'Show All Squads', tournament_select_path(selected_tournament) %></li>
           <li><%=link_to 'Show Ranking', show_ranking_reports_path %></li>
           <li><%=link_to 'Search Bowler Entries', search_entries_bowlers_path %></li>

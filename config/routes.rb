@@ -23,13 +23,13 @@ Tournamentdirector::Application.routes.draw do
   
 
   resources :squad_entries do
-    post :search_bowling_association, on: :collection #NOT IMPLEMENTED YET
+    get :add, on: :collection
   end
 
   resources :games
   resources :squads do
-    get '/:bowler_class_name' => "squads#show_by_category"
-    get '/:bowler_class_name/:game_type_name' => "squads#show_by_category", as: "show_by_category"
+    get '/show/:bowler_class_name' => "squads#show_by_category"
+    get '/show/:bowler_class_name/:game_type_name' => "squads#show_by_category", as: "show_by_category"
   end
 
   resources :tournaments do

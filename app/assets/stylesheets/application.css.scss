@@ -54,6 +54,30 @@ div#flash_alert, div#flash_error {
 		display: inline;
 		margin-left: 1em;
 	}
+
+	#quick_links {
+		padding: .25em;
+		margin-right: 17em;
+		
+		float: right;
+		border: 1px dashed;
+
+		span {
+			font-size: .75em;
+			display: inline;
+		}
+		ul {
+			padding: 0;
+			margin: 0;
+			display: block;
+
+		}
+		li {
+			padding-right: 1em;
+			margin: 0;
+			display: inline;	
+		}
+	}
 }
 
  .main_content{

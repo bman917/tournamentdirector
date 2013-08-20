@@ -31,12 +31,13 @@
         <td>
         
           <div class="actions">
-                <ul class="actions">
-                  <% squad.tournament.game_types. each do |game_type|%>
-                  <li><%= link_to game_type.name, new_squad_entry_path(squad, game_type.id) %></li>
-                  <% end %>
-                </ul>
+              <ul class="actions">
+              <%= render(partial: "game_types/game_type", collection: squad.tournament.game_types, 
+                    locals: {squad: squad}) %>
+              </ul>
           </div>
+
+
 
         </td>
         <td><%= link_to 'Edit Squad Details', edit_squad_path(squad) %></td>
