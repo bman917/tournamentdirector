@@ -17,7 +17,7 @@
  <tbody>
   <%@squad_entries.each do | squad_entry |%>
     <tr>
-      <td><%=squad_entry.squad%></td>
+      <td><%= link_to squad_entry.squad, squad_entry_path(squad_entry)%></td>
       <td><%=squad_entry.game_type%></td>
       <td><%=squad_entry.category%></td>
       <td><%=squad_entry.total_pinfalls%></td>

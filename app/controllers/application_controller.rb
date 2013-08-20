@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :selected_tournament, :logged_in?
   before_action :require_login
 
+  include SessionsHelper
+
   private
   def user_is_master?
     unless current_user.master?

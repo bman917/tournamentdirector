@@ -10,11 +10,11 @@
         <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
           <tr>
             <td class="score">
-              <%=squad_entry.total_pinfalls%>
+              <%=link_to squad_entry.total_pinfalls, squad_entry_path(squad_entry)%>
               
             </td>
             <td class="bowler_names">
-              <%=squad_entry.bowler_names%>
+              <%= link_to squad_entry.bowler_names, squad_entry_path(squad_entry)%>
             </td>
           </tr>
         <% end %>
