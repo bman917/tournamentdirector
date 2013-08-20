@@ -43,8 +43,9 @@ div#flash_alert, div#flash_error {
 }
 
 #tournament_actions {
+	width: 800px;
 	padding-top: .25em;
-	padding-left: 1em;
+	padding-left: 0;
 	padding-bottom: 1em;
 
 	display: block;
@@ -57,7 +58,9 @@ div#flash_alert, div#flash_error {
 
 	#quick_links {
 		padding: .25em;
-		margin-right: 17em;
+		margin-top: -30px;
+		margin-right: -35px;
+		margin-bottom: 5px;
 		
 		float: right;
 		border: 1px dashed;

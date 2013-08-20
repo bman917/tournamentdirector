@@ -25,6 +25,12 @@
     <%= f.label :bowling_association_id %><br />
     <%= f.collection_select(:bowling_association_id, BowlingAssociation.all, :id, :name)%>
   </div>
+
+  <div class="field">
+    <%= f.label :pbc_classification_id, "PBC Classification" %><br />
+    <%= f.collection_select(:pbc_classification_id, BowlerClass.all, :id, :name)%>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

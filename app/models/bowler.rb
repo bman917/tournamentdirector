@@ -4,9 +4,18 @@ class Bowler < ActiveRecord::Base
   validates :name, presence: true
   validates_uniqueness_of :name
   belongs_to :bowling_association
+  belongs_to :pbc_classification, class_name: 'BowlerClass', foreign_key: 'pbc_classification_id'
   has_and_belongs_to_many :squad_entries
   has_many :average_entries
   has_many :games
+
+  def update_pbc_classification
+    self.pbc_classification = BowlerClass.find_by_name('OPEN') if latest_average > 180
+    self.pbc_classification = BowlerClass.find_by_name('CLASS A') if latest_average <= 180
+    self.pbc_classification = BowlerClass.find_by_name('CLASS B') if latest_average <= 160
+    self.pbc_classification = BowlerClass.find_by_name('CLASS C') if latest_average <= 140
+    save
+  end
 
   def self.search(search)
     if search

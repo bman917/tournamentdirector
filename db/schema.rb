@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819084653) do
+ActiveRecord::Schema.define(version: 20130820082541) do
 
   create_table "average_entries", force: true do |t|
     t.integer  "average"
@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(version: 20130819084653) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gender",                 limit: 1, default: "M", null: false
+    t.integer  "pbc_classification_id"
   end
 
   add_index "bowlers", ["bowling_association_id"], name: "index_bowlers_on_bowling_association_id"
+  add_index "bowlers", ["pbc_classification_id"], name: "index_bowlers_on_pbc_classification_id"
 
   create_table "bowlers_squad_entries", id: false, force: true do |t|
     t.integer "bowler_id"

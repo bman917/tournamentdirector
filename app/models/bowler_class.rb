@@ -14,7 +14,4 @@ class BowlerClass < ActiveRecord::Base
   	s.gsub!(/\s+/, "")
   	s
   end
-
-
-
 end

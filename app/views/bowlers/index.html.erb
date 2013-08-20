@@ -16,6 +16,7 @@
       <th>Name</th>
       <th>Gender</th>
       <th>Association </th>
+      <th>PBC Classification </th>
       <th>Average</th>
       <%if admin? %>
       <th></th>
@@ -32,6 +33,7 @@
       <td><%= bowler.name %></td>
       <td><%= bowler.gender %></td>
       <td><%= bowler.bowling_association %></td>
+      <td><%= bowler.pbc_classification %></td>
       <td><%= bowler.latest_average %></td>
 
       <% if admin? %>
