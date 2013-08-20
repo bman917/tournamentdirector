@@ -5,12 +5,12 @@
 div.category {
 	border-top: 3px solid #8C8C8C;
 	padding: 1em;
-	padding-bottom: 170px;
+	padding-bottom: 20px;
 	clear: both;
 
 	h1 { font-size: 1.7em; }
 
-	h2 { font-size: 1.25em; }
+	h2 { font-size: 1.5em; }
 
 	
 
@@ -23,13 +23,12 @@ div.category {
 
 div.game_type {
 	float: left;
-	width: 150px;
-	min-height: 150px;
+	width: 350px;
+	margin: 3px;
+	min-height: 200px;
 
 }
 
-div.Doubles { width: 250px;}
-div.Team { width: 250px;}
 
 
 tr:hover { background: #e8edff; }
@@ -43,15 +42,27 @@ table.ranking {
 	margin: 0px;
 	text-align: left;
 	border-collapse: collapse;
+	border: 1px solid black;
 
-	th, td
+
+
+	td
 	{
-		border: 0px;
-		padding: 1px;
+		border: 0;
+		padding: 3px;
 		padding-bottom: .75em;
-		font-size: .90em;
+		font-size: 1em;
 		color: black;
 		background-color: white;
+	}
+
+	th{
+		border: 1px;
+		background-color: #e8edff;
+	}
+
+	tr{
+		border: 1px solid black;
 	}
 
 	td.bowler_names {

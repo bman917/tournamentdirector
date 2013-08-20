@@ -1,30 +1,36 @@
 <% BowlerClass.all.each do | category | %>
-<div class=" category <%=category.to_css_class%>">
-  <h1><%=category.name%></h1>
-  
-  <% selected_tournament.game_types.each do | game_type | %>
-  <div class="game_type <%=game_type.to_css_class%>">
-        <h2><%=game_type%></h2>
-        <table class="ranking">
+  <div class=" category <%=category.to_css_class%>">
+      <h1><%=category.name%></h1>
+      
+      <% selected_tournament.game_types.each do | game_type | %>
 
-        <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
-          <tr>
-            <td class="score">
-              <%=link_to squad_entry.total_pinfalls, squad_entry_path(squad_entry)%>
-              
-            </td>
-            <td class="bowler_names">
-              <%= link_to squad_entry.bowler_names, squad_entry_path(squad_entry)%>
-            </td>
-          </tr>
-        <% end %>
+        <div class="game_type <%=game_type.to_css_class%>">
+            <h2><%=game_type%></h2>
+            <% if selected_tournament.squad_entriesx(game_type, category.name).limit(3).size == 0 %>
+                  <div class="no_games">NO GAME ENTRIES</div>
+            <% else %>
+            
+                  <table class="ranking">
+                    <tr>
+                      <th>Bowler Name</th>
+                      <th>Total</th>
+                    </tr>
 
-        <% if selected_tournament.squad_entriesx(game_type, category.name).limit(3).size == 0 %>
-        <div class="no_games">NO GAME ENTRIES</div>
-        <% end %>
-      </table>
+                    <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
+                      <tr>
+                        <td class="bowler_names">
+                          <%= link_to squad_entry.bowler_names, squad_entry_path(squad_entry)%>
+                        </td>
+
+                        <td class="score">
+                          <%=link_to squad_entry.total_pinfalls, squad_entry_path(squad_entry)%>
+                        </td>
+                      </tr>
+                    <% end %>
+                 </table>
+            <% end %>
+
+        </div>
+      <% end %>
   </div>
-  <% end %>
-
-</div>
 <% end %>
