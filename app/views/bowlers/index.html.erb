@@ -1,5 +1,7 @@
 <h1>Listing bowlers</h1>
 <%= link_to('New Bowler', new_bowler_path) if admin?%>
+</br>
+<%= will_paginate @posts %>
 <table>
   <thead>
     <tr>
@@ -34,7 +36,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate @posts %>
 <br />
 
 <%= link_to('New Bowler', new_bowler_path) if admin?%>
