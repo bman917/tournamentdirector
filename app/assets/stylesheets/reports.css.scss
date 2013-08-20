@@ -4,8 +4,9 @@
 
 div.category {
 	border-top: 3px solid #8C8C8C;
+	padding: 1em;
 	padding-bottom: 170px;
-	clear: left;
+	clear: both;
 
 	h1 { font-size: 1.7em; }
 
@@ -23,6 +24,8 @@ div.category {
 div.game_type {
 	float: left;
 	width: 150px;
+	min-height: 150px;
+
 }
 
 div.Doubles { width: 250px;}

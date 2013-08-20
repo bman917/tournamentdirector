@@ -2,7 +2,7 @@ class SquadEntriesController < ApplicationController
   include SessionsHelper
 
   before_action :set_squad_entry, only: [:show, :edit, :update, :destroy, :new_game, :create_game, :delete_games]
-  before_action :user_is_encoder?
+  before_action :user_is_encoder?, except: [:show]
 
   def delete_games
     @squad_entry.games.clear

@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<%=link_to 'Delete All Games', squad_entry_delete_games_path(@squad_entry), method: :delete, data: { confirm: 'Delete All Games?'} if @squad_entry.has_games?%>
+<%=link_to 'Delete All Games', squad_entry_delete_games_path(@squad_entry), method: :delete, data: { confirm: 'Delete All Games?'} if encoder? && @squad_entry.has_games?%>
 
 <% if @squad_entry.has_games? %>
 
