@@ -1,0 +1,16 @@
+<h1> Bowlers </h1>
+
+<table>
+	<tr>
+		<td>Bowler Name</td>
+		<td>Number of Games Played</td>
+		<td>Tournament Average</td>
+	</tr>
+<% @bowlers.each do | bowler | %>
+	<tr>
+		<td><%=bowler.name%></td>
+		<td><%=bowler.games_in_tournament(selected_tournament).size%>
+		<td><%=bowler.average(selected_tournament)%>
+	</td>
+<% end %>
+</table>

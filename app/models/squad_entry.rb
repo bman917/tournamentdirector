@@ -6,6 +6,11 @@ class SquadEntry < ActiveRecord::Base
   belongs_to :squad
   belongs_to :game_type
 
+  def zero_total
+    self.total_pinfalls = 0
+    self.save!
+  end
+
   def bowler_name
   end
 

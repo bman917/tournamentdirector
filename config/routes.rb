@@ -36,6 +36,7 @@ Tournamentdirector::Application.routes.draw do
   resources :tournaments do
     get 'select'
     get 'latest', on: :collection
+    get 'bowlers'
   end
 
   get "average_entry/new/:bowler_id" => "average_entries#new", as: "new_average_entry"
@@ -49,6 +50,7 @@ Tournamentdirector::Application.routes.draw do
     get 'search_entries', on: :collection
     post 'search_entries', on: :collection
     get 'names', on: :collection
+    get 'average'
   end
 
   resources :bowling_associations do

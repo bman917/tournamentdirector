@@ -10,7 +10,7 @@
  <tbody>
   <%@bowlers.each do | bowler |%>
     <tr>
-      <td><%=bowler.name%></td>
+      <td><%=link_to bowler.name, bowler_average_path(bowler)%></td>
       <td><%=bowler.get_tournament_entries(selected_tournament).count%></td>
       <td><%=link_to 'Show Entries', bowler_show_entries_path(bowler)%></td>
     </tr>

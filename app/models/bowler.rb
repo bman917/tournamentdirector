@@ -42,8 +42,17 @@ class Bowler < ActiveRecord::Base
     squad_entries.where(id: tournament.squad_entries)
   end
 
+  def games_in_tournament(tournament=nil)
+    if tournament
+      @games ||= games.where(squad_entry_id: squad_entries.where(id: tournament.squad_entries))
+    else
+      @games = self.games
+    end
+    @games
+  end
 
-
-
+  def average(tournament)
+    games_in_tournament(tournament).average(:score).to_i
+  end
 
 end

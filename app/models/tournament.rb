@@ -17,8 +17,11 @@ class Tournament < ActiveRecord::Base
       SquadEntry.where(squad_id: squads).includes(:bowlers).references(:squads)
   end
 
-  def bowlers (bowling_association=nil)
+  def bowlers2
+    Bowler.where(id: Game.where(id: squad_entries).pluck(:bowler_id))
+  end
 
+  def bowlers (bowling_association=nil)
   	bowlers = Set.new
 
   	self.squad_entries.each do | entry |

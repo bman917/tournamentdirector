@@ -4,6 +4,13 @@ class BowlersController < ApplicationController
   before_action :set_bowler, only: [:show, :edit, :update, :destroy]
   before_action :user_is_admin?, only: [:edit, :update, :destroy, :create]
 
+  def average
+    @bowler = set_bowler
+    @average = @bowler.average(selected_tournament)
+
+
+  end
+
   def names
     @bowlers = Bowler.order(:name).where("name like ?", "%#{params[:term]}%")
     render json: @bowlers.map(&:name)
@@ -97,7 +104,8 @@ class BowlersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bowler
-      @bowler = Bowler.find(params[:id])
+      bowler_id = params[:id] || params[:bowler_id]
+      @bowler = Bowler.find(bowler_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

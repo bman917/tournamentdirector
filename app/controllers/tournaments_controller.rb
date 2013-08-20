@@ -5,6 +5,10 @@ class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:edit, :update, :destroy]
   before_action :user_is_master?, only: [:new, :edit, :update, :destroy, :create]
 
+  def bowlers
+    @bowlers = selected_tournament.bowlers2
+  end
+
   # GET /tournaments
   # GET /tournaments.json
   def index

@@ -6,6 +6,7 @@ class SquadEntriesController < ApplicationController
 
   def delete_games
     @squad_entry.games.clear
+    @squad_entry.zero_total
     render 'show'
   end
 

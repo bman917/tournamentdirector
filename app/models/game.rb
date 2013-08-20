@@ -5,6 +5,7 @@ class Game < ActiveRecord::Base
   validates :score, presence: true,  numericality: {greater_than_or_equal_to: 0.01}
   after_save :update_squad_entry_total
 
+
   def update_squad_entry_total
     squad_entry.update_total!
     squad_entry.save
