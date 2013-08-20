@@ -32,12 +32,8 @@ class BowlersController < ApplicationController
   # GET /bowlers
   # GET /bowlers.json
   def index
-    @bowlers = Bowler.all.paginate(page: params[:page])
-
-    session[:selected_tournament] = nil
-    session[:selected_squad] = nil
-    session[:selected_squad_entry] = nil
-
+    @bowlers = Bowler.search(params[:search]).order(:name).paginate(page: params[:page])
+    clear_selected_tournament
   end
 
 

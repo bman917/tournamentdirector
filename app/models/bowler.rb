@@ -8,6 +8,14 @@ class Bowler < ActiveRecord::Base
   has_many :average_entries
   has_many :games
 
+  def self.search(search)
+    if search
+      where('name LIKE ?' , "%#{search}%")
+    else
+      scoped
+    end
+  end
+
   def latest_average
 
     if average_entries.last
