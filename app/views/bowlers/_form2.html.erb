@@ -1,0 +1,32 @@
+<%= form_for(@bowler, remote:true) do |f| %>
+
+  <div id="notice"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>PBC Average </th>
+      <th>PBC Classification </th>
+      <th>Gender</th>
+      <th>Association </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= f.text_field :name %></td>
+      <td><%= f.number_field :pbc_average%></td>
+      <td><%= f.collection_select(:pbc_classification_id, BowlerClass.all, :id, :name)%></td>
+      <td><%= f.select(:gender, [['M','M'],['F','F']])%></td>
+      <td><%= f.collection_select(:bowling_association_id, BowlingAssociation.all, :id, :name)%></td>
+      <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>

@@ -1,0 +1,2 @@
+$('#error_explanation').remove();
+$('#new_bowler').prepend("<%= j render partial: "error", locals: {bowler: @bowler}%>");

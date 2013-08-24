@@ -65,14 +65,17 @@ class BowlersController < ApplicationController
   def create
     ass = BowlingAssociation.find(bowler_params[:bowling_association_id])
     @bowler = ass.bowlers.create(bowler_params)
-
+    
     respond_to do |format|
       if @bowler.save
-        format.html { redirect_to @bowler, notice: 'Bowler was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @bowler }
+        @bowler.average_entries.create(average: bowler_params[:pbc_average])
+        flash[:create_notice] = "Bowler #{@bowler.name} has successfully been added."
+        format.html { redirect_to @bowler }
+        format.js { render 'create' }
       else
         format.html { render action: 'new' }
         format.json { render json: @bowler.errors, status: :unprocessable_entity }
+        format.js { render 'error' }
       end
     end
   end
@@ -110,6 +113,6 @@ class BowlersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bowler_params
-      params.require(:bowler).permit(:name, :gender, :bowling_association_id, :pbc_classification_id)
+      params.require(:bowler).permit(:name, :gender, :bowling_association_id, :pbc_classification_id, :pbc_average)
     end
 end

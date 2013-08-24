@@ -9,6 +9,13 @@ class Bowler < ActiveRecord::Base
   has_many :average_entries
   has_many :games
 
+  attr_accessor :pbc_average
+
+  def pbc_average
+    average_entries.first.average if average_entries.any?
+  end
+
+
   def update_pbc_classification
     self.pbc_classification = BowlerClass.find_by_name('OPEN') if latest_average > 180
     self.pbc_classification = BowlerClass.find_by_name('CLASS A') if latest_average <= 180

@@ -1,0 +1,11 @@
+<% if bowler.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@bowler.errors.count, "error") %> prohibited this bowler from being saved:</h2>
+
+  <ul>
+  <% bowler.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
