@@ -22,7 +22,7 @@ function action(event) {
 <%= form_tag bowlers_path, :method => 'get', id: 'search_form' do %>
   <p>
     <%= label_tag(:search, "Bowler Name: ")%>
-    <%= search_field :search, params[:search], data: {autocomplete_source: names_bowlers_path} %>
+    <%= text_field_tag :search, params[:search]%>
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
