@@ -1,5 +1,6 @@
 $('#error_explanation').remove();
 $('#notice').empty().append("<%= flash[:create_notice] %>");
 $(':text').val("");
+$('#bowler_pbc_average').val("");
 $('#bowler_name').val("").focus();
 $('#bowlers_table tbody').prepend("<%= j render @bowler %>");

@@ -4,19 +4,31 @@ $(document).on("keyup",action);
 
 function action(event) {
   var n = 78;
-  
+
   if (event.altKey && event.keyCode == n) {
     $('#new_bowler_link').click();
     $(document).unbind("keyup", action);
+    $(document).on("keyup",escape);
   }
-
 }
+
+function escape(event) {
+  var esc = 27;
+  
+  if (event.keyCode == esc) {
+    $('#new_bowler').remove();
+    $('#new_bowler_link').show();
+    $(document).on("keyup",action);
+    $(document).unbind("keyup", escape);
+  }
+}
+
 <% end %>
 
 
 
 <h1>Listing bowlers</h1>
-<%= link_to('(n) - New Bowler', new_bowler_path, remote: true, id: "new_bowler_link") if admin?%>
+<%= link_to('(alt+n) - New Bowler', new_bowler_path, remote: true, id: "new_bowler_link") if admin?%>
 </br>
 
 <%= form_tag bowlers_path, :method => 'get', id: 'search_form' do %>
