@@ -34,6 +34,8 @@ $(document).ready(function() {
 </br>
 
 <%= will_paginate @posts %>
+
+<%= form_for(@bowler, remote:true) do |f| %>
 <table id="bowlers_table">
   <thead>
     <tr>
@@ -53,8 +55,6 @@ $(document).ready(function() {
   <tbody>
 
     <tr id="new_bowler_row" class="hidden">
-    <%= form_for(@bowler, remote:true) do |f| %>
-
           <td><%= f.text_field :name %></td>
           <td><%= f.select(:gender, [['M','M'],['F','F']])%></td>
           <td><%= f.collection_select(:bowling_association_id, BowlingAssociation.all, :id, :name)%></td>
@@ -67,13 +67,14 @@ $(document).ready(function() {
           </td>
           <td><%=link_to 'Hide', '', id: 'hide_new_bowler_row_link'%></td>
           <td></td>
-    <% end %>
     </tr>
     
     <%= render @bowlers %>    
 
   </tbody>
 </table>
+<% end %>
+
 <%= will_paginate @posts %>
 <br />
 
