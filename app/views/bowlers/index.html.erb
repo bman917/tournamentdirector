@@ -14,18 +14,25 @@ $(document).ready(function() {
 
 
 <h1>Listing bowlers</h1>
-<%= link_to('(n) - New Bowler', new_bowler_path, remote: true, id: "new_bowler_link") if admin?%>
-<%= link_to('(s) - Search Bowler', '', id: "search_bowler_link")%>
+<div id="quick_links">
+    <li><%= link_to('(n) - New Bowler', '', id: "new_bowler_link") if admin?%></li>
+    <li><%= link_to('(s) - Search Bowler', '', id: "search_bowler_link")%></li>
+    <li><%= link_to('Reload', bowlers_path)%></li>
+  </ul>
+</div>
 </br>
+<div id="notice"></div>
+
 
 <%= form_tag bowlers_path, :method => 'get', id: 'search_form', class: 'hidden' do %>
   <p>
-    <%= label_tag(:search, "Bowler Name: ")%>
+    <%= label_tag(:search, "Search Bowler Name: ")%>
     <%= text_field_tag :search, params[:search]%>
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
 </br>
+
 <%= will_paginate @posts %>
 <table id="bowlers_table">
   <thead>
@@ -39,13 +46,32 @@ $(document).ready(function() {
       <th></th>
       <th></th>
       <th></th>
-      <th></th>
       <%end%>
     </tr>
   </thead>
 
   <tbody>
+
+    <tr id="new_bowler_row" class="hidden">
+    <%= form_for(@bowler, remote:true) do |f| %>
+
+          <td><%= f.text_field :name %></td>
+          <td><%= f.select(:gender, [['M','M'],['F','F']])%></td>
+          <td><%= f.collection_select(:bowling_association_id, BowlingAssociation.all, :id, :name)%></td>
+          <td><%= f.collection_select(:pbc_classification_id, BowlerClass.all, :id, :name)%></td>
+          <td><%= f.number_field :pbc_average%></td>
+          <td>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          </td>
+          <td><%=link_to 'Hide', '', id: 'hide_new_bowler_row_link'%></td>
+          <td></td>
+    <% end %>
+    </tr>
+    
     <%= render @bowlers %>    
+
   </tbody>
 </table>
 <%= will_paginate @posts %>

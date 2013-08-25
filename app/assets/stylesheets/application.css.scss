@@ -55,31 +55,31 @@ div#flash_alert, div#flash_error {
 		display: inline;
 		margin-left: 1em;
 	}
+}
 
-	#quick_links {
-		padding: .25em;
-		margin-top: -30px;
-		margin-right: -35px;
-		margin-bottom: 5px;
-		
-		float: right;
-		border: 1px dashed;
+#quick_links {
+	padding: .25em;
+	margin-top: -30px;
+	margin-right: -35px;
+	margin-bottom: 5px;
+	
+	float: right;
+	border: 1px dashed;
 
-		span {
-			font-size: .75em;
-			display: inline;
-		}
-		ul {
-			padding: 0;
-			margin: 0;
-			display: block;
+	span {
+		font-size: .75em;
+		display: inline;
+	}
+	ul {
+		padding: 0;
+		margin: 0;
+		display: block;
 
-		}
-		li {
-			padding-right: 1em;
-			margin: 0;
-			display: inline;	
-		}
+	}
+	li {
+		padding-right: 1em;
+		margin: 0;
+		display: inline;	
 	}
 }
 

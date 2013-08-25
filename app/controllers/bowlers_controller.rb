@@ -40,6 +40,7 @@ class BowlersController < ApplicationController
   # GET /bowlers.json
   def index
     @bowlers = Bowler.search(params[:search]).order(:name).paginate(page: params[:page])
+    @bowler = Bowler.new
     clear_selected_tournament
   end
 

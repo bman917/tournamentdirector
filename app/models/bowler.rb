@@ -12,7 +12,11 @@ class Bowler < ActiveRecord::Base
   attr_accessor :pbc_average
 
   def pbc_average
-    average_entries.first.average if average_entries.any?
+    if average_entries.any?
+      average_entries.first.average 
+    else
+      "No PBC Average"
+    end
   end
 
 
@@ -39,6 +43,10 @@ class Bowler < ActiveRecord::Base
     else
     	"No Average Entry"
     end
+  end
+
+  def name_css
+    self.name.delete(' ')
   end
 
   def to_s

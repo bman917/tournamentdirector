@@ -1,2 +1,2 @@
-$('#error_explanation').remove();
-$('#new_bowler').prepend("<%= j render partial: "error", locals: {bowler: @bowler}%>");
+$('#notice').after("<%= j render partial: "error", locals: {bowler: @bowler}%>");
+removeAdding('<%=@bowler.name_css%>');

@@ -1,6 +1,6 @@
 <% if bowler.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@bowler.errors.count, "error") %> prohibited this bowler from being saved:</h2>
+<div id="error_explanation_<%bowler.name_css%>" class="error_explanation">
+  <h2>Unable to save [ <%=bowler.name%> ] due to the following <%= pluralize(@bowler.errors.count, "error") %>:</h2>
 
   <ul>
   <% bowler.errors.full_messages.each do |msg| %>
