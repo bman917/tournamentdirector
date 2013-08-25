@@ -1,37 +1,79 @@
 <%= javascript_tag do %>
 
-$(document).on("keyup",action);
 
-function action(event) {
+function bind() {
+  $(document).keyup(newBowlerKeyLister);
+  $(document).keyup(searchListener);
+  $(document).unbind('keyup', escListener);
+}
+
+function unbind() {
+ $(document).unbind('keyup', newBowlerKeyLister);
+ $(document).unbind('keyup', searchListener);
+ $(document).keyup(escListener);
+}
+
+$(document).ready(function() {
+  bind();
+});
+
+
+/*
+ * Add Bolwer
+ */
+
+$(document).on('click', '#new_bowler_link', function(event) {
+  unbind();
+});
+
+function newBowlerKeyLister(event) {
   var n = 78;
 
-  if (event.altKey && event.keyCode == n) {
+  if (event.keyCode == n) {
     $('#new_bowler_link').click();
-    $(document).unbind("keyup", action);
-    $(document).on("keyup",escape);
   }
 }
 
-function escape(event) {
+function escListener(event) {
   var esc = 27;
-  
   if (event.keyCode == esc) {
     $('#new_bowler').remove();
     $('#new_bowler_link').show();
-    $(document).on("keyup",action);
-    $(document).unbind("keyup", escape);
+    $('#search_form').hide();
+    bind();
   }
 }
+
+/*
+ * Search Form
+ */
+
+$(document).on('click', '#search_bowler_link', function(event) {
+  event.preventDefault();
+  $('#search_form').show();
+  $('#search').focus();
+  unbind();
+
+});
+
+function searchListener(event) {
+    var s = 83;
+    if (event.keyCode == s) {
+      $('#search_bowler_link').click();
+    }
+}
+
 
 <% end %>
 
 
 
 <h1>Listing bowlers</h1>
-<%= link_to('(alt+n) - New Bowler', new_bowler_path, remote: true, id: "new_bowler_link") if admin?%>
+<%= link_to('(n) - New Bowler', new_bowler_path, remote: true, id: "new_bowler_link") if admin?%>
+<%= link_to('(s) - Search Bowler', '', id: "search_bowler_link")%>
 </br>
 
-<%= form_tag bowlers_path, :method => 'get', id: 'search_form' do %>
+<%= form_tag bowlers_path, :method => 'get', id: 'search_form', class: 'hidden' do %>
   <p>
     <%= label_tag(:search, "Bowler Name: ")%>
     <%= text_field_tag :search, params[:search]%>
