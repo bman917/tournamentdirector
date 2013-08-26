@@ -18,7 +18,7 @@ class AverageEntriesControllerTest < ActionController::TestCase
 
   test "should create average_entry" do
     assert_difference('AverageEntry.count') do
-      post :create, average_entry: { average: @average_entry.average, bowler_id: @average_entry.bowler_id, record_date: @average_entry.record_date, user_id: @average_entry.user_id }
+      post :create, average_entry: { average: @average_entry.average, bowler_id: @average_entry.bowler_id, user_id: @average_entry.user_id }
     end
 
     assert_redirected_to average_entry_path(assigns(:average_entry))
@@ -35,7 +35,7 @@ class AverageEntriesControllerTest < ActionController::TestCase
   end
 
   test "should update average_entry" do
-    patch :update, id: @average_entry, average_entry: { average: @average_entry.average, bowler_id: @average_entry.bowler_id, record_date: @average_entry.record_date, user_id: @average_entry.user_id }
+    patch :update, id: @average_entry, average_entry: { average: @average_entry.average, bowler_id: @average_entry.bowler_id, user_id: @average_entry.user_id }
     assert_redirected_to average_entry_path(assigns(:average_entry))
   end
 

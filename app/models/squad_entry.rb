@@ -1,6 +1,6 @@
 class SquadEntry < ActiveRecord::Base
 #  scope :singles, find_by_game_type(GameType.first)
-  default_scope order("total_pinfalls DESC")
+  default_scope { order("total_pinfalls DESC") }
   has_and_belongs_to_many :bowlers
   has_many :games, :dependent => :delete_all
   belongs_to :squad

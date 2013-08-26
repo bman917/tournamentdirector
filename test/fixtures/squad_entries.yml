@@ -3,11 +3,9 @@
 one:
   category: MyString
   game_type: MyString
-  bowlers_id: 
   squad_id: 
 
 two:
   category: MyString
   game_type: MyString
-  bowlers_id: 
   squad_id: 

@@ -1,7 +1,41 @@
 require 'test_helper'
 
 class BowlerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+	setup do
+		@bowler_one = bowlers(:one)
+	end
+
+	test "Do not allow duplicate name" do
+		Bowler.new(name: 'Bowler One').save
+		assert(Bowler.new(name: 'Bowler One').save == false, "Duplicate bowler name should not be allowed.")
+	end
+
+	test "Bowler delete" do
+		@bowler_one.destroy
+		assert_record_not_found { Bowler.find(@bowler_one) }
+	end
+
+	test "All bowler Games should be deleted when bowler is deleted" do
+		game = @bowler_one.games.create(score: 100)
+		@bowler_one.destroy
+		assert_record_not_found { Game.find(game) }
+	end
+
+	test "All bowler average entries should be deleted when bowler is deleted" do
+		average = @bowler_one.average_entries.create(average: 100)
+		@bowler_one.destroy
+		assert_record_not_found { AverageEntry.find(average)}
+	end
+
+	test "Squad entry should be deleted when bowler is deleted" do
+		squad_entry = @bowler_one.squad_entries.create
+		squad_entry.save
+		@bowler_one.destroy
+		assert_record_not_found {SquadEntry.find(squad_entry)}
+	end
+
+	def assert_record_not_found(&block)
+		assert_raise((ActiveRecord::RecordNotFound), &block )
+	end
 end

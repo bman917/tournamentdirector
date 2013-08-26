@@ -42,8 +42,10 @@ group :development do
   gem 'better_errors'
   gem 'meta_request'
   gem 'binding_of_caller'
+
 end
 
 gem 'seedbank', '>=0.3.0.pre'
 gem "jquery-ui-rails", "~> 4.0.4"
 gem 'will_paginate', '~> 3.0'
+gem "validates_existence", ">= 0.4"

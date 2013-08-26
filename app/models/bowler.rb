@@ -6,8 +6,9 @@ class Bowler < ActiveRecord::Base
   belongs_to :bowling_association
   belongs_to :pbc_classification, class_name: 'BowlerClass', foreign_key: 'pbc_classification_id'
   has_and_belongs_to_many :squad_entries
-  has_many :average_entries
-  has_many :games
+  has_many :average_entries, :dependent => :delete_all
+  has_many :games, :dependent => :delete_all
+  before_destroy :delete_squad_entries
 
   attr_accessor :pbc_average
 
@@ -18,7 +19,6 @@ class Bowler < ActiveRecord::Base
       "No PBC Average"
     end
   end
-
 
   def update_pbc_classification
     self.pbc_classification = BowlerClass.find_by_name('OPEN') if latest_average > 180
@@ -70,4 +70,10 @@ class Bowler < ActiveRecord::Base
     games_in_tournament(tournament).average(:score).to_i
   end
 
+  private
+
+  def delete_squad_entries
+    squad_entries.each { |squad_entry| squad_entry.destroy }
+    squad_entries.clear
+  end
 end
