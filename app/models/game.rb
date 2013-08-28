@@ -4,7 +4,6 @@ class Game < ActiveRecord::Base
   belongs_to :squad_entry
   validates :score, presence: true,  numericality: {greater_than_or_equal_to: 0}
   after_save :update_squad_entry_total
-  #validates :bowler, existence: true
   validates :bowler_id, presence: true
 
   def update_squad_entry_total
