@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-    
   def user_is_admin?
     check_authorization(current_user.admin?)
   end
@@ -30,7 +29,6 @@ class ApplicationController < ActionController::Base
       redirect_to error_path
     end      
   end
-
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
