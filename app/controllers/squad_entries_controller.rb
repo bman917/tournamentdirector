@@ -11,10 +11,10 @@ class SquadEntriesController < ApplicationController
   end
 
   def new_game
-
-    @game = Game.new
-    @squad = @squad_entry.squad
     set_selected_squad_entry(@squad_entry)
+
+    @game_form = SquadEntryGameForm.new(@squad_entry)
+    @game = Game.new
 
   end
 

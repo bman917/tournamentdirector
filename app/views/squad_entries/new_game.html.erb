@@ -13,22 +13,22 @@
   <% end %>
   
 
-<%= form_tag(create_squad_entry_game_path(@squad_entry), method: "post") do %>
+<%= form_tag(create_squad_entry_game_path(@game_form.squad_entry), method: "post") do %>
 	<table id="bowlers">
 		<tr>
 			<th>Bowler Name</th>
-			<%  (1..@squad_entry.game_type.number_of_games).each do |i| %>
+			<%  (1..@game_form.number_of_games).each do |i| %>
 			<th>Game <%=i%></th>
 			<% end %>
 
 		</tr>
-		<% @squad_entry.bowlers.each do | bowler | %>
+		<% @game_form.bowlers.each do | bowler | %>
 			<tr>
 				<td><%=bowler.name%></td>
 				
-				<%  (1..@squad_entry.game_type.number_of_games).each do |i| %>
+				<%  @game_form.games.each do |g| %>
 				<td class="game_input">
-					<%= number_field_tag("bowler_#{bowler.id}_game_#{i}")%>
+					<%= number_field_tag("bowler_#{bowler.id}_game_#{g.id}")%>
 				</td>
 				<% end %>
 
