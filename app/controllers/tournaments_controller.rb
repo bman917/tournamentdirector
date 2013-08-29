@@ -6,7 +6,7 @@ class TournamentsController < ApplicationController
   before_action :user_is_master?, only: [:new, :edit, :update, :destroy, :create]
 
   def bowlers
-    @bowlers = selected_tournament.bowlers2
+    @bowlers = selected_tournament.bowlers
   end
 
   # GET /tournaments
