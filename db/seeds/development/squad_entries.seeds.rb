@@ -1,4 +1,4 @@
-after "development:bowlers, development:tournaments" do
+after "development:bowlers", "development:tournaments" do
 
 
   Squad.destroy_all

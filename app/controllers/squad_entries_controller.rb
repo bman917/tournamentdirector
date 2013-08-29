@@ -23,24 +23,28 @@ class SquadEntriesController < ApplicationController
     squad = @squad_entry.squad
     errors = nil
 
-    @squad_entry.bowlers.each do | bowler |
-      (1..@squad_entry.game_type.number_of_games).each do |i|
-        @game = bowler.games.create(
-          squad_entry_id: @squad_entry.id,
-                 user_id: session[:user_id],
-                   score: params["bowler_#{bowler.id}_game_#{i}"],
-                   notes: "#{i}")
+    @squad_entry.transaction do
 
-        errors = @game.errors
-        puts "Created game      : #{@game.errors}"
-        puts "Recored game score: #{@game.score}"
-        puts "Last Action       : #{session[:last_action]}"
+      @squad_entry.bowlers.each do | bowler |
+        (1..@squad_entry.game_type.number_of_games).each do |i|
+          @game = bowler.games.create!(
+            squad_entry_id: @squad_entry.id,
+                   user_id: session[:user_id],
+                     score: params["bowler_#{bowler.id}_game_#{i}"],
+                     notes: "#{i}")
 
-        break if @game.errors.any?
+          errors = @game.errors
+          puts "Created game      : #{@game.errors}"
+          puts "Recored game score: #{@game.score}"
+          puts "Last Action       : #{session[:last_action]}"
+
+          break if @game.errors.any?
+        end
       end
     end
 
     if @game.errors.any?
+      @game.errors.sss
       render 'new_game'
     else
       path = flash_update(@squad_entry)
@@ -49,6 +53,11 @@ class SquadEntriesController < ApplicationController
       end
       redirect_to path, notice: 'Game was successfully created.'
     end
+  rescue Exception => e
+    @game = Game.new
+    @game.errors.add(:score, e)
+    puts "xxxxxxxxxxxxxxx #{e}"
+    render 'new_game'
   end
 
   # GET /squad_entries
