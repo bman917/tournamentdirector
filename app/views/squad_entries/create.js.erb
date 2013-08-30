@@ -1,0 +1,6 @@
+$('#error_explanation').remove();
+$('#notice').empty().append("<%= flash[:create_notice] %>");
+$('#new_row').after("<%= j render @squad_entry %>");
+$('#new_row').next().addClass('updated').show();
+$(':text').val("");
+$('#adding').hide();

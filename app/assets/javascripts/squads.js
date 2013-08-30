@@ -7,3 +7,9 @@ function filterTable() {
 	$('tr.data').hide();
 	$('tr.' + category_css + '.' + game_type).show();
 }
+
+function showAddingRow() {
+  $('.field_with_errors').toggleClass('field_with_errors');
+  $('#adding').show();
+  $(':text').val("");
+}

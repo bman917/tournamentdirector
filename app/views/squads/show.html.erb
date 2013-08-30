@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"%>
 
 <div class="title">
 	<div class="entries_title">
@@ -14,7 +15,8 @@
 			<div class="entries_actions">
 				Add: (
 		        	<% @presenter.game_types.each do |game_type|%>
-		            	<%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %>
+		            	<!--%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %-->
+		            	<%= link_to "#{game_type.name}", new_squad_entry_path(@squad, game_type.id), remote: true %>
 		        	<% end %>
 				)
 		   </div>
@@ -22,8 +24,10 @@
 	</div>
 </div>
 
+<div id="notice"></div>
+
 <table id="squad_entries_table">
-<tr>
+<tr id="header_row">
 	<th></th>
 	<th>Game Type</th>
 	<th>Division</th>
@@ -33,10 +37,14 @@
 	 <% if current_user.encoder? %><th>Actions</th><%end%>
 </tr>
 
+<tr id="adding" class="hidden">
+	<td colspan="7">Adding entry...</td>
+</tr>
+
 <% @presenter.squad_entries.each do | squad_entry |%>
 
 <tr class="data <%=css(squad_entry)%> <%=cycle 'o', 'e'%>">
-	<td><%= link_to 'Show', squad_entry_path(squad_entry)%></td>
+	<td><%= link_to 'Show Games', squad_entry_path(squad_entry)%></td>
 	<td><%= squad_entry.game_type %> 
 
 	</td>

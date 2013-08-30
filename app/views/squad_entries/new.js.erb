@@ -1,0 +1,16 @@
+$('#header_row').after("<%=j render 'form_remote'%>");
+$('.ui-autocomplete').remove();
+$('.bowler_name').autocomplete({
+        source: $('.bowler_name').data('autocomplete-source'),
+        minLength: 3
+      }
+    );
+$('.bowler_name').val("").focus();
+
+$(document).on('submit', '#new_squad_entry', showAddingRow);
+
+
+$(document).on('click', '#hide_button', function(event) {
+	event.preventDefault();
+	$('#new_row').remove();
+});

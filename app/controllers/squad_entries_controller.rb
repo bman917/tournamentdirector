@@ -13,6 +13,9 @@ class SquadEntriesController < ApplicationController
   def new_game
     set_selected_squad_entry(@squad_entry)
 
+    session[:bowler_class_name] = @squad_entry.category
+    session[:game_type_name] = @squad_entry.game_type.name
+
     @game_form = SquadEntryGameForm.new(@squad_entry)
     @game = Game.new
 
@@ -77,15 +80,14 @@ class SquadEntriesController < ApplicationController
   def new
     @squad_entry = SquadEntry.new
     @squad = Squad.find(params[:squad_id])
-    
-    game_type = GameType.find(params[:game_type_id])
-
-    @squad_entry.game_type = game_type
-
-    @number_of_bowlers = game_type.number_of_players
-
+    @squad_entry.game_type = GameType.find(params[:game_type_id])
+    @number_of_bowlers = @squad_entry.game_type.number_of_players
     session[:selected_squad] = @squad.id
-    
+
+    respond_to do | format | 
+      format.html
+      format.js
+    end
 
   end
 
@@ -99,28 +101,32 @@ class SquadEntriesController < ApplicationController
 
     @squad_entry = SquadEntry.new(squad_entry_params)
 
-
     puts "Squad ID: #{squad_entry_params[:category]}"
     game_type = squad_entry_params[:game_type]
     bowler_id_hash = params[:bowlers]
     number_of_bowlers = bowler_id_hash.size
     puts "Number of Bowler IDs: #{number_of_bowlers}, Entry Type: #{game_type}"
 
-
     (1..number_of_bowlers).each do |i|
-      bowler = Bowler.find(bowler_id_hash[i.to_s])
+      bowler = Bowler.find_by_id(bowler_id_hash[i.to_s])
       bowler ||= Bowler.find_by_name(bowler_id_hash[i.to_s])
       @squad_entry.bowlers << bowler
     end
 
     @new_squad_entry = @squad_entry
 
+    respond_to do | format |
 
-    if @squad_entry.save
-      redirect_to flash_update(@squad_entry), notice: 'Squad entry was successfully created.'
-    else
-      render action: 'new'
+      if @squad_entry.save
+        flash[:create_notice] = "Entry #{@squad_entry} has successfully been added."
+        format.html { redirect_to flash_update(@squad_entry), notice: 'Squad entry was successfully created.'}
+        format.js
+      else
+        format.html { render action: 'new'}
+        format.js 
+      end
     end
+
   end
 
   # PATCH/PUT /squad_entries/1
