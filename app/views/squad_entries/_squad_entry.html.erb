@@ -1,16 +1,11 @@
 <tr class="data <%=css(squad_entry)%> <%=cycle 'o', 'e'%>">
-	<td><%= link_to 'Show Games', squad_entry_path(squad_entry)%></td>
-	<td><%= squad_entry.game_type %> 
-
-	</td>
-	<td><%= squad_entry.category %></td>
-	<td><%= squad_entry.bowler_names %></td>
-	<td><%= squad_entry.games.size%></td>
+	
+	<td class="bowler_name_column"><%= squad_entry.bowler_names %></td>
+	<td class="games_column"><%= squad_entry.games.size%>
+	<%= link_to "Show Details", squad_entry_path(squad_entry) if squad_entry.has_games?%><%= link_to('Add Games', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %></td>
 	<td><%= squad_entry.total_pinfalls%></td>
 	 <% if current_user.encoder? %>
 	<td>
-
-		<%= link_to('Add Game', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %> 
 	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin?%></td>
     <% end %>
 </tr>

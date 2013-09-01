@@ -6,7 +6,7 @@ $('.bowler_name').autocomplete({
         minLength: 3
       }
     );
-$('.bowler_name').val("").focus();
+$('.bowler_name:first').val("").focus();
 
 $(document).on('submit', '#new_squad_entry', showAddingRow);
 

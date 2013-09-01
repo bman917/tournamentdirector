@@ -49,42 +49,23 @@ $(document).ready(function (){
 
 <table id="squad_entries_table">
 <tr id="header_row">
-	<th></th>
-	<th>Game Type</th>
-	<th>Division</th>
-	<th>Bowler(s)</th>
-	<th>Games</th>
+	
+	
+	<th id="bowler_category_header">Bowlers - <%="#{@game_type} #{@category}"%> Division</th>
+	<th id="game_type_header">Games</th>
 	<th>Total</th>
 	 <% if current_user.encoder? %><th>Actions</th><%end%>
 </tr>
 
 <tr id="adding" class="hidden">
-	<td colspan="7">Adding entry...</td>
+	<td colspan="4">Adding entry...</td>
 </tr>
 <tr id="loading_form" class="hidden">
-	<td colspan="7">Loading...</td>
+	<td colspan="4">Loading...</td>
 </tr>
 
 
-<% @presenter.squad_entries.each do | squad_entry |%>
+<%= render @presenter.squad_entries%>
 
-<tr class="data <%=css(squad_entry)%> <%=cycle 'o', 'e'%>">
-	<td><%= link_to 'Show Games', squad_entry_path(squad_entry)%></td>
-	<td><%= squad_entry.game_type %> 
-
-	</td>
-	<td><%= squad_entry.category %></td>
-	<td><%= squad_entry.bowler_names %></td>
-	<td><%= squad_entry.games.size%></td>
-	<td><%= squad_entry.total_pinfalls%></td>
-	 <% if current_user.encoder? %>
-	<td>
-
-		<%= link_to('Add Game', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %> 
-	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin?%></td>
-    <% end %>
-</tr>
-
-<% end %>
 
 </table>

@@ -13,4 +13,46 @@
 	color: #BBB3B3;
 }
 
+td.bowler_name_column {
+	min-width: 10em;
+	text-align: center;
+
+}
+
+td.games_column {
+	width: 8em;
+	text-align: left;
+	padding-left: 2em;
+
+}
+
+td.show_details_column {
+	width: 8em;
+	text-align: left;
+}
+
+#add_squad_entry_div, #adding, #loading_form {
+	border-top: 2px dotted #aabcfe;
+	border-bottom: 2px dotted #aabcfe;
+	padding: .5em;
+	background-color: white;
+	width: 98%;
+
+	.division_field {
+		float: left;
+		margin-left: 10%;
+	}
+	
+	div.bowlers_div {
+		width: 50%;
+		margin-left: 28%;
+	}
+
+	h1 {
+		padding: 0px;
+		margin: .5em;
+		font-size: 1em;
+	}
+}
+
 
