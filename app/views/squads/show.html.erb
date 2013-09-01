@@ -1,4 +1,18 @@
-<%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"%>
+<%=javascript_tag do %>
+$(document).ready(function (){
+	$('.entries_actions a').on('click', function (){
+		$('#loading_form').show();
+		$('.entries_actions').hide();
+		$('.entries_actions_disabled').show();
+		
+		squadsJS_removeNewRow();
+
+    });
+});
+
+
+
+<% end %>
 
 <div class="title">
 	<div class="entries_title">
@@ -17,6 +31,15 @@
 		        	<% @presenter.game_types.each do |game_type|%>
 		            	<!--%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %-->
 		            	<%= link_to "#{game_type.name}", new_squad_entry_path(@squad, game_type.id), remote: true %>
+		        	<% end %>
+				)
+		   </div>
+
+			<div class="entries_actions_disabled hidden">
+				Add: (
+		        	<% @presenter.game_types.each do |game_type|%>
+		            	<!--%= link_to game_type.name, new_squad_entry_path(@squad, game_type.id) %-->
+		            	<%= game_type.name%>
 		        	<% end %>
 				)
 		   </div>
@@ -40,6 +63,10 @@
 <tr id="adding" class="hidden">
 	<td colspan="7">Adding entry...</td>
 </tr>
+<tr id="loading_form" class="hidden">
+	<td colspan="7">Loading From...</td>
+</tr>
+
 
 <% @presenter.squad_entries.each do | squad_entry |%>
 
