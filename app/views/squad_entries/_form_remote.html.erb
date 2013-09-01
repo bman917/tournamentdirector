@@ -19,7 +19,6 @@
 	  <div class="division_field">
 	  	<%=f.label "Division"%>
 	  	<%= f.collection_select(:category, BowlerClass.all, :name, :name)%>
-	  	<%= f.collection_select(:category, BowlerClass.all, :name, :name)%>
 	  	<h1>Game Type: <%=@squad_entry.game_type%></h1>
 	  </div>
 	  <div class="field bowlers_div">
