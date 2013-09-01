@@ -19,6 +19,7 @@
 	  <div class="division_field">
 	  	<%=f.label "Division"%>
 	  	<%= f.collection_select(:category, BowlerClass.all, :name, :name)%>
+	  	<%= f.collection_select(:category, BowlerClass.all, :name, :name)%>
 	  	<h1>Game Type: <%=@squad_entry.game_type%></h1>
 	  </div>
 	  <div class="field bowlers_div">
@@ -39,8 +40,7 @@
 
 	  <%= f.hidden_field :game_type_id, value: @squad_entry.game_type.id %>
 	  <%= f.hidden_field :squad_id, value: @squad.id %>
-	  <%= f.hidden_field :category, value: @squad_entry.category %>
-	  <!--%= f.hidden_field :user_id, value: current_user.id%-->
+	  <%= f.hidden_field :user_id, value: current_user.id%>
 
 	  
 	<% end %>
