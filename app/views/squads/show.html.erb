@@ -4,15 +4,13 @@ $(document).ready(function (){
 		$('#loading_form').show();
 		$('.entries_actions').hide();
 		$('.entries_actions_disabled').show();
-		
+
 		squadsJS_removeNewRow();
 
     });
 });
-
-
-
 <% end %>
+<%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"%>
 
 <div class="title">
 	<div class="entries_title">
@@ -64,7 +62,7 @@ $(document).ready(function (){
 	<td colspan="7">Adding entry...</td>
 </tr>
 <tr id="loading_form" class="hidden">
-	<td colspan="7">Loading From...</td>
+	<td colspan="7">Loading...</td>
 </tr>
 
 

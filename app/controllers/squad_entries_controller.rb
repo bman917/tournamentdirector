@@ -83,7 +83,7 @@ class SquadEntriesController < ApplicationController
     @squad_entry.game_type = GameType.find(params[:game_type_id])
     @number_of_bowlers = @squad_entry.game_type.number_of_players
     session[:selected_squad] = @squad.id
-    sleep 3
+
     respond_to do | format | 
       format.html
       format.js
