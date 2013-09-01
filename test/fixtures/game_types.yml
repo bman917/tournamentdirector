@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  number_of_players: 1
-  number_of_games: 1
+doubles:
+  id: 1
+  name: Doubles
+  number_of_players: 2
+  number_of_games: 2
 
 two:
   name: MyString

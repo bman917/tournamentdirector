@@ -5,6 +5,7 @@ class SquadEntry < ActiveRecord::Base
   has_many :games, :dependent => :delete_all
   belongs_to :squad
   belongs_to :game_type
+  validates :bowlers, :bowler_complete => true
 
   def zero_total
     self.total_pinfalls = 0
@@ -59,7 +60,9 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def to_s
-  	"ENTRY - #{game_type} #{category} Division, #{bowler_names}, #{games.size} Games"
+    s = "ENTRY - #{game_type} #{category} Division"
+    s += ", #{bowler_names}, #{games.size} Games" if bowlers && bowlers.size > 0
+    s
   end
 
   def title
@@ -103,4 +106,16 @@ class SquadEntry < ActiveRecord::Base
     game_type == param_game_type
   end
 
+  def add_bowlers(bowlers)
+    bowlers.each do | bowler |
+      add_bowler(bowler)
+    end
+  end
+
+  def add_bowler(bowler_name_or_id)
+    bowler = Bowler.find_by_id(bowler_name_or_id)
+    bowler ||= Bowler.find_by_name(bowler_name_or_id)
+
+    bowlers << bowler if bowler
+  end
 end

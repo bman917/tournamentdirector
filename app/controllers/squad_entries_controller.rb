@@ -108,9 +108,7 @@ class SquadEntriesController < ApplicationController
     puts "Number of Bowler IDs: #{number_of_bowlers}, Entry Type: #{game_type}"
 
     (1..number_of_bowlers).each do |i|
-      bowler = Bowler.find_by_id(bowler_id_hash[i.to_s])
-      bowler ||= Bowler.find_by_name(bowler_id_hash[i.to_s])
-      @squad_entry.bowlers << bowler
+      @squad_entry.add_bowler(bowler_id_hash[i.to_s])
     end
 
     @new_squad_entry = @squad_entry
@@ -123,7 +121,7 @@ class SquadEntriesController < ApplicationController
         format.js
       else
         format.html { render action: 'new'}
-        format.js 
+        format.js  { render 'error'}
       end
     end
 

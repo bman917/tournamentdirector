@@ -1,0 +1,11 @@
+<% if squad_entry.errors.any? %>
+<div id="error_explanation" class="error_explanation">
+  <h2>Unable to save [ <%=squad_entry%> ] due to the following <%= pluralize(squad_entry.errors.count, "error") %>:</h2>
+
+  <ul>
+  <% squad_entry.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
