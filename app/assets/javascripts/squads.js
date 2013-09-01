@@ -13,3 +13,8 @@ function showAddingRow() {
   $('#adding').show();
   $(':text').val("");
 }
+
+function squadsJS_removeNewRow() {
+	$('#error_explanation, .error_explanation').remove();
+	$('#new_row').remove();
+}
