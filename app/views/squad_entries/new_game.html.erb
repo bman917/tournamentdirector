@@ -1,3 +1,13 @@
+<%=javascript_tag do %>
+
+$(document).ready(function(){
+alert($('.game_input:first'));
+	$('.game_input:first').focus();
+});
+
+
+<% end %>
+
 <div class="title"><h1 class="games_title">Record New Game</h1></div>
 
   <% if @game.errors.any? %>
@@ -28,7 +38,7 @@
 				
 				<%  @game_form.games.each do |g| %>
 				<td class="game_input">
-					<%= number_field_tag("bowler_#{bowler.id}_game_#{g.id}")%>
+					<%= number_field_tag("bowler_#{bowler.id}_game_#{g.id}", class: "game_input")%>
 				</td>
 				<% end %>
 

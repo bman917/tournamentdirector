@@ -59,7 +59,7 @@ class SquadEntriesController < ApplicationController
   rescue Exception => e
     @game = Game.new
     @game.errors.add(:score, e)
-    puts "xxxxxxxxxxxxxxx #{e}"
+    @game_form = SquadEntryGameForm.new(@squad_entry)
     render 'new_game'
   end
 
@@ -72,7 +72,7 @@ class SquadEntriesController < ApplicationController
   # GET /squad_entries/1
   # GET /squad_entries/1.json
   def show
-    session[:selected_squad_entry] = @squad_entry.id
+    set_selected_squad_entry(@squad_entry)
     session[:last_action] = :squad_entry_games
   end
 

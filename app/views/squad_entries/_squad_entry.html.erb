@@ -6,6 +6,6 @@
 	<td><%= squad_entry.total_pinfalls%></td>
 	 <% if current_user.encoder? %>
 	<td>
-	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin?%></td>
+	    <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'You are about to permanently delete this entry and all games recorded under it. Are you sure?' } if current_user.admin?%></td>
     <% end %>
 </tr>

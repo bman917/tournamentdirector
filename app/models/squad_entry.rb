@@ -7,6 +7,14 @@ class SquadEntry < ActiveRecord::Base
   belongs_to :game_type
   validates :bowlers, :bowler_complete => true
 
+  def games_record_date
+    games.first.created_at if has_games?
+  end
+
+  def games_recorded_by
+    games.first.user if has_games?
+  end
+
   def zero_total
     self.total_pinfalls = 0
     self.save!

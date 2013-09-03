@@ -1,12 +1,18 @@
 
 <div class="title">
   <div class="games_title">
-    <span>Recorded Games</span>
+    <span>Games Details</span>
     <%=link_to('(Add Game)', new_squad_entry_game_path(@squad_entry), class: 'add') if (!@squad_entry.has_games? && current_user.encoder?) %>
   </div>
 </div>
+<% if @squad_entry.has_games? %>
+<div class="details">
+  Recorded by <span class="user_name"%><%=@squad_entry.games_recorded_by%></span> on <span class="date"><%=@squad_entry.games_record_date.to_s(:squad_time)%></span>
+  
+  <%=link_to 'Delete All Games', squad_entry_delete_games_path(@squad_entry), method: :delete, data: { confirm: 'Permanently Delete All Games? Warning: This cannot be undone.'} if encoder?%>
+</div>
+<%end%>
 
-<%=link_to 'Delete All Games', squad_entry_delete_games_path(@squad_entry), method: :delete, data: { confirm: 'Delete All Games?'} if encoder? && @squad_entry.has_games?%>
 
 <% if @squad_entry.has_games? %>
 

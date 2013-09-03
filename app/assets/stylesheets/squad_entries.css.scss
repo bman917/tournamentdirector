@@ -10,3 +10,15 @@
 .game_input input {
 	max-width: 4em;
 }
+
+.details {
+	margin-left: 2em;
+	a {
+		float: right;
+	}
+}
+
+.user_name, .date {
+	font-style: italic;
+	font-weight: bold;
+}
