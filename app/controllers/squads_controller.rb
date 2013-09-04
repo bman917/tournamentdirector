@@ -8,6 +8,7 @@ class SquadsController < ApplicationController
 
   def latest
     @squad = selected_tournament.squads.last
+    set_selected_squad(@squad)
     show_by_category
   end
 
