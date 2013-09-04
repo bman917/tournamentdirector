@@ -4,6 +4,7 @@ class TournamentsController < ApplicationController
 
   before_action :set_tournament, only: [:edit, :update, :destroy]
   before_action :user_is_master?, only: [:new, :edit, :update, :destroy, :create]
+  before_action :clear_selected_squad_entry, only: [:bowlers]
 
   def bowlers
     @bowlers = selected_tournament.bowlers

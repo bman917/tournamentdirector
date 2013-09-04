@@ -1,7 +1,7 @@
 <%=javascript_tag do %>
 
 $(document).ready(function(){
-	$('.game_input:first').focus();
+	$(':input:visible:first').focus();
 });
 
 
@@ -11,7 +11,7 @@ $(document).ready(function(){
 
   <% if @game.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+      <h2>Error in saving games:</h2>
 
       <ul>
       <% @game.errors.full_messages.each do |msg| %>
@@ -20,6 +20,15 @@ $(document).ready(function(){
       </ul>
     </div>
   <% end %>
+
+  <div class="error_explanation hidden">
+  	<h2>There are one or more invalid game entries. Remember the following rules:</h2>
+  	<ul>
+  		<li>Score should not be blank</li>
+  		<li>Score should not be a positive number</li>
+  		<li>Score cannot be more than 300</li>
+  	</ul>
+  </div>
   
 
 <%= form_tag(create_squad_entry_game_path(@game_form.squad_entry), method: "post") do %>
@@ -37,7 +46,7 @@ $(document).ready(function(){
 				
 				<%  @game_form.games.each do |g| %>
 				<td class="game_input">
-					<%= number_field_tag("bowler_#{bowler.id}_game_#{g.id}", class: "game_input")%>
+					<%= number_field_tag("bowler_#{bowler.id}_game_#{g.id}", nil, class: "game_field")%>
 				</td>
 				<% end %>
 
@@ -46,6 +55,6 @@ $(document).ready(function(){
 		<% end %>
 	</table>
 	  <div class="actions">
-	    <%= submit_tag("Save Game") %>
+	    <%= submit_tag("Save Game", id: "submit_game" ) %>
 	  </div>
 <% end %>
