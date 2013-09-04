@@ -3,7 +3,7 @@
 	<li><%=link_to 'View Reports', reports_path %></li>
 <%end%>
 
-<%if current_user.role == 'ENCODER'%>
+<%if current_user.role == 'ENCODER_disabled'%>
 	<div id="quick_links">
 	 <span>Add Squad Entry:</span>
 		<ul>
