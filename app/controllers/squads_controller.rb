@@ -1,10 +1,15 @@
 class SquadsController < ApplicationController
-  before_action :set_squad, only: [:show, :edit, :update, :destroy]
+  before_action :set_squad, only: [:edit, :update, :destroy]
   before_action :clear_selected_squad_from_session, only: [:index]
   before_action :user_is_admin?
-  skip_before_action :user_is_admin?, only: [:show_by_category, :show]
+  skip_before_action :user_is_admin?, only: [:show_by_category, :show, :latest]
 
   include SessionsHelper
+
+  def latest
+    @squad = selected_tournament.squads.last
+    show_by_category
+  end
 
   def clear_selected_squad_from_session
     clear_selected_squad
@@ -18,7 +23,7 @@ class SquadsController < ApplicationController
 
   def show_by_category
 
-    @squad = set_squad
+    @squad ||= set_squad
     @presenter = Squads::ShowPresenter.new(@squad)
 
 
@@ -40,6 +45,7 @@ class SquadsController < ApplicationController
   # GET /squads/1
   # GET /squads/1.json
   def show
+    @squad ||= set_squad
     clear_selected_squad_entry
     session[:last_action] = :squad
     show_by_category

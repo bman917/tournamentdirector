@@ -25,7 +25,11 @@ class TournamentsController < ApplicationController
 
   def latest
     @tournament = current_user.tournaments.last
-    set_selected_tournament(@tournament)
+    if @tournament
+      set_selected_tournament(@tournament)
+    else
+      render 'no_tournament'
+    end
   end
 
   def select

@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
 	    	redirect_to root_url
 	    elsif user.admin?
 	    	redirect_to tournament_select_path(user.tournaments.last)
+	    elsif user.encoder?
+	    	redirect_to latest_squads_path
 	    else
 	    	redirect_to latest_tournaments_path
 	    end

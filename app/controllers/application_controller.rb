@@ -39,7 +39,11 @@ class ApplicationController < ActionController::Base
   end
 
   def selected_tournament
-    @selected_tournament ||= current_user.tournaments.find(session[:selected_tournament]) if session[:selected_tournament]
+    if current_user
+      @selected_tournament ||= current_user.tournaments.find(session[:selected_tournament]) if session[:selected_tournament]
+      @selected_tournament = current_user.tournaments.last unless @selected_tournament
+    end
+    @selected_tournament
   end
 
 
