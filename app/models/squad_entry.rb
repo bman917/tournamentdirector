@@ -3,7 +3,7 @@ class SquadEntry < ActiveRecord::Base
   default_scope { order("total_pinfalls DESC") }
   has_and_belongs_to_many :bowlers
   has_many :games, :dependent => :delete_all
-  belongs_to :squad
+  belongs_to :squad, :counter_cache => true
   belongs_to :game_type
   validates :bowlers, :bowler_complete => true
 

@@ -1,5 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+singles:
+  id: 2
+  name: Singles
+  number_of_players: 1
+  number_of_games: 2
+
+
 doubles:
   id: 1
   name: Doubles

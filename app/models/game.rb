@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
   belongs_to :bowler
   belongs_to :user
-  belongs_to :squad_entry
+  belongs_to :squad_entry, :counter_cache => true
   validates :score, presence: true,  numericality: {only_integer:true, greater_than_or_equal_to: 0, less_than_or_equal_to: 300}
   after_save :update_squad_entry_total
   validates :bowler_id, presence: true

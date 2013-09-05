@@ -6,6 +6,11 @@ class SquadsController < ApplicationController
 
   include SessionsHelper
 
+  def pending
+    @squad ||= set_squad
+    @squad_entries = @squad.pending
+  end
+
   def latest
     @squad = selected_tournament.squads.last
     set_selected_squad(@squad)

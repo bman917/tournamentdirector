@@ -26,4 +26,12 @@ class SquadEntryTest < ActiveSupport::TestCase
 		squad_entry.add_bowler("")
 		squad_entry.add_bowler(nil)
 	end
+
+
+	test "SquadEntry Game counter cache" do
+
+		squad_entry = squad_entries(:one)
+		squad_entry.games.create(score: 100)
+		assert_equal 1, squad_entry.games.size
+	end
 end

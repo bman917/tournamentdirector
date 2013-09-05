@@ -2,5 +2,25 @@
 
 one:
   category: OPEN
-  game_type_id: 1
+  game_type_id: 2
+  squad_id: 
+
+two:
+  category: OPEN
+  game_type_id: 2
+  squad_id: 
+
+three:
+  category: OPEN
+  game_type_id: 2
+  squad_id: 
+
+four:
+  category: OPEN
+  game_type_id: 2
+  squad_id: 
+
+five:
+  category: OPEN
+  game_type_id: 2
   squad_id: 
