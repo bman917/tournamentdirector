@@ -1,0 +1,13 @@
+<table id="stats">
+	<tr>
+		<td>Total Number of Entries</td>
+		<td class="val_col"><%=@stats_presenter.entries_size%></td>
+	</tr>
+	<%@stats_presenter.bowler_classes.each do | bowler_class | %>
+	<tr>
+		<td>Number of Entries for <%=bowler_class.name%> Division</td>
+		<td class="val_col"><%=@stats_presenter.entries_by_category(bowler_class).size%></td>
+	</tr>
+	<% end %>
+
+</table>

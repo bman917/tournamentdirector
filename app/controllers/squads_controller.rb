@@ -6,9 +6,8 @@ class SquadsController < ApplicationController
 
   include SessionsHelper
 
-  def pending
-    @squad ||= set_squad
-    @squad_entries = @squad.pending
+  def stats
+    @stats_presenter = Squads::StatsPresenter.new(set_squad)
   end
 
   def latest

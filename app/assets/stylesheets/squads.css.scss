@@ -1,6 +1,26 @@
 // Place all the styles related to the Squads controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table#stats {
+	width: 40em;
+	border-collapse: false;
+	td {
+		width: 10em;
+	}
+
+	td.val_col {
+		width: 3.5em;
+	}
+
+}
+
+ .squad_links{
+ 	//used for statistics link
+ 	font-size: .7em;
+ 	margin-left: 2em;
+ }
+
 .hidden {
 	display: none;
 }

@@ -16,12 +16,15 @@ $(document).ready(function (){
 	<div class="entries_title">
 
 
+
 		<div id="categories">
 			<span>Division:</span>
 	        <%= collection_select(:tournament, :bowlers_class_name , @presenter.bowler_classes, :to_css_class, :name, {:selected => to_css(session[:bowler_class_name])})%>
 	        <span>Game:</span>
 	        <%= collection_select(:tournament, :game_type_name     , @presenter.game_types   , :to_css_class, :name, {:selected => session[:game_type_name]})%>
+	        <span class="squad_links"><%=link_to 'Statistics', squad_stats_path(selected_squad)  %></span>
 	    </div>
+
 
 		 <% if current_user.encoder? %>
 			<div class="entries_actions">

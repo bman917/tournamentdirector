@@ -29,7 +29,7 @@ Tournamentdirector::Application.routes.draw do
 
   resources :games
   resources :squads do
-    get 'pending'
+    get 'stats'
     get 'latest', on: :collection
     get '/show/:bowler_class_name' => "squads#show_by_category"
     get '/show/:bowler_class_name/:game_type_name' => "squads#show_by_category", as: "show_by_category"

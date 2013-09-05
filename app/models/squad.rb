@@ -7,6 +7,10 @@ class Squad < ActiveRecord::Base
   	squad_entries.where("games_count = 0")
   end
 
+  def squad_entries_by_class(bowler_class)
+    squad_entries.where(category: bowler_class.name)
+  end
+
   def to_s
   	"SQUAD-#{name}"
   end
