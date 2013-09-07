@@ -1,13 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: 1
-  time: 2013-06-28 01:37:35
-  tournament_id: 
-  user_id: 
-
-two:
-  name: 2
-  time: 2013-06-28 01:37:35
-  tournament_id: 
-  user_id: 
+  id: 1

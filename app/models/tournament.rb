@@ -1,6 +1,7 @@
 class Tournament < ActiveRecord::Base
   belongs_to :bowling_association
   has_many :squads, dependent: :destroy
+  has_many :squad_entries, dependent: :destroy
   has_and_belongs_to_many :users
   has_and_belongs_to_many :game_types, -> { uniq }
 
@@ -10,11 +11,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def squad_entriesx(game_type, category)
-    SquadEntry.where(squad_id: squads, game_type: game_type, category: category).where("total_pinfalls > 0")
-  end
-
-  def squad_entries
-      SquadEntry.where(squad_id: squads).includes(:bowlers).references(:squads)
+    squad_entries.where(game_type: game_type, category: category).where("total_pinfalls > 0")
   end
 
   def bowlers2

@@ -1,11 +1,19 @@
 class SquadEntry < ActiveRecord::Base
 #  scope :singles, find_by_game_type(GameType.first)
   default_scope { order("total_pinfalls DESC") }
-  has_and_belongs_to_many :bowlers
+  has_and_belongs_to_many :bowlers, autosave: true
   has_many :games, :dependent => :delete_all
   belongs_to :squad, :counter_cache => true
   belongs_to :game_type
+  belongs_to :tournament
   validates :bowlers, :bowler_complete => true
+  before_save :link_tournament
+
+  def link_tournament
+    self.tournament = squad.tournament if squad
+  end
+
+
 
   def games_record_date
     games.first.created_at if has_games?
@@ -16,6 +24,7 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def zero_total
+    puts "SquadEntry #{id} is Zeroing total"
     self.total_pinfalls = 0
     self.save!
   end
@@ -25,6 +34,7 @@ class SquadEntry < ActiveRecord::Base
 
   def update_total!
     self.total_pinfalls = games.sum("score")
+    self.save!
   end
 
   def belongs_to_tournament?(tournament)

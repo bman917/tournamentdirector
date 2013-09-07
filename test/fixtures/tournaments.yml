@@ -1,13 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  start_date: 2013-06-28
-  end_date: 2013-06-28
-  bowling_association_id: 
-
-two:
-  name: MyString
-  start_date: 2013-06-28
-  end_date: 2013-06-28
-  bowling_association_id: 
+sletba_open:
+  id: 1

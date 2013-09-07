@@ -1,26 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  category: OPEN
-  game_type_id: 2
-  squad_id: 
+  id: 1
 
 two:
-  category: OPEN
-  game_type_id: 2
-  squad_id: 
-
-three:
-  category: OPEN
-  game_type_id: 2
-  squad_id: 
-
-four:
-  category: OPEN
-  game_type_id: 2
-  squad_id: 
-
-five:
-  category: OPEN
-  game_type_id: 2
-  squad_id: 
+  id: 2

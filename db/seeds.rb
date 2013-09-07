@@ -12,7 +12,7 @@ BowlingAssociation.create(id: 3, name: 'PBA')
 
 GameType.delete_all
 singles = GameType.create(id: 1, name: 'Singles', number_of_players: '1', number_of_games: '3')
-doubles = GameType.create(id: 2, name: 'Doubles', number_of_players: '2', number_of_games: '2')
+@doubles = GameType.create(id: 2, name: 'Doubles', number_of_players: '2', number_of_games: '2')
 team    = GameType.create(id: 3, name: 'Team', number_of_players: '3', number_of_games: '2')
 sletba_monthly = GameType.create(id: 4, name: 'SLETBA Monthly Finals', number_of_players: '1', number_of_games: '10')
 

@@ -8,8 +8,8 @@ class Game < ActiveRecord::Base
 
   def update_squad_entry_total
     if squad_entry
+      #puts "Game (#{self}) is calling update_squad_entry_total of squad_entry: #{squad_entry.id}"
       squad_entry.update_total!
-      squad_entry.save
     end
   end
 

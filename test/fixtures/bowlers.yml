@@ -1,9 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: 'Juan Dela Cruz'
-  bowling_association_id: 1
+juan:
+  id: 1
 
-two:
-  name: MyString
-  bowling_association_id: 
+
+jose:
+  id: 2

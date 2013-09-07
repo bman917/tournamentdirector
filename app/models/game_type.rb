@@ -16,4 +16,10 @@ class GameType < ActiveRecord::Base
 	def total_games
 		(number_of_players * number_of_games)
 	end
+
+	def total_pinfals(tournament)
+
+		tournament.squad_entries.where(game_type_id: self.id)
+
+	end
 end

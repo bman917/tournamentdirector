@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905145645) do
+ActiveRecord::Schema.define(version: 20130906150836) do
 
   create_table "average_entries", force: true do |t|
     t.integer  "average"
@@ -92,10 +92,12 @@ ActiveRecord::Schema.define(version: 20130905145645) do
     t.datetime "updated_at"
     t.integer  "total_pinfalls", default: 0
     t.integer  "games_count",    default: 0
+    t.integer  "tournament_id"
   end
 
   add_index "squad_entries", ["game_type_id"], name: "index_squad_entries_on_game_type_id"
   add_index "squad_entries", ["squad_id"], name: "index_squad_entries_on_squad_id"
+  add_index "squad_entries", ["tournament_id"], name: "index_squad_entries_on_tournament_id"
 
   create_table "squads", force: true do |t|
     t.string   "name"

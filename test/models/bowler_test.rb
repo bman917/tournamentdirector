@@ -3,7 +3,8 @@ require 'test_helper'
 class BowlerTest < ActiveSupport::TestCase
 
 	setup do
-		@bowler_one = bowlers(:one)
+		seed_sletba_open
+		@bowler_one = bowlers(:juan)
 	end
 
 	test "Do not allow duplicate name" do
@@ -29,10 +30,14 @@ class BowlerTest < ActiveSupport::TestCase
 	end
 
 	test "Squad entry should be deleted when bowler is deleted" do
-		squad_entry = @bowler_one.squad_entries.create
-		squad_entry.save
+		
+		@bowler_one.squad_entries.clear
+		squad_entry = create_squad_entry_for_bowler_juan
+
 		@bowler_one.destroy
-		assert_record_not_found {SquadEntry.find(squad_entry)}
+		
+		squad_entry.reload
+		assert_equal 0, squad_entry.bowlers.size
 	end
 
 	def assert_record_not_found(&block)

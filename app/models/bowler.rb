@@ -5,11 +5,10 @@ class Bowler < ActiveRecord::Base
   validates_uniqueness_of :name
   belongs_to :bowling_association
   belongs_to :pbc_classification, class_name: 'BowlerClass', foreign_key: 'pbc_classification_id'
-  has_and_belongs_to_many :squad_entries
+  has_and_belongs_to_many :squad_entries, autosave: true
   has_many :average_entries, :dependent => :delete_all
   has_many :games, :dependent => :delete_all
-  before_destroy :delete_squad_entries
-
+ 
   attr_accessor :pbc_average
 
   def pbc_average
@@ -70,10 +69,4 @@ class Bowler < ActiveRecord::Base
     games_in_tournament(tournament).average(:score).to_i
   end
 
-  private
-
-  def delete_squad_entries
-    squad_entries.each { |squad_entry| squad_entry.destroy }
-    squad_entries.clear
-  end
 end
