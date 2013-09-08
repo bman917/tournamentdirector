@@ -18,22 +18,23 @@ class ActiveSupport::TestCase
     load "#{Rails.root}/db/seeds/test/sletba_open.seeds.rb"
   end
 
-  def seed_bowlers
-    load "#{Rails.root}/db/seeds/test/bowlers.seeds.rb"
-  end
-
-  def seed_squad_entries
-    load "#{Rails.root}/db/seeds/test/squad_entries.seeds.rb"
-  end
-
   def standard_setup
   	puts "Performaing stadrd setup..."
 
   	seed_sletba_open
-  	seed_squad_entries
+
+    @sletba_open = Tournament.find_by_name('SLETBA OPEN 2013')
 
   	@squad_entry1 = SquadEntry.find(1)
   	@squad_entry2 = SquadEntry.find(2)
+    @squad_entry3 = SquadEntry.find(3)
+    @squad_entry4 = SquadEntry.find(4)
+    @squad_entry5 = SquadEntry.find(5)
+    @squad_entry6 = SquadEntry.find(6)
+
+    @singles = GameType.find_by_name('Singles')
+    @class_o = BowlerClass.find_by_name('OPEN')
+
   end
 
   def create_squad_entry_for_bowler_juan
@@ -42,6 +43,7 @@ class ActiveSupport::TestCase
     @new_squad_entry_for_bowler_juan.bowlers << bowlers(:juan)
     @new_squad_entry_for_bowler_juan.save!
     return @new_squad_entry_for_bowler_juan
+    
   end
 
 end

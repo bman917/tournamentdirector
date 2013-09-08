@@ -41,7 +41,32 @@ squad1 = Squad.create(id: 1, name: "1", time: Time.now, tournament_id: 1, user_i
 	squad_entry.bowlers << juan
 	squad_entry.save!
 
+
 	(0..squad_entry.game_type.number_of_games).each do
 		squad_entry.games.create(bowler: juan, score: (100 + i))
+	end
+end
+
+(3..4).each do | i |
+
+	squad_entry = squad1.squad_entries.create(id: i, game_type_id: 1, category: 'OPEN')
+	squad_entry.bowlers << pionie
+	squad_entry.save!
+
+
+	(0..squad_entry.game_type.number_of_games).each do
+		squad_entry.games.create(bowler: pionie, score: (110 + i))
+	end
+end
+
+(5..6).each do | i |
+
+	squad_entry = squad1.squad_entries.create(id: i, game_type_id: 1, category: 'OPEN')
+	squad_entry.bowlers << jacky
+	squad_entry.save!
+
+
+	(0..squad_entry.game_type.number_of_games).each do
+		squad_entry.games.create(bowler: jacky, score: (70 + i))
 	end
 end

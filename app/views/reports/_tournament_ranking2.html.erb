@@ -16,7 +16,7 @@
                       <th>Total</th>
                     </tr>
 
-                    <% selected_tournament.squad_entriesx(game_type, category.name).limit(3).each do | squad_entry | %>
+                    <% RankingUtil.get_ranking(selected_tournament, category, game_type, 3).each do | squad_entry | %>
                       <tr>
                         <td class="bowler_names">
                           <%= link_to squad_entry.bowler_names, squad_entry_path(squad_entry)%>
