@@ -16,4 +16,3 @@ open_squad = @sletba_sept_monthly.squads.create(name: 'OPEN Division', time: '20
 class_a   = @sletba_sept_monthly.squads.create(name: 'CLASS A', time: '2013-09-29 13:00')
 class_b_c = @sletba_sept_monthly.squads.create(name: 'CLASS B & C', time: '2013-09-29 15:00')
 
-open_squad.squad_entries.create(game_type_id: 4, category: 'OPEN').bowlers << Bowler.find(1)

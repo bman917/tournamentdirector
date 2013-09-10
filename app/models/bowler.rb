@@ -1,15 +1,30 @@
 class Bowler < ActiveRecord::Base
   scope :by_gender, ->(gender) { where(gender: gender) unless (gender == 'A') }
 
-  validates :name, presence: true
-  validates_uniqueness_of :name
+  validates :name, :last_name, presence: true
+# validates :full_name, uniqueness: true
   belongs_to :bowling_association
   belongs_to :pbc_classification, class_name: 'BowlerClass', foreign_key: 'pbc_classification_id'
   has_and_belongs_to_many :squad_entries, autosave: true
   has_many :average_entries, :dependent => :delete_all
   has_many :games, :dependent => :delete_all
- 
+
+  validate :full_name_cannot_have_duplicates
+
   attr_accessor :pbc_average
+
+  def full_name_cannot_have_duplicates
+    if created_at == updated_at
+      result = Bowler.where('name = ? and last_name = ? and id != ?', name, last_name, id)
+      unless result.blank?
+        errors[:full_name] << "#{full_name} has already been taken by bowler id #{result.first.id}. Duplicate Bowler full name is not allowed."
+      end
+    end
+  end
+
+  def full_name
+    "#{name} #{middle_name} #{last_name}".squeeze(' ')
+  end
 
   def pbc_average
     if average_entries.any?
@@ -29,7 +44,7 @@ class Bowler < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('name LIKE ?' , "%#{search}%")
+      where('name LIKE ? or last_name LIKE ?' , "%#{search}%", "%#{search}%")
     else
       scoped
     end
@@ -45,7 +60,7 @@ class Bowler < ActiveRecord::Base
   end
 
   def name_css
-    self.name.delete(' ')
+      self.name.delete(' ')
   end
 
   def to_s

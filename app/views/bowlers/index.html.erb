@@ -39,7 +39,9 @@ $(document).ready(function() {
 <table id="bowlers_table">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>First Name</th>
+      <th>Middle Name</th>
+      <th>Last Name</th>
       <th>Gender</th>
       <th>Association </th>
       <th>PBC Classification </th>
@@ -56,6 +58,8 @@ $(document).ready(function() {
 
     <tr id="new_bowler_row" class="hidden">
           <td><%= f.text_field :name %></td>
+          <td><%= f.text_field :middle_name %></td>
+          <td><%= f.text_field :last_name %></td>
           <td><%= f.select(:gender, [['M','M'],['F','F']])%></td>
           <td><%= f.collection_select(:bowling_association_id, BowlingAssociation.all, :id, :name)%></td>
           <td><%= f.collection_select(:pbc_classification_id, BowlerClass.all, :id, :name)%></td>

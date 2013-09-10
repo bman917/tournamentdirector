@@ -12,17 +12,17 @@ class BowlersController < ApplicationController
   end
 
   def names
-    @bowlers = Bowler.order(:name).where("name like ?", "%#{params[:term]}%")
-    render json: @bowlers.map(&:name)
+    @bowlers = Bowler.order(:name).where('name LIKE ? or last_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
+    render json: @bowlers.map(&:full_name)
   end
 
 
   def search_entries
     clear_selected_squad
     if params[:bowler]
-      @bowler = Bowler.find_by_name(bowler_params[:name])
+      @bowler = Bowler.search(bowler_params[:name])
       if @bowler
-        @squad_entries = @bowler.get_tournament_entries(selected_tournament)
+        @squad_entries = @bowler.first.get_tournament_entries(selected_tournament)
         render 'show_entries'
       else
         flash.now.alert = "Bowler #{bowler_params[:name]} Not Found!"
@@ -65,7 +65,9 @@ class BowlersController < ApplicationController
   # POST /bowlers.json
   def create
     ass = BowlingAssociation.find(bowler_params[:bowling_association_id])
+    
     @bowler = ass.bowlers.create(bowler_params)
+
     
     respond_to do |format|
       if @bowler.save
@@ -114,6 +116,6 @@ class BowlersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bowler_params
-      params.require(:bowler).permit(:name, :gender, :bowling_association_id, :pbc_classification_id, :pbc_average)
+      params.require(:bowler).permit(:full_name, :last_name, :middle_name, :name, :gender, :bowling_association_id, :pbc_classification_id, :pbc_average)
     end
 end

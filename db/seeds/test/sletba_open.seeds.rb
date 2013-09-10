@@ -19,11 +19,11 @@ SquadEntry.destroy_all
 #
 # puts "Creating Bowlers...."
 #
-juan   = Bowler.create(id: 1, name: 'Juan Dela Cruz', gender: 'M', bowling_association_id: 1)
-jacky  = Bowler.create(id: 2, name: 'Jacky Chan', gender: 'M', bowling_association_id: 1)
-jeff   = Bowler.create(id: 3, name: 'Jeff Chan', gender: 'M', bowling_association_id: 1)
-peping = Bowler.create(id: 4, name: 'Peping Chan', gender: 'M', bowling_association_id: 1)
-pionie = Bowler.create(id: 5, name: 'Pionie Chan', gender: 'M', bowling_association_id: 2)
+juan   = Bowler.create(id: 1, name: 'Juan',   last_name: 'Dela Cruz', gender: 'M', bowling_association_id: 1)
+jacky  = Bowler.create(id: 2, name: 'Jacky',  last_name: 'Chan', gender: 'M', bowling_association_id: 1)
+jeff   = Bowler.create(id: 3, name: 'Jeff',   last_name: 'Chan', gender: 'M', bowling_association_id: 1)
+peping = Bowler.create(id: 4, name: 'Peping', last_name: 'Chan', gender: 'M', bowling_association_id: 1)
+pionie = Bowler.create(id: 5, name: 'Pionie', last_name: 'Chan', gender: 'M', bowling_association_id: 2)
 
 #
 #puts "Creating Squad 1..."

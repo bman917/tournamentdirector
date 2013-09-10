@@ -27,6 +27,7 @@ class RankingUtilTest < ActiveSupport::TestCase
 
     assert first.bowlers.exists?(bowlers(:pionie)), "Bowler Pionie should be first place"
     assert second.bowlers.exists?(bowlers(:juan)), "Bowler Juan should be second place instead of (#{second})"
+    assert third.bowlers.exists?(bowlers(:jacky)), "Bowler Jacky should be second place instead of (#{third})"
 
   end
 
