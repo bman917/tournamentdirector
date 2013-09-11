@@ -33,11 +33,11 @@ namespace :tournament do
 			#puts "xxxxxxxxx #{names} ass - [#{association}] #{association.size}"
 			ass = BowlingAssociation.find_or_create_by(name: association)
 
-			puts "[#{fname}, #{lname}] ASS[#{ass}] AVE[#{average}]]"
+			#puts "[#{fname}, #{lname}] ASS[#{ass}] AVE[#{average}]]"
 
 			bowler = Bowler.where(name: fname, last_name: lname).first_or_create
 			bowler.bowling_association = ass
-			puts "Bowler: #{bowler.id}"
+			#puts "Bowler: #{bowler.id}"
 			bowler.save!
 
 			bowler.average_entries.destroy
