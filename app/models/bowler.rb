@@ -64,7 +64,7 @@ class Bowler < ActiveRecord::Base
   end
 
   def to_s
-    self.name
+    self.full_name
   end
 
   def get_tournament_entries(tournament)

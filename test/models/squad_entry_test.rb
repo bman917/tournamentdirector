@@ -33,6 +33,14 @@ class SquadEntryTest < ActiveSupport::TestCase
 		squad_entry.add_bowler(nil)
 	end
 
+	test "Test adding bowler using full name" do
+		bowler = bowlers(:juan)
+		full_name = bowler.full_name
+		squad_entry = SquadEntry.new(game_type: game_types(:singles))
+		squad_entry.add_bowler(full_name)
+		squad_entry.save!
+	end
+
 
 	test "SquadEntry Game counter cache" do
 		@new_squad_entry_for_bowler_juan

@@ -21,6 +21,8 @@ namespace :tournament do
 			lname = names[0].strip if names[0]
 			association = row[1] 
 			average = row[2]
+			total_pinfalls = row[3]
+			games_played = row[4]
 
 			fname ||= '-'
 			lname ||= '-'
@@ -38,7 +40,9 @@ namespace :tournament do
 			puts "Bowler: #{bowler.id}"
 			bowler.save!
 
-			bowler.average_entries.create(average: average, average_type: 'PBC')
+			bowler.average_entries.destroy
+
+			bowler.average_entries.create(average: average, average_type: 'PBC', total_pinfalls: total_pinfalls, games_played: games_played)
 
 
 		end

@@ -42,7 +42,7 @@ $(document).ready(function(){
 		</tr>
 		<% @game_form.bowlers.each do | bowler | %>
 			<tr>
-				<td><%=bowler.name%></td>
+				<td><%=bowler.full_name%></td>
 				
 				<%  @game_form.games.each do |g| %>
 				<td class="game_input">

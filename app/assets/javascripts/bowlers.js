@@ -48,7 +48,7 @@ function searchListener(event) {
 $(document).on('click', '#new_bowler_link', function(event) {
   event.preventDefault();
   $("#new_bowler_row").show();
-  $("#bowler_name").focus();
+  $("#bowler_last_name").focus();
   unbind();
 });
 

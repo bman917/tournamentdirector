@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20130909172907) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "average_type"
+    t.integer  "total_pinfalls"
+    t.integer  "games_played"
   end
 
   add_index "average_entries", ["bowler_id"], name: "index_average_entries_on_bowler_id"

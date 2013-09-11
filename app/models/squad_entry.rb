@@ -131,9 +131,18 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def add_bowler(bowler_name_or_id)
+
     bowler = Bowler.find_by_id(bowler_name_or_id)
     bowler ||= Bowler.find_by_name(bowler_name_or_id)
 
+    unless bowler
+      fname = bowler_name_or_id.split(' ').first if bowler_name_or_id
+      @bowlers = Bowler.order(:name).where('name LIKE ?', "%#{fname}%")
+      @bowlers.each do | b |
+        bowler = b if b.full_name == bowler_name_or_id
+      end
+    end
+    
     bowlers << bowler if bowler
   end
 end

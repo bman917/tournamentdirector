@@ -1,22 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @bowler.name %>
-</p>
-<p>
-  <strong>Gender</strong>
-  <%= @bowler.gender %>
-</p>
-<p>
-  <strong>Bowling association:</strong>
-  <%= @bowler.bowling_association %>
-</p>
-<p>
-  <strong>PBC Classification:</strong>
-  <%= @bowler.pbc_classification%>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th class='middle_name_column'>Middle Name</th>
+      <th>Gender</th>
+      <th>Association </th>
+      <th>PBC Classification </th>
+      <th>PBC Average </th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
 
+<%= render @bowler %>
+
+</tbody>
+</table>
 
 <%= link_to 'Edit', edit_bowler_path(@bowler) %> |
 <%= link_to 'Back', bowlers_path %>
