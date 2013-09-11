@@ -15,7 +15,7 @@ namespace :tournament do
 
 	task :pbc_import => :environment do
 
-		CSV.foreach('/home/jchan/Downloads/1st Quarter Average 2012 (MEN)_edited.csv', headers:true) do | row|
+		CSV.foreach("#{Rails.root}/db/seeds/1st Quarter Average 2012 (MEN)_edited.csv", headers:true) do | row|
 			names = row[0].split(',')
 			fname = names[1].strip if names[1]
 			lname = names[0].strip if names[0]
