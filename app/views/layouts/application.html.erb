@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tournament Director</title>
+  <title>Bowling Tournament Director</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -9,7 +9,7 @@
 <body>
 
 <% unless params[:controller] == 'sessions' && params[:action] == 'new' %>
-<div id="user_nav">
+<div id="user_info">
   <% if current_user %>
     Logged in as <%= current_user.email %>.
     <%= link_to "Log out", log_out_path %>
@@ -19,66 +19,63 @@
 </div>
 <% end %>
 
-<% if logged_in? %>
-  <div id="navigation">
-
-    <ul id="menu">
-      <% if master? %>
-        <li><a href="">MASTER</a>
-          <ul>
-            <li><%= link_to "Manage Users", users_url%></li>
-            <li><%= link_to "Game Types", game_types_path%></li>
-          </ul>
-        </li>
-      <% end %>
-
-      <% if admin? %>
-        <li><a href="">Administration</a>
-          <ul>
-          <li><%= link_to "Associations", bowling_associations_path %></li>
-          <li><%= link_to "Bowlers", bowlers_path %></li>
-          </ul>
-        </li>
-      <% end %>
-
-
-      <% if master? %>
-        <li><%= link_to "Tournaments", tournaments_path %>
-            <ul>
-              <li><%= link_to 'Show Tournaments', tournaments_path %></li>
-            </ul>
-        </li>
-      <% end %>
-
-      <% current_user.tournaments.each do |tournament| %>
-        <li><%= link_to tournament.name, tournament_select_path(tournament) %>
-          <ul>
-            <li><%= link_to 'Show Squads', tournament_select_path(tournament) %></li>
-          </ul>
-        </li>
-
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<div class="title">
+<div id="top_nav" class="title">
 
     <%if selected_tournament%>
-      <span class="tournament_title">
+      <div id="tournament_title">
         <%=link_to selected_tournament, tournament_select_path(selected_tournament)%>
-      </span>
-      
-        <div id='tournament_actions'>
-
-          <li><%=link_to 'Show Ranking', show_ranking_reports_path %></li>
-          <li><%=link_to 'Show All Squads', tournament_select_path(selected_tournament) %></li>
-          <li><%=link_to 'Search Bowler Entries', search_entries_bowlers_path %></li>
-          <li><%=link_to 'Bowlers', tournament_bowlers_path(selected_tournament)%></li>
-          <%= render 'layouts/admin_links' %>
-        </div>
-
+      </div>
     <%end%>
+
+
+    <% if logged_in? %>
+      <div id="navigation">
+
+        <ul id="menu">
+          <% if master? %>
+            <li><a href="">MASTER</a>
+              <ul>
+                <li><%= link_to "Manage Users", users_url%></li>
+                <li><%= link_to "Game Types", game_types_path%></li>
+                <li><%= link_to 'Show Tournaments', tournaments_path %></li>
+              </ul>
+            </li>
+          <% end %>
+
+          <% if admin? %>
+            <li><a href="">ADMIN</a>
+              <ul>
+              <li><%= link_to "Manage Bowling Associations", bowling_associations_path %></li>
+              <li><%= link_to "Add/Update Bowler Data", bowlers_path %></li>
+              <li><%=link_to 'Generate Tournament Reports', reports_path %></li>
+              </ul>
+            </li>
+          <% end %>
+
+          <li><li><%=link_to 'RANKING', show_ranking_reports_path %></li>
+
+          <li><%=link_to 'SQUADS', tournament_select_path(selected_tournament) %>
+            <ul>
+                <li><%=link_to 'Show All Squads', tournament_select_path(selected_tournament) %></li>
+                <li><%=link_to 'Add New Squad', new_squad_path %></li>
+            </ul>
+          </li>
+          <li><%=link_to 'Search Bowler Entries', search_entries_bowlers_path %></li>
+
+    <!--
+          <% current_user.tournaments.each do |tournament| %>
+            <li><%= link_to tournament.name, tournament_select_path(tournament) %>
+              <ul>
+                <li><%= link_to 'Show Squads', tournament_select_path(tournament) %></li>
+              </ul>
+            </li>
+
+          <% end %>
+    -->
+
+        </ul>
+      </div>
+    <% end %>
 
     <% if selected_squad %>
       <div class="squad_title">

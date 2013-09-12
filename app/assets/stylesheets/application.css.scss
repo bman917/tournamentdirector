@@ -12,10 +12,52 @@
  *= require_tree .
  */
 
- #user_nav {
- 	width: 100%;
+ #top_nav {
+ 	margin: -1em;
+ 	margin-bottom: .1em;
+ 	padding: 1em;
+ 	height: 2.4em;
+
+ 	//background-color:#001935;
+ 	background-color:#253C64;
+ 	
+ 	a {
+ 		color: white;
+ 		text-decoration: none;
+ 	}
+ }
+ #tournament_title {
+ 	margin-top: .25em;
+ 	margin-bottom: 1em;
+ 	font-size: 1em;
+ 	max-width: 800px;
+ }
+
+ #main_menu {
+ 	
+	width: 800px;
+	padding-top: .25em;
+	padding-left: 0;
+	padding-bottom: 1em;
+
+	display: block;
+	font-size: .5em;
+
+	li {
+		display: inline;
+		
+		border: 1px dashed white;
+		padding: .3em;
+
+	}
+}
+
+ #user_info {
+ 	
+ 	float: right;
  	text-align: right;
  }
+
 
  body {
 
@@ -42,46 +84,7 @@ div#flash_alert, div#flash_error {
 	color: #FF0000;
 }
 
-#tournament_actions {
-	width: 800px;
-	padding-top: .25em;
-	padding-left: 0;
-	padding-bottom: 1em;
 
-	display: block;
-	font-size: .6em;
-
-	li {
-		display: inline;
-		margin-left: 1em;
-	}
-}
-
-#quick_links {
-	padding: .25em;
-	margin-top: -30px;
-	margin-right: -35px;
-	margin-bottom: 5px;
-	
-	float: right;
-	border: 1px dashed;
-
-	span {
-		font-size: .75em;
-		display: inline;
-	}
-	ul {
-		padding: 0;
-		margin: 0;
-		display: block;
-
-	}
-	li {
-		padding-right: 1em;
-		margin: 0;
-		display: inline;	
-	}
-}
 
  .main_content{
  	width: 800px;
@@ -106,6 +109,8 @@ div#flash_alert, div#flash_error {
  #notice {
  	margin: 1em;
  }
+
+
 
 .page_nav{
 	margin-left: 1em;
@@ -205,43 +210,7 @@ form {
 
 
 
-#navigation {
-   margin-bottom: 70px;
-   margin-top: 5px;
 
-    ul {
-	  margin: 0;
-	  padding: 0;
-	  list-style: none;
-	}
-	ul li {
-	  display: block;
-	  position: relative;
-	  float: left;
-	}
-	li ul { display: none; }
-	ul li a {
-	  display: block;
-	  text-decoration: none;
-	  color: #ffffff;
-	  border-top: 1px solid #ffffff;
-	  padding: 5px 15px 5px 15px;
-	  background: #2C5463;
-	  margin-left: 1px;
-	  white-space: nowrap;
-	}
-	ul li a:hover { background: #617F8A; }
-	li:hover ul {
-	  display: block;
-	  position: absolute;
-	}
-	li:hover li {
-	  float: none;
-	  font-size: .9em;
-	}
-	li:hover a { background: #617F8A; }
-	li:hover li a:hover { background: #95A9B1; }
-}
 
 div.info {
 	border: 1px dashed;
