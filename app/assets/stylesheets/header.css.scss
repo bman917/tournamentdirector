@@ -1,0 +1,102 @@
+ #user_info {
+ 	
+ 	float: right;
+ 	text-align: right;
+ }
+
+ #top_nav {
+ 	margin: -.76em;
+ 	margin-bottom: .1em;
+ 	padding: 1em;
+ 	height: 2.4em;
+
+ 	//background-color:#001935;
+ 	background-color:#253C64;
+ 	
+ 	a {
+ 		color: white;
+ 		text-decoration: none;
+ 	}
+ }
+
+ #tournament_title {
+ 	margin-top: .25em;
+ 	margin-bottom: 1em;
+ 	font-size: 1em;
+ 	max-width: 800px;
+ }
+
+
+#squad_title{
+}
+
+.header_level_2 {
+	margin-top: -.2em;
+	margin-left: -1.55em;
+	margin-right: -1.55em;
+	padding-top: 1em;
+	font-size: 1em;
+	height: 3em;
+	border-bottom: 1px solid black;
+	background-color: #ECF6FF;
+	div {
+		margin-left: 1em;
+	}
+
+
+	font-weight: bolder;
+
+	a {
+		
+		font-size: 1.5em;
+	}
+	.roll_off_info {
+		display: inline;
+	}
+}
+
+.header_level_3 {
+	background-image: image-url("Arrows-Right-3-icon.png");
+	background-repeat: no-repeat;
+	padding-top: .4em;
+	padding-left: 2em;
+	height: 2em;
+	font-weight: bold;
+	font-size: 1.3em;
+
+}
+
+ .title, h2{
+	font-size: 2em;
+	font-weight: bold;
+	display: block;
+
+
+
+ 	.entries_title{
+	margin-left: 2em;
+	font-size: .70em;
+		a.add, .entries_actions, .entries_actions_disabled{ 
+			margin-top: -1.15em;
+			font-size: .80em;
+			float: right;
+			
+		}
+	}
+
+ 	.games_title{
+ 		margin-top: 1em;
+ 		margin-left: 1.5em;
+ 		font-size: .65em;
+ 	}
+
+	a.add
+	{ 
+		margin-left: 1em;
+		display: inline;
+		font-size: .75em;
+		text-decoration: none;
+	}
+
+
+ }

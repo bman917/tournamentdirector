@@ -77,21 +77,25 @@
       </div>
     <% end %>
 
-    <% if selected_squad %>
-      <div class="squad_title">
-        <%=link_to selected_squad, squad_path(selected_squad.id) %>
-        <div class="roll_off_info">Roll-off <%= selected_squad.time.to_s(:squad_time) %></div>
-        
-      </div>
-    <% end %>
 
-    <% if selected_squad_entry %>
-      <div class="entries_title">
-        <%=link_to selected_squad_entry, squad_entry_path(selected_squad_entry) %>
-      </div>
-    <% end %>
 
 </div>
+
+<% if selected_squad %>
+  <div id="squad_title" class="header_level_2">
+    <div><%=link_to selected_squad, squad_path(selected_squad.id) %></div>
+    <div class="roll_off_info">Roll-off: <%= selected_squad.time.to_s(:squad_time) %></div>
+  </div>
+
+<% if selected_squad_entry %>
+  <div class="header_level_3">
+    <%=link_to selected_squad_entry, squad_entry_path(selected_squad_entry) %>
+  </div>
+<% end %>
+
+<% end %>
+
+
 
 <% flash.each do |name, msg| %>
 <%= content_tag(:div, msg, :id => "flash_#{name}") unless (name == :updated_squad_entry_id || name == :create_notice) %>

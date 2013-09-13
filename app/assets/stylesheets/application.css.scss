@@ -12,53 +12,6 @@
  *= require_tree .
  */
 
- #top_nav {
- 	margin: -1em;
- 	margin-bottom: .1em;
- 	padding: 1em;
- 	height: 2.4em;
-
- 	//background-color:#001935;
- 	background-color:#253C64;
- 	
- 	a {
- 		color: white;
- 		text-decoration: none;
- 	}
- }
- #tournament_title {
- 	margin-top: .25em;
- 	margin-bottom: 1em;
- 	font-size: 1em;
- 	max-width: 800px;
- }
-
- #main_menu {
- 	
-	width: 800px;
-	padding-top: .25em;
-	padding-left: 0;
-	padding-bottom: 1em;
-
-	display: block;
-	font-size: .5em;
-
-	li {
-		display: inline;
-		
-		border: 1px dashed white;
-		padding: .3em;
-
-	}
-}
-
- #user_info {
- 	
- 	float: right;
- 	text-align: right;
- }
-
-
  body {
 
  	a{
@@ -87,6 +40,8 @@ div#flash_alert, div#flash_error {
 
 
  .main_content{
+ 	float: left;
+ 	margin-top: 1em;
  	width: 800px;
  	margin-left: 2em;
 
@@ -124,51 +79,6 @@ div#flash_alert, div#flash_error {
 }
 
 
-.title, h2{
-	font-size: 2em;
-	font-weight: bold;
-	display: block;
-
- 	.tournament_title {
-		margin-bottom: 20px;
-	}
-    .squad_title{
-	 	margin-top: 1em;
-	 	margin-left: 1em;
- 		font-size: .75em;
- 	}
- 	.roll_off_info {
- 		font-size: .65em;
- 		margin: .5em;
- 		font-weight: normal;
- 	}
- 	.entries_title{
-	margin-left: 2em;
-	font-size: .70em;
-		a.add, .entries_actions, .entries_actions_disabled{ 
-			margin-top: -1.15em;
-			font-size: .80em;
-			float: right;
-			
-		}
-	}
-
- 	.games_title{
- 		margin-top: 1em;
- 		margin-left: 1.5em;
- 		font-size: .65em;
- 	}
-
-	a.add
-	{ 
-		margin-left: 1em;
-		display: inline;
-		font-size: .75em;
-		text-decoration: none;
-	}
-
-
- }
 
 
 

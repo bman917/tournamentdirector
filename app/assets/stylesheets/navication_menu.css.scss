@@ -38,25 +38,29 @@
 	ul li a:hover { 
 	background: #253C64; 
 	border-bottom: 2px solid #FB512B;
-	color: #FB512B;
+	color: #FB512B;	
 
 	} 
 
 	li:hover ul {
 	  display: block;
 	  position: absolute;
+
 	}
 	li:hover li {
 	  float: none;
 	  font-size: .9em;
+	  opacity: 0.95;
 	}
 	li:hover a { 
 		background: #253C64; 
+
 
 	}
 	li:hover li a:hover { 
 		background: #253C64; 
 		border-top: 2px solid #FB512B;
 		color: #FB512B;
+
 	}
 }
