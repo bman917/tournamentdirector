@@ -9,7 +9,7 @@
 <body>
 
 <% unless params[:controller] == 'sessions' && params[:action] == 'new' %>
-<div id="user_info">
+<div id="user_info" class="nav_text">
   <% if current_user %>
     Logged in as <%= current_user.email %>.
     <%= link_to "Log out", log_out_path %>
@@ -19,7 +19,7 @@
 </div>
 <% end %>
 
-<div id="top_nav" class="title">
+<div id="top_nav" class="title nav_text">
 
     <%if selected_tournament%>
       <div id="tournament_title">
@@ -82,13 +82,13 @@
 </div>
 
 <% if selected_squad %>
-  <div id="squad_title" class="header_level_2">
+  <div id="squad_title" class="header_level_2 blue_links">
     <div><%=link_to selected_squad, squad_path(selected_squad.id) %></div>
     <div class="roll_off_info">Roll-off: <%= selected_squad.time.to_s(:squad_time) %></div>
   </div>
 
 <% if selected_squad_entry %>
-  <div class="header_level_3">
+  <div class="header_level_3 blue_links">
     <%=link_to selected_squad_entry, squad_entry_path(selected_squad_entry) %>
   </div>
 <% end %>

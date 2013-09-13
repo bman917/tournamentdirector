@@ -1,7 +1,16 @@
  #user_info {
- 	
+ 	font-size: 90%;
  	float: right;
  	text-align: right;
+ 	a { 
+ 		display: block;
+ 		text-decoration: underline;
+ 	}
+ }
+
+.nav_text, .nav_text a{
+ 	color: white;
+ 	text-decoration: none;
  }
 
  #top_nav {
@@ -13,10 +22,7 @@
  	//background-color:#001935;
  	background-color:#253C64;
  	
- 	a {
- 		color: white;
- 		text-decoration: none;
- 	}
+
  }
 
  #tournament_title {
@@ -27,7 +33,8 @@
  }
 
 
-#squad_title{
+.blue_links a {
+		color: #001935;
 }
 
 .header_level_2 {
@@ -39,19 +46,12 @@
 	height: 3em;
 	border-bottom: 1px solid black;
 	background-color: #ECF6FF;
+	font-weight: bold;
 	div {
 		margin-left: 1em;
 	}
-
-
-	font-weight: bolder;
-
 	a {
-		
 		font-size: 1.5em;
-	}
-	.roll_off_info {
-		display: inline;
 	}
 }
 
