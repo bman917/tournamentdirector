@@ -13,7 +13,8 @@ $(document).ready(function() {
 
 
 
-<h1>Listing bowlers</h1>
+<h1>Bowlers</h1>
+<div class="stats">There are <%=number_with_delimiter Bowler.count%> bowlers in the database.</div>
 <div id="quick_links">
     <li><%= link_to('(n) - New Bowler', '', id: "new_bowler_link") if admin?%></li>
     <li><%= link_to('(s) - Search Bowler', '', id: "search_bowler_link")%></li>
