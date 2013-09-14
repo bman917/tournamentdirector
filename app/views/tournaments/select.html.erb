@@ -13,9 +13,8 @@
       <th>Roll-off Time</th>
 
       <% if current_user.admin? %>
-      <th>Add Squad Entry</th>
       <th></th>
-      
+      <th></th>
       <% end %>
 
     </tr>
@@ -28,20 +27,9 @@
       <td><%= squad.name %></td>
       <td><%= squad.time.to_s(:squad_time) %></td>
       <% if current_user.admin? %>
-        <td>
-        
-          <div class="actions">
-              <ul class="actions">
-              <%= render(partial: "game_types/game_type", collection: squad.tournament.game_types, 
-                    locals: {squad: squad}) %>
-              </ul>
-          </div>
 
-
-
-        </td>
         <td><%= link_to 'Edit Squad Details', edit_squad_path(squad) %></td>
-        <!--td><%= link_to 'Delete!!!', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+        <td><%= link_to 'Delete!!!', squad, method: :delete, data: { confirm: 'Permanently Delete this squad and all entries? Are you sure?' } %></td>
 
         <% end %>
 
