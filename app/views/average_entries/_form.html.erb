@@ -14,7 +14,7 @@
   <div class="field">
     <%= f.label :bowler_id %><br />
     <%= f.hidden_field :bowler_id, value: @bowler.id %>
-    <%= f.text_field :bowler_name, value: @bowler.name, disabled: true %>
+    <%= f.text_field :bowler_name, value: @bowler.full_name, disabled: true %>
   </div>
   <%= f.hidden_field :user_id, value: current_user.id%>
 

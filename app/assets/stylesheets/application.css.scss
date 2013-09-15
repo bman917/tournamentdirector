@@ -29,6 +29,7 @@
    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
    font-size: 15px;
    line-height: 18px;
+   width: 1000px;
 }
 
 div#flash_alert, div#flash_error {
@@ -48,7 +49,7 @@ div#flash_alert, div#flash_error {
  .main_content{
  	float: left;
  	margin-top: 1em;
- 	width: 800px;
+ 	
  	margin-left: 2em;
 
  	h1 {
@@ -137,42 +138,4 @@ div.info {
 }
 
 
-table
-{
 
-	margin: 10px;
-	width: 800px;
-	text-align: center;
-	border-collapse: collapse;
-	border-top: 7px solid #9baff1;
-	border-bottom: 7px solid #9baff1;
-	background: #e8edff; 
-}
-
- th
-{
-	font-size: .95em;
-
-	font-weight: bold;
-	padding: 8px;
-	background: #e8edff;
-	border-right: 1px solid #9baff1;
-	border-left: 1px solid #9baff1;
-	color: #039;
-	background: #8EA4EC;
-}
- td
-{
-	padding: 8px;
-	
-	border-right: 1px solid #aabcfe;
-	border-left: 1px solid #aabcfe;
-	color: #669;
-}
-tr:hover { background: #C4CFF6; }
-.e     { background: #CFD8F8; }
-
-
-.updated, tr.updated:hover {
-	background: yellow;
-}
