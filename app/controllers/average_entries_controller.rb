@@ -30,6 +30,9 @@ class AverageEntriesController < ApplicationController
 
     respond_to do |format|
       if @average_entry.save
+
+        @average_entry.bowler.reload.record :update_average, current_user, selected_tournament
+
         format.html { redirect_to bowlers_path, notice: 'Average entry was successfully created.' }
         format.json { render action: 'show', status: :created, location: @average_entry }
       else

@@ -1,4 +1,5 @@
 class Bowler < ActiveRecord::Base
+  include PublicActivity::Common
   scope :by_gender, ->(gender) { where(gender: gender) unless (gender == 'A') }
 
   validates :name, :last_name, presence: true
@@ -28,7 +29,7 @@ class Bowler < ActiveRecord::Base
 
   def pbc_average
     if average_entries.any?
-      average_entries.first.average 
+      average_entries.last.average 
     else
       "No PBC Average"
     end
@@ -82,6 +83,28 @@ class Bowler < ActiveRecord::Base
 
   def average(tournament)
     games_in_tournament(tournament).average(:score).to_i
+  end
+
+  def details
+    "[ID-#{id}] #{full_name}, Ave:#{pbc_average}, #{pbc_classification}"
+  end
+
+  def record(action, user_doing_the_action, tournament)
+
+    detail = self.details
+
+    if action == :update
+      description = "Updated Bowler"
+    elsif action == :destroy
+      description = "Deleted Bowler"
+    elsif action == :create
+      description = "Added Bowler"
+    elsif action == :update_average
+      description = "Updated Average"
+    end
+
+    self.create_activity action, owner: user_doing_the_action, tournament_id: tournament.id, parameters: {description: description, details: detail, tournament: tournament.name}
+        
   end
 
 end

@@ -71,7 +71,11 @@ class BowlersController < ApplicationController
     
     respond_to do |format|
       if @bowler.save
+
         @bowler.average_entries.create(average: bowler_params[:pbc_average])
+
+        @bowler.record :create, current_user, selected_tournament
+
         flash[:create_notice] = "Bowler #{@bowler.name} has successfully been added."
         format.html { redirect_to @bowler }
         format.js { render 'create' }
@@ -88,6 +92,9 @@ class BowlersController < ApplicationController
   def update
     respond_to do |format|
       if @bowler.update(bowler_params)
+
+        @bowler.record :update, current_user, selected_tournament
+        
         format.html { redirect_to @bowler, notice: 'Bowler was successfully updated.' }
         format.json { head :no_content }
       else
@@ -100,6 +107,7 @@ class BowlersController < ApplicationController
   # DELETE /bowlers/1
   # DELETE /bowlers/1.json
   def destroy
+    @bowler.record :destroy, current_user, selected_tournament
     @bowler.destroy
     respond_to do |format|
       format.html { redirect_to bowlers_url }
