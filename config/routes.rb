@@ -1,5 +1,6 @@
 Tournamentdirector::Application.routes.draw do
 
+  resources :activities
   resources :reports do
     get :show_ranking, on: :collection
   end

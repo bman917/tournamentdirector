@@ -48,3 +48,5 @@ end
 gem 'seedbank', '>=0.3.0.pre'
 gem "jquery-ui-rails", "~> 4.0.4"
 gem 'will_paginate', '~> 3.0'
+
+gem 'public_activity'

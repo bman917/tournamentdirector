@@ -1,4 +1,6 @@
 class Squad < ActiveRecord::Base
+  include PublicActivity::Common
+  
   belongs_to :tournament
   belongs_to :user
   has_many :squad_entries
