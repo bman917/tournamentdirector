@@ -17,7 +17,11 @@ class TournamentsController < ApplicationController
 
     #This if statement is needed becuase "tournaments#index". Aparently, the ApplicationController before action does not work on the root.
     if current_user
-      @tournaments = current_user.tournaments
+      if current_user.master?
+        @tournaments = Tournament.all
+      else
+        @tournaments = current_user.tournaments
+      end
     else
       require_login
     end

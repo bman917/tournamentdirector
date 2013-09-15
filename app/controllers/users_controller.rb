@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :add_tournament, :assign_tournament, :unassign_tournament]
+  before_action :user_is_master?
 
   def unassign_tournament
     tournament = Tournament.find(params[:tournament_id])
-    @user.tournaments.delete tournament
+    @user.tournaments.delete(tournament)
     redirect_to @user
   end
 

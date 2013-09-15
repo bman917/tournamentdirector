@@ -1,4 +1,6 @@
 class SquadEntry < ActiveRecord::Base
+  include PublicActivity::Common
+
 #  scope :singles, find_by_game_type(GameType.first)
   default_scope { order("total_pinfalls DESC") }
   has_and_belongs_to_many :bowlers, autosave: true
@@ -21,6 +23,11 @@ class SquadEntry < ActiveRecord::Base
 
   def games_recorded_by
     games.first.user if has_games?
+  end
+
+  def games_to_s
+    games.map{ |g| g.score}
+
   end
 
   def zero_total
@@ -144,5 +151,30 @@ class SquadEntry < ActiveRecord::Base
     end
     
     bowlers << bowler if bowler
+  end
+
+  def detail
+    detail = self.title
+    detail += " #{games.map{|g|g.score}.to_s}" if has_games?
+  end
+
+  def record(action, user_doing_the_action)
+
+    detail = self.detail
+
+    if action == :update
+      description = "Updated Squad Entry"
+    elsif action == :destroy
+      description = "Deleted Squad Entry"
+    elsif action == :create
+      description = "Added Squad Entry"
+    elsif action == :create_game
+      description = "Added Games"
+    elsif action == :deleted_games
+      description = "Deleted Games!"
+    end
+
+    self.create_activity action, owner: user_doing_the_action, tournament_id: tournament.id, parameters: {description: description, details: detail, tournament: tournament.name}
+        
   end
 end

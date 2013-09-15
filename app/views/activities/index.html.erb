@@ -1,0 +1,25 @@
+  <div class="activity">
+
+  	<table>
+  	  <tr>
+  	  	<th>Date/Time</th>
+  		<th>User</th>
+  		<th>Action</th>
+  		<th>Details</th>
+  	  </tr>
+
+<% @activities.each do |activity| %>
+	  <tr>
+	  	<td><%=activity.created_at.to_formatted_s(:short)%></td>
+	  	<td><%=activity.owner%></td>
+	  	<td><%= activity.parameters[:description]%></td>
+    	<td>
+    		<%=activity.parameters[:details]%>
+		    <% if activity.trackable %>
+		    	<%=link_to "(View)", activity.trackable %>
+		    <% end %>
+    	</td>
+  	  </tr>
+<% end %>
+
+</div>

@@ -5,4 +5,5 @@ require File.expand_path('../application', __FILE__)
 Tournamentdirector::Application.initialize!
 
 Time::DATE_FORMATS[:squad_time] = "%B %d %I:%M %p"
+Time::DATE_FORMATS[:activity_time] = "%B %d, %I:%M %p"
 

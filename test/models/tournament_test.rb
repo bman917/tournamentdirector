@@ -17,7 +17,6 @@ class TournamentTest < ActiveSupport::TestCase
      	@tournament.destroy
      	assert_record_not_found {Squad.find(squad1)}
      	assert_equal 0, @tournament.squads.size
-
 	end
 
 	def assert_record_not_found(&block)

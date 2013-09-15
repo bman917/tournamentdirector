@@ -42,13 +42,4 @@ class User < ActiveRecord::Base
   def encoder?
     admin? || self.role == 'ENCODER'
   end
-
-  def tournaments
-    if master?
-      Tournament.all
-    else 
-      super
-    end
-  end
-    
 end

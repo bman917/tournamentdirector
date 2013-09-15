@@ -5,6 +5,7 @@ class SquadEntriesController < ApplicationController
   before_action :user_is_encoder?, except: [:show]
 
   def delete_games
+    @squad_entry.record :deleted_games, current_user
     @squad_entry.games.clear
     @squad_entry.zero_total
     render 'show'
@@ -54,6 +55,10 @@ class SquadEntriesController < ApplicationController
       if session[:last_action] == :squad_entry_games
         path = squad_entry_path @squad_entry
       end
+
+      @squad_entry.reload
+      @squad_entry.record :create_game, current_user
+
       redirect_to path, notice: 'Game was successfully created.'
     end
   rescue Exception => e
@@ -116,6 +121,8 @@ class SquadEntriesController < ApplicationController
     respond_to do | format |
 
       if @squad_entry.save
+
+        @squad_entry.record :create, current_user
         flash[:create_notice] = "Entry #{@squad_entry} has successfully been added."
         format.html { redirect_to flash_update(@squad_entry), notice: 'Squad entry was successfully created.'}
         format.js
@@ -144,6 +151,7 @@ class SquadEntriesController < ApplicationController
   # DELETE /squad_entries/1
   # DELETE /squad_entries/1.json
   def destroy
+    @squad_entry.record :destroy, current_user
     @squad_entry.destroy
     redirect_to squad_path(@squad_entry.squad)
   end

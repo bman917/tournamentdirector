@@ -1,0 +1,3 @@
+<% flash.each do |name, msg| %>
+<%= content_tag(:div, msg, :id => "flash_#{name}") unless (name == :updated_squad_entry_id || name == :create_notice) %>
+<% end %>

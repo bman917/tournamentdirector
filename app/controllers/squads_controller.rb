@@ -77,6 +77,9 @@ class SquadsController < ApplicationController
 
     respond_to do |format|
       if @squad.save
+        
+        @squad.record(:create, current_user)
+
         format.html { redirect_to tournament_select_path(selected_tournament), notice: 'Squad was successfully created.' }
         format.json { render action: 'show', status: :created, location: @squad }
       else
@@ -91,6 +94,9 @@ class SquadsController < ApplicationController
   def update
     respond_to do |format|
       if @squad.update(squad_params)
+
+        @squad.record(:update, current_user)
+        
         format.html { redirect_to tournament_select_path(@squad.tournament), notice: 'Squad was successfully updated.' }
         format.json { head :no_content }
       else
@@ -104,7 +110,10 @@ class SquadsController < ApplicationController
   # DELETE /squads/1.json
   def destroy
     tournament = @squad.tournament
+    @squad.record(:destroy, current_user)
     @squad.destroy
+    
+
     respond_to do |format|
       format.html { redirect_to tournament_select_path(tournament) }
       format.json { head :no_content }
