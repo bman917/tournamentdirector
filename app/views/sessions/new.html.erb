@@ -1,13 +1,38 @@
-<%=javascript_tag do %>
+<html>
+<head>
+  <title>Bowling Tournament Director</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
 
-$(document).ready(function(){
-  $('#email').focus();
-});
 
+  <%=javascript_tag do %>
+
+  $(document).ready(function(){
+    $('#email').focus();
+  });
+
+  <% end %>
+
+</head>
+<body>
+
+<div id="top_nav" class="title nav_text">
+  <div id="tournament_title">Bowling Tournament Director</div>
+
+    <div id="navigation">
+      <ul id="menu">
+        <li><a href="">Log In</a></li>
+      </ul>
+    </div>
+</div>
+
+
+<% flash.each do |name, msg| %>
+<%= content_tag(:div, msg, :id => "flash_#{name}") unless (name == :updated_squad_entry_id || name == :create_notice) %>
 <% end %>
 
-<h1 class="title">Bowling Tournament Director</h1>
-<h2>Log In</h2>
+
 
 <%= form_tag sessions_path do %>
   <p>
@@ -20,3 +45,6 @@ $(document).ready(function(){
   </p>
   <p class="button"><%= submit_tag "Log in" %></p>
 <% end %>
+
+</body>
+</html>
