@@ -42,9 +42,7 @@ namespace :tournament do
 
 			bowler.average_entries.destroy
 
-			bowler.average_entries.create(average: average, average_type: 'PBC', total_pinfalls: total_pinfalls, games_played: games_played)
-
-
+			bowler.average_entries.create(average: average, average_type: 'PBC', total_pinfalls: total_pinfalls, games_played: games_played, user_id: 0)
 		end
 	end
 

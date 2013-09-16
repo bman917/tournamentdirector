@@ -2,6 +2,6 @@ $('#error_explanation').remove();
 $('#notice').empty().append("<%= flash[:create_notice] %>");
 $(':text').val("");
 $('#bowler_pbc_average').val("");
-$('#bowler_name').val("").focus();
+$('#bowler_last_name').val("").focus();
 $('#new_bowler_row').after("<%= j render @bowler %>");
 removeAdding('<%=@bowler.name%>');

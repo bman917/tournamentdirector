@@ -4,7 +4,7 @@ class AverageEntriesController < ApplicationController
   # GET /average_entries
   # GET /average_entries.json
   def index
-    @average_entries = AverageEntry.all
+    @average_entries = AverageEntry.all.paginate(page: params[:page])
   end
 
   # GET /average_entries/1
@@ -33,7 +33,7 @@ class AverageEntriesController < ApplicationController
 
         @average_entry.bowler.reload.record :update_average, current_user, selected_tournament
 
-        format.html { redirect_to bowlers_path, notice: 'Average entry was successfully created.' }
+        format.html { redirect_to bowlers_path, notice: "Average for #{@average_entry.bowler} was successfully updated." }
         format.json { render action: 'show', status: :created, location: @average_entry }
       else
         format.html { render action: 'new' }
@@ -47,7 +47,7 @@ class AverageEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @average_entry.update(average_entry_params)
-        format.html { redirect_to @average_entry, notice: 'Average entry was successfully updated.' }
+        format.html { redirect_to @average_entry, notice: "Average for #{@average_entry.bowler} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -1,9 +1,13 @@
 <h1>Listing average_entries</h1>
 
+<%= will_paginate @average_entries %>
 <table>
   <thead>
     <tr>
       <th>Average</th>
+      <th>Type</th>
+      <th>Total Pinfalls</th>
+      <th>Games Played</th>
       <th>Bowler</th>
       <th>Entered By</th>
       <th>Record date</th>
@@ -18,10 +22,13 @@
     <% @average_entries.each do |average_entry| %>
     <tr>
       <td><%= average_entry.average %></td>
-      <td><%= average_entry.bowler.name %></td>
-      <td><%= average_entry.user.email %></td>
-      <td><%= average_entry.created_at %></td>
-      <td><%= average_entry.updated_at %></td>
+      <td><%= average_entry.average_type %></td>
+      <td><%= number_with_delimiter average_entry.total_pinfalls %></td>
+      <td><%= number_with_delimiter average_entry.games_played %></td>
+      <td><%= average_entry.bowler.full_name %></td>
+      <td><%= average_entry.user.email if average_entry.user%></td>
+      <td><%= average_entry.created_at.to_formatted_s(:short) %></td>
+      <td><%= average_entry.updated_at.to_formatted_s(:short) %></td>
       <td><%= link_to 'Show', average_entry %></td>
       <td><%= link_to 'Edit', edit_average_entry_path(average_entry) %></td>
       <td><%= link_to 'Delete', average_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,6 +36,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @average_entries %>
 
 <br />
 

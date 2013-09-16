@@ -1,6 +1,7 @@
 
 after "development:tournaments" do
 	User.delete_all
+	User.create(id: 0, email: 'install_script', password: 'password', role: 'INSTALL_SCRIPT')
 	User.create(id: 1, email: 'bman917@yahoo.com', password: 'password', role: 'MASTER')
 	User.create(id: 3, email: 'admin',             password: 'admin', role: 'ADMIN')
 	User.create(id: 4, email: 'pepichan@yahoo.com',password: 'password', role: 'ADMIN')

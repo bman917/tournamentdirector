@@ -95,7 +95,7 @@ class BowlersController < ApplicationController
 
         @bowler.record :update, current_user, selected_tournament
         
-        format.html { redirect_to @bowler, notice: 'Bowler was successfully updated.' }
+        format.html { redirect_to @bowler, notice: "Bowler [#{@bowler.full_name}] was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -107,10 +107,11 @@ class BowlersController < ApplicationController
   # DELETE /bowlers/1
   # DELETE /bowlers/1.json
   def destroy
+    name = @bowler.full_name
     @bowler.record :destroy, current_user, selected_tournament
     @bowler.destroy
     respond_to do |format|
-      format.html { redirect_to bowlers_url }
+      format.html { redirect_to bowlers_url, notice: "Bowler #{name} has been successfully deleted." }
       format.json { head :no_content }
     end
   end

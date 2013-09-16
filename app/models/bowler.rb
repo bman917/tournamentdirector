@@ -86,7 +86,7 @@ class Bowler < ActiveRecord::Base
   end
 
   def details
-    "[ID-#{id}] #{full_name}, Ave:#{pbc_average}, #{pbc_classification}"
+    "[ID-#{id}] #{full_name}, Ave:#{latest_average}, #{pbc_classification}"
   end
 
   def record(action, user_doing_the_action, tournament)
