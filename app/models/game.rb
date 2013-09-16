@@ -13,6 +13,10 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def has_hdcp?
+    hdcp && hdcp > 0
+  end
+
   def to_s
   	"#{bowler} - #{score}"
   end

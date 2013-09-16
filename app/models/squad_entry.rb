@@ -40,7 +40,7 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def update_total!
-    self.total_pinfalls = games.sum("score")
+    self.total_pinfalls = games.sum("score") + games.sum("hdcp")
     self.save!
   end
 

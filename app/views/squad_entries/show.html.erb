@@ -29,11 +29,14 @@
       <tr>
           <td><%=bowler%></td>
         <% @squad_entry.games_of_bowler(bowler.id).each do | game| %>
-          <td><%="#{game.score}"%></td>
+          <td><%=game.score%> <%="+ #{game.hdcp}" if game.has_hdcp?%></td>
         <% end %>
       </tr>
   <% end %>
   </table>
+  <div class="total_pinfalls">
+    Total Pinfalls: <%=@squad_entry.total_pinfalls%>
+  </div>
 <% else %>
 
   <table id="bowlers">

@@ -1,12 +1,7 @@
 <%=javascript_tag do %>
 $(document).ready(function () {
-    $('#bowler_full_name').autocomplete({
-        source: $('#bowler_full_name').data('autocomplete-source'),
-        minLength: 3
-      }
-    );
 
-    $('#bowler_full_name').focus();
+    $('#bowler_fname').focus();
   }
 );
 <% end %>
@@ -17,7 +12,7 @@ $(document).ready(function () {
 
 <%= form_tag(search_entries_bowlers_path, method: "get") do %>
   <%= label_tag(:bowler_name, "Bowler Name: ") %>
-  <%= search_field(:bowler, :full_name, data: {autocomplete_source: names_bowlers_path})  %>
+  <%= search_field(:bowler, :name)  %>
   <%= submit_tag("Search") %>
 <% end %>
 

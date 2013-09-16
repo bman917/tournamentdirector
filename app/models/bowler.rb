@@ -23,8 +23,12 @@ class Bowler < ActiveRecord::Base
     end
   end
 
+  def full_name_with_ave
+    "#{name} #{middle_name} #{last_name} [ave #{pbc_average}]".squeeze(' ')
+  end
+
   def full_name
-    "#{name} #{middle_name} #{last_name}".squeeze(' ')
+    "#{name} #{middle_name} #{last_name} [ave #{pbc_average}]".squeeze(' ')
   end
 
   def pbc_average

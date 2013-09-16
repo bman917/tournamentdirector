@@ -35,6 +35,7 @@ class SquadEntriesController < ApplicationController
             squad_entry_id: @squad_entry.id,
                    user_id: session[:user_id],
                      score: params["bowler_#{bowler.id}_game_#{i}"],
+                      hdcp: params["bowler_#{bowler.id}_hdcp"],
                      notes: "#{i}")
 
           errors = @game.errors

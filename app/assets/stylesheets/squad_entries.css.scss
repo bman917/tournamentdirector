@@ -1,14 +1,25 @@
 // Place all the styles related to the SquadEntries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.average_column {
+	width: 3.1em;
+}
+.total_pinfalls {
+	float: right;
+	margin-right: 3em;
+	font-weight: bold;
+	font-size: 110%;
+}
 #bowlers {
 	tr, td {
 		padding: 0;
 		margin: 1px;	}
 }
 
-.game_input input {
-	max-width: 4em;
+.game_input, .hdcp_input {
+	input {
+	  max-width: 4em;
+	}
 }
 
 .details {

@@ -11,6 +11,11 @@ class BowlersController < ApplicationController
 
   end
 
+  def names_with_ave
+    @bowlers = Bowler.order(:name).where('name LIKE ? or last_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
+    render json: @bowlers.map(&:full_name_with_ave)
+  end
+
   def names
     @bowlers = Bowler.order(:name).where('name LIKE ? or last_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
     render json: @bowlers.map(&:full_name)
