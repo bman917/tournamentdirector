@@ -1,5 +1,7 @@
 class BowlerClass < ActiveRecord::Base
   belongs_to :bowlers
+  has_and_belongs_to_many :tournaments, -> { uniq }  
+  
 
   def to_s
   	name

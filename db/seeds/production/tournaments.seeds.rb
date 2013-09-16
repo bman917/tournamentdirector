@@ -16,3 +16,10 @@ open_squad = @sletba_sept_monthly.squads.create(name: 'OPEN Division', time: '20
 class_a   = @sletba_sept_monthly.squads.create(name: 'CLASS A', time: '2013-09-29 13:00')
 class_b_c = @sletba_sept_monthly.squads.create(name: 'CLASS B & C', time: '2013-09-29 15:00')
 
+@sletba_open.users << User.find(1)
+@sletba_open.users << User.find(5)
+@sletba_open.users << User.find(7)
+@sletba_open.users << User.find(3)
+
+
+@sletba_open.bowler_classes << BowlerClass.where(id: [5,6,7,8,9])

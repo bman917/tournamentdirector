@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916102548) do
+ActiveRecord::Schema.define(version: 20130916121748) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -51,9 +51,15 @@ ActiveRecord::Schema.define(version: 20130916102548) do
     t.integer  "bowlers_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "gender",     default: "A"
   end
 
   add_index "bowler_classes", ["bowlers_id"], name: "index_bowler_classes_on_bowlers_id"
+
+  create_table "bowler_classes_tournaments", id: false, force: true do |t|
+    t.integer "bowler_class_id"
+    t.integer "tournament_id"
+  end
 
   create_table "bowlers", force: true do |t|
     t.string   "name"

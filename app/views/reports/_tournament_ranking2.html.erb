@@ -1,4 +1,4 @@
-<% BowlerClass.all.each do | category | %>
+<% selected_tournament.bowler_classes.each do | category | %>
   <div class=" category <%=category.to_css_class%>">
       <h1><%=category.name%></h1>
       

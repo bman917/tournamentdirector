@@ -1,0 +1,27 @@
+<h1>Listing bowler_classes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bowler_classes.each do |bowler_class| %>
+    <tr>
+      <td><%=bowler_class.name%></td>
+      <td><%= link_to 'Show', bowler_class %></td>
+      <td><%= link_to 'Edit', edit_bowler_class_path(bowler_class) %></td>
+      <td><%= link_to 'Destroy', bowler_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Bowler class', new_bowler_class_path %>

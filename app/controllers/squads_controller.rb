@@ -32,7 +32,7 @@ class SquadsController < ApplicationController
     @presenter = Squads::ShowPresenter.new(@squad)
 
 
-    @category =  params[:bowler_class_name] || 'OPEN'
+    @category =  params[:bowler_class_name] || selected_tournament.bowler_classes.first.name
     @game_type = GameType.find_by_name(params[:game_type_name]) || selected_tournament.game_types.first
     
     set_selected_bowler_class_and_game_type(@category, @game_type.name)

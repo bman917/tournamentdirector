@@ -9,7 +9,7 @@ class Squads::ShowPresenter
 	end
 
 	def bowler_classes
-		@bowler_class ||= BowlerClass.all
+		@bowler_class ||= @squad.tournament.bowler_classes
 	end
 
 	def game_types

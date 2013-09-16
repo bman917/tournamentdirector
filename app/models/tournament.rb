@@ -4,6 +4,8 @@ class Tournament < ActiveRecord::Base
   has_many :squad_entries, dependent: :destroy
   has_and_belongs_to_many :users
   has_and_belongs_to_many :game_types, -> { uniq }
+  has_and_belongs_to_many :bowler_classes, -> { uniq }
+  
 
 
   def to_s
