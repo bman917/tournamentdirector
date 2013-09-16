@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130915162644) do
+ActiveRecord::Schema.define(version: 20130916032635) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -117,11 +117,13 @@ ActiveRecord::Schema.define(version: 20130915162644) do
     t.integer  "total_pinfalls", default: 0
     t.integer  "games_count",    default: 0
     t.integer  "tournament_id"
+    t.integer  "user_id"
   end
 
   add_index "squad_entries", ["game_type_id"], name: "index_squad_entries_on_game_type_id"
   add_index "squad_entries", ["squad_id"], name: "index_squad_entries_on_squad_id"
   add_index "squad_entries", ["tournament_id"], name: "index_squad_entries_on_tournament_id"
+  add_index "squad_entries", ["user_id"], name: "index_squad_entries_on_user_id"
 
   create_table "squads", force: true do |t|
     t.string   "name"

@@ -156,6 +156,7 @@ class SquadEntry < ActiveRecord::Base
   def detail
     detail = self.title
     detail += " #{games.map{|g|g.score}.to_s}" if has_games?
+    return detail
   end
 
   def record(action, user_doing_the_action)

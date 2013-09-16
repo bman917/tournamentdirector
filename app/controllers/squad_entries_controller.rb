@@ -165,7 +165,7 @@ class SquadEntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def squad_entry_params
-      params.require(:squad_entry).permit(:category, :game_type_id, :bowlers, :squad_id)
+      params.require(:squad_entry).permit(:category, :game_type_id, :bowlers, :squad_id, :user_id)
     end
 
     def flash_update(squad_entry)
