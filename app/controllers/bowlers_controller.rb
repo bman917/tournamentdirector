@@ -41,7 +41,7 @@ class BowlersController < ApplicationController
   def index
     @bowlers = Bowler.search(params[:search]).order(:last_name).paginate(page: params[:page])
     @bowler = Bowler.new
-    clear_selected_tournament
+    clear_selected_squad
   end
 
 

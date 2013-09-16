@@ -13,7 +13,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments
   # GET /tournaments.json
   def index
-    clear_selected_tournament
+    clear_selected_squad
 
     #This if statement is needed becuase "tournaments#index". Aparently, the ApplicationController before action does not work on the root.
     if current_user

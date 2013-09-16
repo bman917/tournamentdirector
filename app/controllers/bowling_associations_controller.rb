@@ -2,12 +2,14 @@ class BowlingAssociationsController < ApplicationController
   include SessionsHelper
 
   before_action :set_bowling_association, only: [:show, :edit, :update, :destroy]
+  before_action :user_is_admin?
+  before_action :user_is_master?, only: [:destroy]
 
   # GET /bowling_associations
   # GET /bowling_associations.json
   def index
     @bowling_associations = BowlingAssociation.all
-    clear_selected_tournament
+    clear_selected_squad
   end
 
   def show_entries
@@ -36,6 +38,8 @@ class BowlingAssociationsController < ApplicationController
 
     respond_to do |format|
       if @bowling_association.save
+
+        @bowling_association.record :create, current_user, selected_tournament
         format.html { redirect_to @bowling_association, notice: 'Bowling association was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bowling_association }
       else
@@ -50,6 +54,9 @@ class BowlingAssociationsController < ApplicationController
   def update
     respond_to do |format|
       if @bowling_association.update(bowling_association_params)
+
+        @bowling_association.record :update, current_user, selected_tournament
+
         format.html { redirect_to @bowling_association, notice: 'Bowling association was successfully updated.' }
         format.json { head :no_content }
       else
@@ -62,7 +69,9 @@ class BowlingAssociationsController < ApplicationController
   # DELETE /bowling_associations/1
   # DELETE /bowling_associations/1.json
   def destroy
+    @bowling_association.record :destroy, current_user, selected_tournament
     @bowling_association.destroy
+
     respond_to do |format|
       format.html { redirect_to bowling_associations_url }
       format.json { head :no_content }
