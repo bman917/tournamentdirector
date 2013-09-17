@@ -95,7 +95,7 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def bowler_names
-    bowlers.map(&:full_name_with_ave).to_sentence
+    bowlers.map(&:cached_full_name_with_ave).to_sentence
     #bowlers.to_sentence
   end
 
@@ -177,6 +177,7 @@ class SquadEntry < ActiveRecord::Base
     end
 
     self.create_activity action, owner: user_doing_the_action, tournament_id: tournament.id, parameters: {description: description, details: detail, tournament: tournament.name}
+    squad.flush_cached_squad_entries
         
   end
 end

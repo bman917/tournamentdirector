@@ -5,8 +5,12 @@ class Squad < ActiveRecord::Base
   belongs_to :user
   has_many :squad_entries
 
+  def flush_cached_squad_entries
+    Rails.cache.delete([self, tournament, "squad_entries"])
+  end
+
   def cached_squad_entries
-    Rails.cache.fetch([self, squad_entries.size, squad_entries.sum(:total_pinfalls), "squad_entries"]) do
+    Rails.cache.fetch([self, tournament, "squad_entries"]) do
       self.squad_entries.includes(:game_type).includes(bowlers: [:average_entries]).to_a #.paginate(page: @page, :per_page => 400)
     end 
   end

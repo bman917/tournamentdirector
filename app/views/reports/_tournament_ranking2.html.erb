@@ -1,12 +1,12 @@
-<% selected_tournament.bowler_classes.each do | category | %>
+<% @tournament.bowler_classes.each do | category | %>
   <div class=" category <%=category.to_css_class%>">
       <h1><%=category.name%></h1>
       
-      <% selected_tournament.game_types.each do | game_type | %>
+      <% @tournament.game_types.each do | game_type | %>
 
         <div class="game_type <%=game_type.to_css_class%>">
             <h2><%=game_type%></h2>
-            <% if RankingUtil.get_ranking(selected_tournament, category, game_type, 10).size == 0 %>
+            <% if RankingUtil.get_ranking(@tournament, category, game_type, 10).size == 0 %>
                   <div class="no_games">NO GAME ENTRIES</div>
             <% else %>
             
@@ -16,7 +16,7 @@
                       <th>Total</th>
                     </tr>
 
-                    <% RankingUtil.get_ranking(selected_tournament, category, game_type, 10).each do | squad_entry | %>
+                    <% RankingUtil.get_ranking(@tournament, category, game_type, 10).each do | squad_entry | %>
                       <tr>
                         <td class="bowler_names">
                           <%= link_to squad_entry.bowler_names, squad_entry_path(squad_entry)%>
