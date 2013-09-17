@@ -27,6 +27,10 @@ class Bowler < ActiveRecord::Base
     "#{name} #{middle_name} #{last_name} [ave #{pbc_average}]".squeeze(' ')
   end
 
+  def cached_full_name_with_ave
+    Rails.cache.fetch([self,"full_name"]) { full_name_with_ave }
+  end
+
   def full_name
     "#{name} #{middle_name} #{last_name} [ave #{pbc_average}]".squeeze(' ')
   end

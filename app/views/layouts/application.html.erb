@@ -9,6 +9,8 @@
 <body>
 
 <% unless params[:controller] == 'sessions' && params[:action] == 'new' %>
+
+
 <div id="user_info" class="nav_text">
   <% if current_user %>
     Logged in as <%= current_user.email %>.
@@ -18,6 +20,7 @@
   <% end %>
 </div>
 <% end %>
+
 
 <div id="top_nav" class="title nav_text">
 

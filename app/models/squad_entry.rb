@@ -95,7 +95,8 @@ class SquadEntry < ActiveRecord::Base
   end
 
   def bowler_names
-    bowlers.to_sentence
+    bowlers.map(&:full_name_with_ave).to_sentence
+    #bowlers.to_sentence
   end
 
   def <=>(other)

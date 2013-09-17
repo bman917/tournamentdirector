@@ -29,7 +29,7 @@ class SquadsController < ApplicationController
   def show_by_category
 
     @squad ||= set_squad
-    @presenter = Squads::ShowPresenter.new(@squad)
+    @presenter = Squads::ShowPresenter.new(@squad, params[:page])
 
 
     @category =  params[:bowler_class_name] || selected_tournament.bowler_classes.first.name

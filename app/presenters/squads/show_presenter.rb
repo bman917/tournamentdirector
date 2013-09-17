@@ -1,11 +1,12 @@
 class Squads::ShowPresenter 
 
-	def initialize(squad)
+	def initialize(squad, page)
 	  @squad = squad
+	  @page = page
 	end
 
 	def squad_entries
-		@squad_entries ||= @squad.squad_entries.includes(:game_type).includes(:bowlers).includes(:games)
+		@squad_entries ||= @squad.cached_squad_entries
 	end
 
 	def bowler_classes

@@ -8,7 +8,7 @@ module RankingUtil
 		list = []
 		processed_bowlers = []
 
-		entries = tournament.squad_entries.where(category: category.name, game_type: game_type).limit(limit)
+		entries = tournament.squad_entries.where(category: category.name, game_type: game_type).includes(:bowlers).limit(limit)
 		entries.each do | e |
 			unless processed_bowlers.include? e.bowlers
 				list << e
