@@ -52,6 +52,7 @@ Tournamentdirector::Application.routes.draw do
     get 'show_entries'
     get 'search_entries', on: :collection
     post 'search_entries', on: :collection
+    get 'names_with_ave', on: :collection
     get 'names', on: :collection
     get 'average'
   end

@@ -7,6 +7,13 @@ class BowlerTest < ActiveSupport::TestCase
 		@bowler_one = bowlers(:juan)
 	end
 
+	test "Test that search works" do
+		Bowler.new(name: 'ABCDE', middle_name: 'FGHIJ', last_name: 'KLMNOP').save!
+		assert(Bowler.search('ABCDE KLMN').first, "Search is not working")
+		assert(Bowler.search('XXXXX').first == nil, "Search is not working")
+
+	end
+
 	test "Do not allow duplicate name" do
 		Bowler.new(name: 'Bowler One').save
 		assert(Bowler.new(name: 'Bowler One').save == false, "Duplicate bowler name should not be allowed.")

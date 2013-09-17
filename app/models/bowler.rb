@@ -32,7 +32,7 @@ class Bowler < ActiveRecord::Base
   end
 
   def full_name
-    "#{name} #{middle_name} #{last_name} [ave #{pbc_average}]".squeeze(' ')
+    "#{name} #{middle_name} #{last_name}".squeeze(' ')
   end
 
   def pbc_average
@@ -52,11 +52,14 @@ class Bowler < ActiveRecord::Base
   end
 
   def self.search(search)
+    result = all
     if search
-      where('name LIKE ? or last_name LIKE ?' , "%#{search}%", "%#{search}%")
-    else
-      scoped
+      search.squeeze(' ').split(' ').each do | term |
+        result = result.where('name LIKE ? or last_name LIKE ?' , "%#{term}%", "%#{term}%")
+      end
     end
+
+    result
   end
 
   def latest_average

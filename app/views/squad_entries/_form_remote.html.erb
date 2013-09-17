@@ -25,7 +25,7 @@
 	<%  (1..@number_of_bowlers).each do |i| %>
 	   
 	      <%= f.label "Bowler #{i}" %>:
-	      <%= text_field :bowlers, i, data: {autocomplete_source: names_bowlers_path}, class: 'bowler_name' %>
+	      <%= text_field :bowlers, i, data: {autocomplete_source: names_with_ave_bowlers_path}, class: 'bowler_name' %>
 	      <!--%= collection_select(:bowlers, i, Bowler.by_gender(@squad_entry.game_type.gender), :id, :name)%--></br>
 	<%  end %>
 	   </div>

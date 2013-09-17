@@ -26,7 +26,7 @@ class BowlersController < ApplicationController
     clear_selected_squad
     if params[:bowler]
       @bowler = Bowler.search(bowler_params[:name])
-      if @bowler
+      if @bowler.first
         @squad_entries = @bowler.first.get_tournament_entries(selected_tournament)
         render 'show_entries'
       else
