@@ -147,7 +147,7 @@ class SquadEntry < ActiveRecord::Base
       fname = bowler_name_or_id.split(' ').first if bowler_name_or_id
       @bowlers = Bowler.order(:name).where('name LIKE ?', "%#{fname}%")
       @bowlers.each do | b |
-        bowler = b if b.full_name == bowler_name_or_id
+        bowler = b if (b.full_name == bowler_name_or_id || b.cached_full_name_with_ave == bowler_name_or_id)
       end
     end
     

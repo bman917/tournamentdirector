@@ -27,7 +27,11 @@ class BowlersController < ApplicationController
     if params[:bowler]
       @bowler = Bowler.search(bowler_params[:name])
       if @bowler.first
-        @squad_entries = @bowler.first.get_tournament_entries(selected_tournament)
+        @squad_entries = []
+        @bowler.each do | bowler |
+          se = bowler.get_tournament_entries(selected_tournament)
+          @squad_entries += se.to_a if se && se.to_a
+        end
         render 'show_entries'
       else
         flash.now.alert = "Bowler #{bowler_params[:name]} Not Found!"

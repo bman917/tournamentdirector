@@ -9,8 +9,13 @@ class BowlerTest < ActiveSupport::TestCase
 
 	test "Test that search works" do
 		Bowler.new(name: 'ABCDE', middle_name: 'FGHIJ', last_name: 'KLMNOP').save!
-		assert(Bowler.search('ABCDE KLMN').first, "Search is not working")
-		assert(Bowler.search('XXXXX').first == nil, "Search is not working")
+		assert(Bowler.search('XXXXX').first == nil, "Expected search to return nil result")
+		assert(Bowler.search('ABCDE KLMNOP').first, "Search by full now not working")
+		assert(Bowler.search('ABC KLMN').first, "Search by partial name now not working")
+		assert(Bowler.search('KLMNOP').first, "Search by last name now not working")
+		
+		Bowler.new(name: 'Bruno', last_name: 'Mars').save!
+		assert(Bowler.search('Mars').first.last_name == 'Mars', "Search by last name now not working")
 
 	end
 
