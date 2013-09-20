@@ -5,8 +5,85 @@ class SquadEntryTest < ActiveSupport::TestCase
 	setup do
 		seed_sletba_open
 
+		@first_squad = Squad.first
+		@open_masters = BowlerClass.find(5)
+
 		@new_squad_entry_for_bowler_juan = create_squad_entry_for_bowler_juan
 	end
+
+	test "Create Add Squad Entry to AllEvents if this is the first entry type for a bowler" do
+		
+		bowler1 = Bowler.create(name: 'Bowler1 ',   last_name: 'Bowler', gender: 'M', bowling_association_id: 1)
+		bowler2 = Bowler.create(name: 'Bowler2',   last_name: 'Bowler', gender: 'M', bowling_association_id: 1)
+		
+		#First Test - create the first singles entry
+		first_singles_entry = create_singles_entry_and_verify_all_events(bowler1)
+
+		#2nd Test - create another singles entry. It should not be added
+		another_singles_entry = @first_squad.add_entry([bowler1], game_type_id: 1, category: @open_masters.name)
+		bowler1_all_events = bowler1.get_tournament_all_event_entry(@first_squad.tournament)
+		assert_equal(nil, bowler1_all_events.squad_entries.exists?(another_singles_entry), "All Events should only contain one singles entry")
+
+		#3rd Test - create a doubles entry.
+		doubles_entry1 = create_doubles_entry_and_verify_all_events(bowler1, bowler2)
+
+		#4th Test - create a singles entry for bowler2
+		bowler2_singles_entry = create_singles_entry_and_verify_all_events(bowler2)
+		
+		#5th Test - test that the squad entry is removed from all events if it is deleted
+		bowler2_singles_entry.destroy
+		bowler2_all_events = bowler2.get_tournament_all_event_entry(@first_squad.tournament)
+		assert_equal 1, bowler2_all_events.squad_entries.size
+
+		#6th Test - verify that squad entries are not deleted when all events is deleted.
+		bowler2_all_events.destroy
+		#this call should not raise any exceptions
+		SquadEntry.find(doubles_entry1)
+	end
+
+	test "Do not delete an AllEvent when it still has one entry" do
+		bowler1 = Bowler.create(name: 'Bowler1 ',   last_name: 'Bowler', gender: 'M', bowling_association_id: 1)
+        bowler2 = Bowler.create(name: 'Bowler2',   last_name: 'Bowler', gender: 'M', bowling_association_id: 1)
+
+		singles_entry = create_singles_entry_and_verify_all_events(bowler1)
+		doubes_entry  = create_doubles_entry_and_verify_all_events(bowler1, bowler2)
+
+		bowler1_all_events = bowler1.get_tournament_all_event_entry(@first_squad.tournament)
+
+		assert_equal 2, bowler1_all_events.squad_entries.size
+
+		doubes_entry.destroy
+
+		bowler1_all_events.reload
+		assert_equal 1, bowler1_all_events.squad_entries.size
+
+	end
+
+	def create_singles_entry_and_verify_all_events(bowler)
+		first_singles_entry = @first_squad.add_entry([bowler], game_type_id: 1, category: @open_masters.name)
+		all_event = bowler.get_tournament_all_event_entry(@first_squad.tournament)
+		assert(all_event != nil, "AllEvents should have been created for a bowler's 1st squad entry")
+		assert(all_event.squad_entries.exists?(first_singles_entry), 'bowler1 should have a singels all events entry')
+		return first_singles_entry
+	end
+
+	def create_doubles_entry_and_verify_all_events(bowler1, bowler2)
+
+		doubles_entry1 = @first_squad.add_entry([bowler1, bowler2], game_type_id: 2, category: @open_masters.name)
+
+		bowler2_all_events = bowler2.get_tournament_all_event_entry(@first_squad.tournament)
+		bowler1_all_events = bowler1.get_tournament_all_event_entry(@first_squad.tournament)
+
+		puts "Test Result: Bowler1: #{bowler1_all_events.squad_entries.size}, Bowler2: #{bowler2_all_events.squad_entries.size}"
+
+		assert bowler2_all_events.squad_entries.exists?(doubles_entry1), "bowler2 should have a doubles all events entry"
+		assert bowler1_all_events.squad_entries.exists?(doubles_entry1), "bowler1 should have a doubles all events entry"
+
+		return doubles_entry1
+	end
+
+
+
 
 	test "All games should be deleted when squad entry is deleted" do
 		

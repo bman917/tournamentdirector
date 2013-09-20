@@ -40,7 +40,7 @@ class ActiveSupport::TestCase
   def create_squad_entry_for_bowler_juan
 
     @new_squad_entry_for_bowler_juan = SquadEntry.new(game_type: game_types(:singles))
-    @new_squad_entry_for_bowler_juan.bowlers << bowlers(:juan)
+    @new_squad_entry_for_bowler_juan.add_bowler bowlers(:juan)
     @new_squad_entry_for_bowler_juan.save!
     return @new_squad_entry_for_bowler_juan
     

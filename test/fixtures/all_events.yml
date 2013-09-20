@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tournament_id: 
+  bowler_id: 
+  total_pinfalls: 1
+  bowler_class_id: 
+
+two:
+  tournament_id: 
+  bowler_id: 
+  total_pinfalls: 1
+  bowler_class_id: 

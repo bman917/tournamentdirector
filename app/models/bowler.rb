@@ -9,6 +9,7 @@ class Bowler < ActiveRecord::Base
   has_and_belongs_to_many :squad_entries, autosave: true
   has_many :average_entries, :dependent => :delete_all
   has_many :games, :dependent => :delete_all
+  has_many :all_events
 
   validate :full_name_cannot_have_duplicates
 
@@ -79,8 +80,14 @@ class Bowler < ActiveRecord::Base
     self.full_name
   end
 
+  def get_tournament_all_event_entry(tournament)
+    self.all_events.where(id: tournament.all_events).first if tournament
+  end
+
   def get_tournament_entries(tournament)
-    squad_entries.where(id: tournament.squad_entries)
+    if self.squad_entries && self.squad_entries.size > 0 && tournament
+      self.squad_entries.where(id: tournament.squad_entries)
+    end
   end
 
   def games_in_tournament(tournament=nil)

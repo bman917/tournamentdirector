@@ -8,14 +8,49 @@ class SquadEntry < ActiveRecord::Base
   belongs_to :squad, :counter_cache => true
   belongs_to :game_type
   belongs_to :tournament
+  has_and_belongs_to_many :all_events
   validates :bowlers, :bowler_complete => true
   before_save :link_tournament
+  before_destroy :delete_all_events_if_empty
+
+  def delete_all_events_if_empty
+    all_events =AllEvent.where("id in (select all_event_id from all_events_squad_entries where squad_entry_id = #{self.id})")
+    puts "AllEvents for #{self.id} - #{all_events.size}"
+
+    all_events.each do | all_event |
+      entries = all_event.squad_entries
+      if entries && entries.size == 1 && entries.exists?(self)
+         all_event.destroy
+      end
+    end
+  end
+
+  def create_all_event_entry
+    
+    bowlers.each do | bowler |
+      ae = bowler.get_tournament_all_event_entry(tournament)
+      
+      if ae == nil
+        puts "Creating #{game_type} AllEvent entry for #{bowler}"
+        
+        a =AllEvent.new(tournament: tournament, bowler: bowler, bowler_class: bowler.pbc_classification)
+        self.all_events << a
+        a.save!
+      else
+        puts "Bowler #{bowler} has an all events entry #{ae.id}. Checking squad_entries if he has #{game_type}"
+        if ae.squad_entries.where(game_type: self.game_type).size == 0
+          ae.squad_entries << self
+          puts "Added #{game_type} to #{bowler}. He now has #{ae.squad_entries.size} entries in all events."
+        end
+      end
+    end
+    self.save!
+  end
+
 
   def link_tournament
     self.tournament = squad.tournament if squad
   end
-
-
 
   def games_record_date
     games.first.created_at if has_games?

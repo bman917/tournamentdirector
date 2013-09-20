@@ -104,8 +104,9 @@ class SquadEntriesController < ApplicationController
   # POST /squad_entries
   # POST /squad_entries.json
   def create
+    @squad = Squad.find(squad_entry_params[:squad_id])
 
-    @squad_entry = SquadEntry.new(squad_entry_params)
+    #@squad_entry = SquadEntry.new(squad_entry_params)
 
     puts "Squad ID: #{squad_entry_params[:category]}"
     game_type = squad_entry_params[:game_type]
@@ -113,9 +114,16 @@ class SquadEntriesController < ApplicationController
     number_of_bowlers = bowler_id_hash.size
     puts "Number of Bowler IDs: #{number_of_bowlers}, Entry Type: #{game_type}"
 
+    bowler_names = []
+
     (1..number_of_bowlers).each do |i|
-      @squad_entry.add_bowler(bowler_id_hash[i.to_s])
+    #  @squad_entry.add_bowler(bowler_id_hash[i.to_s])
+      bowler_names << bowler_id_hash[i.to_s]
     end
+
+    @squad_entry = @squad.add_entry(bowler_names, squad_entry_params)
+
+
 
     @new_squad_entry = @squad_entry
 

@@ -5,6 +5,17 @@ class Squad < ActiveRecord::Base
   belongs_to :user
   has_many :squad_entries
 
+  def add_entry(bowlers, params)
+    entry = self.squad_entries.create(params)
+    entry.add_bowlers(bowlers)
+    entry.save!
+
+    puts "Squad: created squad with #{entry.bowlers.size} bowlers"
+
+    entry.create_all_event_entry
+    entry
+  end
+
   def flush_cached_squad_entries
     Rails.cache.delete([self, tournament, "squad_entries"])
   end

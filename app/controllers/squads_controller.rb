@@ -20,8 +20,6 @@ class SquadsController < ApplicationController
     clear_selected_squad
   end
 
-  # GET /squads
-  # GET /squads.json
   def index
     @squads = selected_tournament.squads
   end
@@ -47,8 +45,6 @@ class SquadsController < ApplicationController
     render 'show'
   end
 
-  # GET /squads/1
-  # GET /squads/1.json
   def show
     @squad ||= set_squad
     clear_selected_squad_entry
@@ -56,7 +52,6 @@ class SquadsController < ApplicationController
     show_by_category
   end
 
-  # GET /squads/new
   def new
     @squad = Squad.new
     @tournament = selected_tournament;
@@ -64,14 +59,11 @@ class SquadsController < ApplicationController
     
   end
 
-  # GET /squads/1/edit
   def edit
     @tournament = @squad.tournament
     @next_squad_number = @squad.name
   end
 
-  # POST /squads
-  # POST /squads.json
   def create
     @squad = Squad.new(squad_params)
 
@@ -89,8 +81,6 @@ class SquadsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /squads/1
-  # PATCH/PUT /squads/1.json
   def update
     respond_to do |format|
       if @squad.update(squad_params)
@@ -106,8 +96,6 @@ class SquadsController < ApplicationController
     end
   end
 
-  # DELETE /squads/1
-  # DELETE /squads/1.json
   def destroy
     tournament = @squad.tournament
     @squad.record(:destroy, current_user)

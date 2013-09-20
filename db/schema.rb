@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916144227) do
+ActiveRecord::Schema.define(version: 20130920161830) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 20130916144227) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["tournament_id"], name: "index_activities_on_tournament_id"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+
+  create_table "all_events", force: true do |t|
+    t.integer  "tournament_id"
+    t.integer  "bowler_id"
+    t.integer  "total_pinfalls"
+    t.integer  "bowler_class_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "all_events", ["bowler_class_id"], name: "index_all_events_on_bowler_class_id"
+  add_index "all_events", ["bowler_id"], name: "index_all_events_on_bowler_id"
+  add_index "all_events", ["tournament_id"], name: "index_all_events_on_tournament_id"
+
+  create_table "all_events_squad_entries", id: false, force: true do |t|
+    t.integer "all_event_id"
+    t.integer "squad_entry_id"
+  end
 
   create_table "average_entries", force: true do |t|
     t.integer  "average"
@@ -125,8 +143,10 @@ ActiveRecord::Schema.define(version: 20130916144227) do
     t.integer  "games_count",    default: 0
     t.integer  "tournament_id"
     t.integer  "user_id"
+    t.integer  "all_event_id"
   end
 
+  add_index "squad_entries", ["all_event_id"], name: "index_squad_entries_on_all_event_id"
   add_index "squad_entries", ["game_type_id"], name: "index_squad_entries_on_game_type_id"
   add_index "squad_entries", ["squad_id"], name: "index_squad_entries_on_squad_id"
   add_index "squad_entries", ["tournament_id"], name: "index_squad_entries_on_tournament_id"
