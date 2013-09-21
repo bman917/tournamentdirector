@@ -11,6 +11,37 @@ class SquadEntryTest < ActiveSupport::TestCase
 		@new_squad_entry_for_bowler_juan = create_squad_entry_for_bowler_juan
 	end
 
+	test "All events total pinfall is updated" do
+		bowler1 = Bowler.create(name: 'Bowler1 ',   last_name: 'Bowler', gender: 'M', bowling_association_id: 1)
+		bowler2 = Bowler.create(name: 'Bowler2',   last_name: 'Bowler', gender: 'M', bowling_association_id: 1)
+
+		first_singles_entry = create_singles_entry_and_verify_all_events(bowler1)
+
+		game1 = first_singles_entry.add_game(bowler: bowler1, score: 100, hdcp: 0)
+		game2 = first_singles_entry.add_game(bowler: bowler1, score: 100, hdcp: 0)
+		game3 = first_singles_entry.add_game(bowler: bowler1, score: 100, hdcp: 7)
+
+		bowler1_all_events = bowler1.get_tournament_all_event_entry(@first_squad.tournament)
+		assert_equal 307, bowler1_all_events.total_pinfalls
+
+		doubles_entry1 = create_doubles_entry_and_verify_all_events(bowler1, bowler2)
+		doubles_entry1.add_game(bowler: bowler1, score: 200)
+		doubles_entry1.add_game(bowler: bowler1, score: 200)
+		doubles_entry1.add_game(bowler: bowler2, score: 100)
+		doubles_entry1.add_game(bowler: bowler2, score: 100)
+
+		bowler1_all_events.reload
+		assert_equal 707, bowler1_all_events.total_pinfalls
+		bowler2_all_events = bowler2.get_tournament_all_event_entry(@first_squad.tournament)
+        assert_equal 200, bowler2_all_events.total_pinfalls
+
+        first_singles_entry.reload
+        first_singles_entry.games.clear
+
+        bowler1_all_events.reload
+        assert_equal 400, bowler1_all_events.total_pinfalls
+	end
+
 	test "Create Add Squad Entry to AllEvents if this is the first entry type for a bowler" do
 		
 		bowler1 = Bowler.create(name: 'Bowler1 ',   last_name: 'Bowler', gender: 'M', bowling_association_id: 1)

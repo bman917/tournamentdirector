@@ -4,7 +4,7 @@ class SquadEntry < ActiveRecord::Base
 #  scope :singles, find_by_game_type(GameType.first)
   default_scope { order("total_pinfalls DESC") }
   has_and_belongs_to_many :bowlers, autosave: true
-  has_many :games, :dependent => :delete_all
+  has_many :games, :dependent => :destroy
   belongs_to :squad, :counter_cache => true
   belongs_to :game_type
   belongs_to :tournament
@@ -12,6 +12,10 @@ class SquadEntry < ActiveRecord::Base
   validates :bowlers, :bowler_complete => true
   before_save :link_tournament
   before_destroy :delete_all_events_if_empty
+
+  def add_game(params)
+    games.create!(params)
+  end
 
   def delete_all_events_if_empty
     all_events =AllEvent.where("id in (select all_event_id from all_events_squad_entries where squad_entry_id = #{self.id})")

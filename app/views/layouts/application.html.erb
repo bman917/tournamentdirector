@@ -56,7 +56,12 @@
             </li>
           <% end %>
 
-          <li><li><%=link_to 'RANKING', show_ranking_reports_path %></li>
+          <li><%=link_to 'RANKING', show_ranking_reports_path %>
+            <ul>
+            <li><%=link_to 'Tournament Rankings', show_ranking_reports_path%></li>
+            <li><%=link_to 'All Events Ranking', all_events_path%></li>
+            </ul>
+          </li>
 
           <li><%=link_to 'SQUADS', tournament_select_path(selected_tournament) %>
             <ul>

@@ -15,6 +15,17 @@ class Bowler < ActiveRecord::Base
 
   attr_accessor :pbc_average
 
+  def update_all_events_total_pinfalls(tournament)
+    all_event = get_tournament_all_event_entry(tournament)
+    if all_event
+
+      total_score = games.where(squad_entry_id: all_event.squad_entries).sum(:score)
+      total_hdcp  = games.where(squad_entry_id: all_event.squad_entries).sum(:hdcp)
+      all_event.total_pinfalls = total_score + total_hdcp
+      all_event.save!
+    end
+  end
+
   def full_name_cannot_have_duplicates
     if created_at == updated_at
       result = Bowler.where('name = ? and last_name = ? and id != ?', name, last_name, id)

@@ -1,0 +1,19 @@
+<h1>All Events Ranking</h1>
+<table>
+	<tr>
+		<th></th>
+		<th>Bowlers</th>
+		<th>Total Pinfalls</th>
+
+	</tr>
+
+	<% @all_events.each_with_index do | all_event, i | %>
+
+	<tr>
+		<th><%=(i+1).ordinalize%></th>
+		<td><%=all_event.bowler.full_name%></td>
+		<td><%=all_event.total_pinfalls%></td>
+	</tr>
+
+	<% end %>
+</table>

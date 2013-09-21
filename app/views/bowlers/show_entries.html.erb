@@ -3,29 +3,18 @@
 <div class="report">
   <table class="big_table">
       <thead>
-        <tr>
-          <th>Squad</th>
-          <th>Game Type</th>
-          <th>Division</th>
-          <th>Total Pinfalls</th>
-          <th>Bowlers</th>
-          <% if encoder? %>
-          <th>Action</th>
-          <% end %>
-        </tr>
+<tr id="header_row">
+  
+  <th id="bowler_category_header">Bowlers</th>
+  <th id="game_type_header">Games</th>
+  <th>Total</th>
+   <% if current_user.encoder? %><th>Actions</th><%end%>
+</tr>
     </thead>
  <tbody>
   <%@squad_entries.each do | squad_entry |%>
-    <tr>
-      <td><%= link_to squad_entry.squad, squad_entry_path(squad_entry)%></td>
-      <td><%=squad_entry.game_type%></td>
-      <td><%=squad_entry.category%></td>
-      <td><%=squad_entry.total_pinfalls%></td>
-      <td><%=squad_entry.bowler_names%></td>
-      <% if encoder? %>
-      <td><%= link_to('Add Game', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %> </td>
-      <% end %>
-    </tr>
+
+    <%= render squad_entry%>
   <%end%>
    </tbody>
 </table>

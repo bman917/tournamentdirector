@@ -1,4 +1,5 @@
 Tournamentdirector::Application.routes.draw do
+  resources :all_events
   resources :bowler_classes
   resources :activities
   resources :reports do
