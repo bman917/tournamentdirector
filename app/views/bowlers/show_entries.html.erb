@@ -14,7 +14,18 @@
  <tbody>
   <%@squad_entries.each do | squad_entry |%>
 
-    <%= render squad_entry%>
+    <tr class="data <%=cycle 'o', 'e'%>">
+  
+      <td class="bowler_name_column"><%= squad_entry.bowler_names %></td>
+      <td class="games_column"><%= squad_entry.games.size%>
+      <%= link_to "Show Details", squad_entry_path(squad_entry) if squad_entry.has_games?%><%= link_to('Add Games', new_squad_entry_game_path(squad_entry)) unless squad_entry.has_games? %></td>
+      <td><%= squad_entry.total_pinfalls%></td>
+       <% if current_user.encoder? %>
+      <td>
+          <%= link_to 'Delete', squad_entry, method: :delete, data: { confirm: 'You are about to permanently delete this entry and all games recorded under it. Are you sure?' } if current_user.admin?%></td>
+        <% end %>
+    </tr>
+
   <%end%>
    </tbody>
 </table>
