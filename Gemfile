@@ -5,6 +5,11 @@ gem 'rails', '4.0.0.beta1'
 
 gem 'sqlite3'
 
+group :production do
+	gem 'mysql2'
+	gem 'newrelic_rpm'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -42,7 +47,6 @@ group :development do
   gem 'better_errors'
   gem 'meta_request'
   gem 'binding_of_caller'
-
 end
 
 gem 'seedbank', '>=0.3.0.pre'
