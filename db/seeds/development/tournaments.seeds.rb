@@ -9,6 +9,9 @@ Tournament.delete_all
 @sletba_open.game_types << GameType.find('2')
 @sletba_open.game_types << GameType.find('3')
 
+@sletba_open.bowler_classes << BowlerClass.where(id: [5,6,7,8,9])
+
+
 @sletba_sept_monthly = Tournament.create(id: 2, name: 'SLETBA September 2013 Monthly Finals', tournament_type: 'MONTHLY', start_date: "September 29, 2013", end_date: "September 29, 2013", bowling_association_id: 1)
 @sletba_sept_monthly.game_types << GameType.find('4')
 
